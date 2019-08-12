@@ -26,12 +26,12 @@ For more inforamtion about OSCAL's architecture, please visit:
 - XML Schema Description (XSD) Update Download and Pre-compile
 - Validation of OSCAL files using XSD with friendly error reporting
 - OSCAL Profile Resolution (Collapses OSCAL Profiles with Pointers to Catalogs, down to a single Catalog)
-- OSCAL Format Conversion (XML to/from JSON, XML to/from YAML)
 
 ### In Progress:
 - Profile Creation/Manipulation
 - Catalog Creation/Manipulation
 - Metadata and Back-Matter Management (all OSCAL layers)
+- OSCAL Format Conversion (XML to/from JSON, XML to/from YAML)
 
 ### Future:
 - OSCAL Format Conversion (JSON to/from YAML)
