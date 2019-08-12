@@ -5,14 +5,13 @@ This tool is designed to work with Extensible Markup Language (XML)-based OSCAL 
 
 ## OSCAL Layers: Brief Overview
 
-### Syntax Fully Defined:
-- **Catalog**: Control definitions, such as NIST 800-53, Revision 4.
-- **Profile**: Control baselines, such as the FedRAMP High, Moderate, and Low baselines.
-### Syntax Under Development:
-- **Implementation**: System Security Plan (SSP) content and vendor-provided component content.
-### Syntax Pending:
-- **Assessment**: Security Assessment Plan (SAP), assessment activities, and evidence gathering. 
-- **Assessment Results**: Security Assessment Report (SAR) and Plan of Action and Milestones (POA&M).
+| Layer      | Description     | Syntax Status     |
+| :------------- | :---------- | :-----------: |
+|  **Catalog** | Control definitions, such as NIST 800-53, Revision 4. | Fully Drafted |
+| **Profile**  | Control baselines, such as the FedRAMP High, Moderate, and Low baselines. | Fully Drafted |
+|  **Implementation** | System Security Plan (SSP) content and vendor-provided component content. | Under Development |
+|  **Assessment** | Security Assessment Plan (SAP), assessment activities, and evidence gathering. | CY 2019 Q4 |
+|  **Assessment Results** | Security Assessment Report (SAR) and Plan of Action and Milestones (POA&M). | CY 2019 Q4 |
 
 For more inforamtion about OSCAL's architecture, please visit:
 [https://pages.nist.gov/OSCAL/docs/](https://pages.nist.gov/OSCAL/docs/)
