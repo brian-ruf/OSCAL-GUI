@@ -44,7 +44,7 @@ Functionality related to the assessment layers will be planned and developed as 
 ## Technical Requirements
 - [PHP 7+](https://www.php.net/downloads.php) (Will likely work with PHP 5+; however, this has not been verified)
 - Java Runtime: Only required by Saxon-HE (Home Edition) to convert between OSCAL formats (XML to/from JSON and YAML)
-- Browser Support: Google Chrome or Mozilla Firefox recommended. Most major browsers are supported, **EXCEPT Microsoft Internet Explorer and Edge**.
+- Browser Support: Most major browsers are supported, **EXCEPT Microsoft Internet Explorer and Edge**, which do not support server-side execution (SSE) via javascript/eventSource. The latest version of Google Chrome or Mozilla Firefox is recommended.
 
 This can run on a stand-alone workstation using PHP's integrated web server, or placed on a web server such as Apache. If placed on a web server, must run in the webroot directory.  
 
