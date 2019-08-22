@@ -3,20 +3,7 @@ An open-source graphical user interface (GUI) for interacting with Open Security
 
 This tool is designed to work with Extensible Markup Language (XML)-based OSCAL files, and enables conversion of OSCAL files between XML, JavaScript Object Notation (JSON), and Yet another Markup Language (YAML) in any direction.
 
-## OSCAL Layers: Brief Overview
-
-| Layer      | Description     | Syntax Status     |
-| :------------- | :---------- | :-----------: |
-|  **Catalog** | Syntax for describing control definitions, such as those that appear in NIST 800-53, Revision 4 and ISO-27001. | Fully Drafted |
-| **Profile**  | Syntax for describing control baselines, such as the FedRAMP High, Moderate, and Low baselines. | Fully Drafted |
-|  **Implementation** | Syntax for describing System Security Plan (SSP) content, as well as vendor-provided component content. | Under Development |
-|  **Assessment** | Syntax for describing content related to Security Assessment Plan (SAP), assessment activities, and evidence gathering. | CY 2019 Q4 |
-|  **Assessment Results** | Syntax for describing Security Assessment Report (SAR) and Plan of Action and Milestones (POA&M) content. | CY 2019 Q4 |
-
-For more inforamtion about OSCAL's architecture, please visit:
-[https://pages.nist.gov/OSCAL/docs/](https://pages.nist.gov/OSCAL/docs/)
-
-## Short Term Roadmap and Progress:
+## OSCAL-GUI Short Term Roadmap and Progress:
 
 ### Complete:
 - Core GUI framework (Presentation, Menus, etc.)
@@ -57,3 +44,15 @@ This tool includes and uses the following open-source modules:
 - [Jodit 3.2.44](https://xdsoft.net/jodit/) to enable rich editing of mixed and prose OSCAL fields
 - [Saxon-HE (Home Edition)](https://saxonica.com/download/java.xml) Version 9.9: Used only to process the XSLT 3.0 files used to convert between OSCAL formats (XML to/from JSON and YAML) 
 
+## OSCAL Layers: Brief Overview
+
+| Layer      | Description     | Syntax Status     |
+| :------------- | :---------- | :-----------: |
+|  **Catalog** | Syntax for describing control definitions, such as those that appear in NIST 800-53, Revision 4 and ISO-27001. | Fully Drafted |
+| **Profile**  | Syntax for describing control baselines, such as the FedRAMP High, Moderate, and Low baselines. | Fully Drafted |
+|  **Implementation** | Syntax for describing System Security Plan (SSP) content, as well as vendor-provided component content. | Under Development |
+|  **Assessment** | Syntax for describing content related to Security Assessment Plan (SAP), assessment activities, and evidence gathering. | CY 2019 Q4 |
+|  **Assessment Results** | Syntax for describing Security Assessment Report (SAR) and Plan of Action and Milestones (POA&M) content. | CY 2019 Q4 |
+
+For more inforamtion about OSCAL's architecture, please visit:
+[https://pages.nist.gov/OSCAL/docs/](https://pages.nist.gov/OSCAL/docs/)
