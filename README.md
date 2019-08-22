@@ -7,11 +7,11 @@ This tool is designed to work with Extensible Markup Language (XML)-based OSCAL 
 
 | Layer      | Description     | Syntax Status     |
 | :------------- | :---------- | :-----------: |
-|  **Catalog** | Control definitions, such as NIST 800-53, Revision 4. | Fully Drafted |
-| **Profile**  | Control baselines, such as the FedRAMP High, Moderate, and Low baselines. | Fully Drafted |
-|  **Implementation** | System Security Plan (SSP) content and vendor-provided component content. | Under Development |
-|  **Assessment** | Security Assessment Plan (SAP), assessment activities, and evidence gathering. | CY 2019 Q4 |
-|  **Assessment Results** | Security Assessment Report (SAR) and Plan of Action and Milestones (POA&M). | CY 2019 Q4 |
+|  **Catalog** | Syntax for describing control definitions, such as those that appear in NIST 800-53, Revision 4 and ISO-27001. | Fully Drafted |
+| **Profile**  | Syntax for describing control baselines, such as the FedRAMP High, Moderate, and Low baselines. | Fully Drafted |
+|  **Implementation** | Syntax for describing System Security Plan (SSP) content, as well as vendor-provided component content. | Under Development |
+|  **Assessment** | Syntax for describing content related to Security Assessment Plan (SAP), assessment activities, and evidence gathering. | CY 2019 Q4 |
+|  **Assessment Results** | Syntax for describing Security Assessment Report (SAR) and Plan of Action and Milestones (POA&M) content. | CY 2019 Q4 |
 
 For more inforamtion about OSCAL's architecture, please visit:
 [https://pages.nist.gov/OSCAL/docs/](https://pages.nist.gov/OSCAL/docs/)
