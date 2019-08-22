@@ -31,7 +31,7 @@ For more inforamtion about OSCAL's architecture, please visit:
 - Profile Creation/Manipulation
 - Catalog Creation/Manipulation
 - Metadata and Back-Matter Management (all OSCAL layers)
-- OSCAL Format Conversion (XML to/from JSON, XML to/from YAML)
+- OSCAL Format Conversion (XML to/from JSON)
 
 ### Future:
 - OSCAL Format Conversion (JSON to/from YAML)
@@ -39,6 +39,7 @@ For more inforamtion about OSCAL's architecture, please visit:
 - SSP FedRAMP Validation
 - Identity management
 - Access control (on a project-by-project basis)
+- OSCAL Format Conversion (XML/JSON to/from YAML)
 Functionality related to the assessment layers will be planned and developed as the syntax for those OSCAL layers are defined.
 
 ## Technical Requirements
