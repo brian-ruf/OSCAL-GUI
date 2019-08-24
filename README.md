@@ -9,16 +9,17 @@ This tool is designed to work with Extensible Markup Language (XML)-based OSCAL 
 - Core GUI framework (Presentation, Menus, etc.)
 - Core OSCAL functions (in oscal-functions.php)
 - Basic Project Management Functions
-- OSCAL File Import
+- OSCAL File Import (XML and JSON)
 - XML Schema Description (XSD) Update Download and Pre-compile
 - Validation of OSCAL files using XSD with friendly error reporting
-- OSCAL Profile Resolution (Collapses OSCAL Profiles with Pointers to Catalogs, down to a single Catalog)
+- OSCAL Profile Resolution: Collapses OSCAL Profiles that contain Pointers to Catalogs, down to a single Catalog.
+- OSCAL Format Conversion (XML to/from JSON)
 
 ### In Progress:
+- Metadata Management (all OSCAL layers)
 - Profile Creation/Manipulation
 - Catalog Creation/Manipulation
-- Metadata and Back-Matter Management (all OSCAL layers)
-- OSCAL Format Conversion (XML to/from JSON)
+- Back-Matter Management (all OSCAL layers)
 
 ### Future:
 - OSCAL Format Conversion (JSON to/from YAML)
