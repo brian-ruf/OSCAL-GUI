@@ -1,2 +1,4 @@
-webroot/projects/*
+webroot/projects/proj*
+webroot/projects/*.txt
 webroot/HOLD
+webroot/_start.bat
