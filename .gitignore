@@ -1,2 +1,3 @@
 webroot/projects/proj*
+webroot/projects/*.txt
 webroot/HOLD
