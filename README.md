@@ -22,12 +22,11 @@ This tool is designed to work with Extensible Markup Language (XML)-based OSCAL 
 - Back-Matter Management (all OSCAL layers)
 
 ### Future:
-- OSCAL Format Conversion (JSON to/from YAML)
+- OSCAL Format Conversion (XML/JSON to/from YAML)
 - SSP Creation/Manipulation
 - SSP FedRAMP Validation
 - Identity management
 - Access control (on a project-by-project basis)
-- OSCAL Format Conversion (XML/JSON to/from YAML)
 Functionality related to the assessment layers will be planned and developed as the syntax for those OSCAL layers are defined.
 
 ## Technical Requirements
