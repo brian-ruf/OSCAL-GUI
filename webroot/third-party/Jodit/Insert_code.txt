@@ -1,0 +1,9 @@
+var editor = new Jodit("#editor", {
+  "buttons": "|,bold,underline,italic,|,ul,ol,|,paragraph,,hr,table,image,link,|,undo,redo,\n,cut,eraser,copyformat,symbol,|,source,fullsize,selectall,print,about"
+});
+
+
+var editor = new Jodit("#editor", {
+  "toolbarAdaptive": false,
+  "buttons": "|,bold,italic,underline,superscript,subscript,,fontsize,cut,eraser,copyformat,|,symbol,source"
+});

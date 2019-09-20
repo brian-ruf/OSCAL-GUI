@@ -1,0 +1,10 @@
+Metadata
+- publication-date - should be a full date representing the most recently date of formal publication
+- version - should be a version number
+
+- address/desc - Incorrectly inherits the formal name and description of a parameter description.
+- address/desc - Incorrectly inherits "group-as". Should only be a single here.
+- party/org/short-name - remove dash from formal-name
+- party/person/short-name - remove dash from formal-name
+- party/person/short-name - change description to better reflect the short name for a person (ie maybe mention nick name instead of acronym)
+

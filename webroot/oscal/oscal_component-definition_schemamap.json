@@ -1,0 +1,2714 @@
+{
+    "name": "component-definition",
+    "path": "\/\/component-definition",
+    "position": 0,
+    "required": true,
+    "multiple": false,
+    "holds_data": false,
+    "datatype": "none",
+    "flags": {},
+    "content": null,
+    "formal-name": "Component Definition",
+    "description": "TBD",
+    "model": {
+        "metadata": {
+            "name": "metadata",
+            "path": "\/\/component-definition\/metadata",
+            "position": 0,
+            "required": true,
+            "multiple": false,
+            "holds_data": false,
+            "datatype": "none",
+            "flags": {},
+            "content": null,
+            "formal-name": "Publication metadata",
+            "description": "Provides information about the publication and availability of the containing document.",
+            "model": {
+                "title": {
+                    "name": "title",
+                    "path": "\/\/component-definition\/metadata\/title",
+                    "position": 0,
+                    "required": true,
+                    "multiple": false,
+                    "holds_data": true,
+                    "datatype": "mixed",
+                    "flags": {},
+                    "content": null,
+                    "formal-name": "Title",
+                    "description": "A title for display and navigation"
+                },
+                "last-modified-date": {
+                    "name": "last-modified-date",
+                    "path": "\/\/component-definition\/metadata\/last-modified-date",
+                    "position": 1,
+                    "required": false,
+                    "multiple": false,
+                    "holds_data": true,
+                    "datatype": "dateTime-with-timezone",
+                    "flags": {},
+                    "content": null,
+                    "formal-name": "Last modified date",
+                    "description": "Date of last modification."
+                },
+                "version": {
+                    "name": "version",
+                    "path": "\/\/component-definition\/metadata\/version",
+                    "position": 2,
+                    "required": false,
+                    "multiple": false,
+                    "holds_data": true,
+                    "datatype": "string",
+                    "flags": {},
+                    "content": null,
+                    "formal-name": "Document version",
+                    "description": "The version of the document content."
+                },
+                "oscal-version": {
+                    "name": "oscal-version",
+                    "path": "\/\/component-definition\/metadata\/oscal-version",
+                    "position": 3,
+                    "required": true,
+                    "multiple": false,
+                    "holds_data": true,
+                    "datatype": "string",
+                    "flags": {},
+                    "content": null,
+                    "formal-name": "OSCAL version",
+                    "description": "OSCAL model version."
+                },
+                "doc-id": {
+                    "name": "doc-id",
+                    "path": "\/\/component-definition\/metadata\/doc-id",
+                    "position": 4,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "string",
+                    "flags": {
+                        "0": {
+                            "name": "type",
+                            "required": true,
+                            "datatype": "string",
+                            "formal-name": "Type",
+                            "description": "Indicating the type of identifier, address, email or other data item."
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Document Identifier",
+                    "description": "A document identifier qualified by an identifier type."
+                },
+                "prop": {
+                    "name": "prop",
+                    "path": "\/\/component-definition\/metadata\/prop",
+                    "position": 5,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "string",
+                    "flags": {
+                        "0": {
+                            "name": "name",
+                            "required": true,
+                            "datatype": "string",
+                            "formal-name": "Name",
+                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                        },
+                        "1": {
+                            "name": "id",
+                            "required": false,
+                            "datatype": "ID",
+                            "formal-name": "Identifier",
+                            "description": "Unique identifier of the containing object"
+                        },
+                        "2": {
+                            "name": "ns",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Namespace",
+                            "description": "A namespace qualifying the name."
+                        },
+                        "3": {
+                            "name": "class",
+                            "required": false,
+                            "datatype": "NMTOKENS",
+                            "formal-name": "Class",
+                            "description": "Indicating the type or classification of the containing object"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Property",
+                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                },
+                "link": {
+                    "name": "link",
+                    "path": "\/\/component-definition\/metadata\/link",
+                    "position": 6,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "mixed",
+                    "flags": {
+                        "0": {
+                            "name": "href",
+                            "required": true,
+                            "datatype": "uri-reference",
+                            "formal-name": "hypertext reference",
+                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                        },
+                        "1": {
+                            "name": "rel",
+                            "required": false,
+                            "datatype": "NCName",
+                            "formal-name": "Relation",
+                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                        },
+                        "2": {
+                            "name": "media-type",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Media type",
+                            "description": "Describes the media type of the linked resource"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Link",
+                    "description": "A reference to a local or remote resource"
+                },
+                "role": {
+                    "name": "role",
+                    "path": "\/\/component-definition\/metadata\/role",
+                    "position": 7,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": false,
+                    "datatype": "none",
+                    "flags": {
+                        "0": {
+                            "name": "id",
+                            "required": true,
+                            "datatype": "ID",
+                            "formal-name": "Identifier",
+                            "description": "Unique identifier of the containing object"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Role",
+                    "description": "Defining a role to be assigned to a party or agent",
+                    "model": {
+                        "title": {
+                            "name": "title",
+                            "path": "\/\/component-definition\/metadata\/role\/title",
+                            "position": 0,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "mixed",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Title",
+                            "description": "A title for display and navigation"
+                        },
+                        "short-name": {
+                            "name": "short-name",
+                            "path": "\/\/component-definition\/metadata\/role\/short-name",
+                            "position": 1,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "short-name",
+                            "description": "A common name, short name or acronym"
+                        },
+                        "desc": {
+                            "name": "desc",
+                            "path": "\/\/component-definition\/metadata\/role\/desc",
+                            "position": 2,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Description",
+                            "description": "A short textual description"
+                        }
+                    }
+                },
+                "party": {
+                    "name": "party",
+                    "path": "\/\/component-definition\/metadata\/party",
+                    "position": 8,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": false,
+                    "datatype": "none",
+                    "flags": {
+                        "0": {
+                            "name": "id",
+                            "required": false,
+                            "datatype": "ID",
+                            "formal-name": "Identifier",
+                            "description": "Unique identifier of the containing object"
+                        },
+                        "1": {
+                            "name": "role-id",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Role identifier",
+                            "description": "References a role element defined in metadata."
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Party (organization or person)",
+                    "description": "A responsible entity, either singular (an organization or person) or collective (multiple persons)",
+                    "model": {
+                        "person": {
+                            "name": "person",
+                            "path": "\/\/component-definition\/metadata\/party\/person",
+                            "position": 0,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": false,
+                            "datatype": "none",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Person",
+                            "description": "A person, with contact information",
+                            "model": {
+                                "person-name": {
+                                    "name": "person-name",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/person-name",
+                                    "position": 0,
+                                    "required": false,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "Person Name",
+                                    "description": "Full (legal) name of an individual"
+                                },
+                                "short-name": {
+                                    "name": "short-name",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/short-name",
+                                    "position": 1,
+                                    "required": false,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "short-name",
+                                    "description": "A common name, short name or acronym"
+                                },
+                                "org-name": {
+                                    "name": "org-name",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/org-name",
+                                    "position": 2,
+                                    "required": false,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "Organization Name",
+                                    "description": "Full (legal) name of an organization"
+                                },
+                                "person-id": {
+                                    "name": "person-id",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/person-id",
+                                    "position": 3,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Personal Identifier",
+                                    "description": "An identifier for a person (such as an ORCID) using a designated scheme."
+                                },
+                                "org-id": {
+                                    "name": "org-id",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/org-id",
+                                    "position": 4,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Organization Identifier",
+                                    "description": "An identifier for an organization using a designated scheme."
+                                },
+                                "address": {
+                                    "name": "address",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/address",
+                                    "position": 5,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": false,
+                                    "datatype": "none",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Address",
+                                    "description": "A postal address.",
+                                    "model": {
+                                        "addr-line": {
+                                            "name": "addr-line",
+                                            "path": "\/\/component-definition\/metadata\/party\/person\/address\/addr-line",
+                                            "position": 0,
+                                            "required": false,
+                                            "multiple": true,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Address line",
+                                            "description": "A single line of an address."
+                                        },
+                                        "city": {
+                                            "name": "city",
+                                            "path": "\/\/component-definition\/metadata\/party\/person\/address\/city",
+                                            "position": 1,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "City",
+                                            "description": "City, town or geographical region for mailing address"
+                                        },
+                                        "state": {
+                                            "name": "state",
+                                            "path": "\/\/component-definition\/metadata\/party\/person\/address\/state",
+                                            "position": 2,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "State",
+                                            "description": "State, province or analogous geographical region for mailing address"
+                                        },
+                                        "postal-code": {
+                                            "name": "postal-code",
+                                            "path": "\/\/component-definition\/metadata\/party\/person\/address\/postal-code",
+                                            "position": 3,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Postal Code",
+                                            "description": "Postal or ZIP code for mailing address"
+                                        },
+                                        "country": {
+                                            "name": "country",
+                                            "path": "\/\/component-definition\/metadata\/party\/person\/address\/country",
+                                            "position": 4,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Country",
+                                            "description": "Country for mailing address"
+                                        }
+                                    }
+                                },
+                                "email": {
+                                    "name": "email",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/email",
+                                    "position": 6,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "email",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "Email",
+                                    "description": "Email address"
+                                },
+                                "phone": {
+                                    "name": "phone",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/phone",
+                                    "position": 7,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Telephone",
+                                    "description": "Contact number by telephone"
+                                },
+                                "url": {
+                                    "name": "url",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/url",
+                                    "position": 8,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "uri",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "URL",
+                                    "description": "URL for web site or Internet presence"
+                                },
+                                "notes": {
+                                    "name": "notes",
+                                    "path": "\/\/component-definition\/metadata\/party\/person\/notes",
+                                    "position": 9,
+                                    "required": false,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "prose",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Notes",
+                                    "description": "Any notes with further information"
+                                }
+                            }
+                        },
+                        "org": {
+                            "name": "org",
+                            "path": "\/\/component-definition\/metadata\/party\/org",
+                            "position": 1,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": false,
+                            "datatype": "none",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Organization",
+                            "description": "An organization or legal entity (not a person), with contact information",
+                            "model": {
+                                "org-name": {
+                                    "name": "org-name",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/org-name",
+                                    "position": 0,
+                                    "required": true,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "Organization Name",
+                                    "description": "Full (legal) name of an organization"
+                                },
+                                "short-name": {
+                                    "name": "short-name",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/short-name",
+                                    "position": 1,
+                                    "required": false,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "short-name",
+                                    "description": "A common name, short name or acronym"
+                                },
+                                "org-id": {
+                                    "name": "org-id",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/org-id",
+                                    "position": 2,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Organization Identifier",
+                                    "description": "An identifier for an organization using a designated scheme."
+                                },
+                                "address": {
+                                    "name": "address",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/address",
+                                    "position": 3,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": false,
+                                    "datatype": "none",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Address",
+                                    "description": "A postal address.",
+                                    "model": {
+                                        "addr-line": {
+                                            "name": "addr-line",
+                                            "path": "\/\/component-definition\/metadata\/party\/org\/address\/addr-line",
+                                            "position": 0,
+                                            "required": false,
+                                            "multiple": true,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Address line",
+                                            "description": "A single line of an address."
+                                        },
+                                        "city": {
+                                            "name": "city",
+                                            "path": "\/\/component-definition\/metadata\/party\/org\/address\/city",
+                                            "position": 1,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "City",
+                                            "description": "City, town or geographical region for mailing address"
+                                        },
+                                        "state": {
+                                            "name": "state",
+                                            "path": "\/\/component-definition\/metadata\/party\/org\/address\/state",
+                                            "position": 2,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "State",
+                                            "description": "State, province or analogous geographical region for mailing address"
+                                        },
+                                        "postal-code": {
+                                            "name": "postal-code",
+                                            "path": "\/\/component-definition\/metadata\/party\/org\/address\/postal-code",
+                                            "position": 3,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Postal Code",
+                                            "description": "Postal or ZIP code for mailing address"
+                                        },
+                                        "country": {
+                                            "name": "country",
+                                            "path": "\/\/component-definition\/metadata\/party\/org\/address\/country",
+                                            "position": 4,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Country",
+                                            "description": "Country for mailing address"
+                                        }
+                                    }
+                                },
+                                "email": {
+                                    "name": "email",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/email",
+                                    "position": 4,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "email",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "Email",
+                                    "description": "Email address"
+                                },
+                                "phone": {
+                                    "name": "phone",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/phone",
+                                    "position": 5,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Telephone",
+                                    "description": "Contact number by telephone"
+                                },
+                                "url": {
+                                    "name": "url",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/url",
+                                    "position": 6,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "uri",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "URL",
+                                    "description": "URL for web site or Internet presence"
+                                },
+                                "notes": {
+                                    "name": "notes",
+                                    "path": "\/\/component-definition\/metadata\/party\/org\/notes",
+                                    "position": 7,
+                                    "required": false,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "prose",
+                                    "flags": {
+                                        "0": {
+                                            "name": "type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Type",
+                                            "description": "Indicating the type of identifier, address, email or other data item."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Notes",
+                                    "description": "Any notes with further information"
+                                }
+                            }
+                        },
+                        "notes": {
+                            "name": "notes",
+                            "path": "\/\/component-definition\/metadata\/party\/notes",
+                            "position": 2,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "type",
+                                    "required": false,
+                                    "datatype": "string",
+                                    "formal-name": "Type",
+                                    "description": "Indicating the type of identifier, address, email or other data item."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Notes",
+                            "description": "Any notes with further information"
+                        }
+                    }
+                },
+                "notes": {
+                    "name": "notes",
+                    "path": "\/\/component-definition\/metadata\/notes",
+                    "position": 9,
+                    "required": false,
+                    "multiple": false,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {
+                        "0": {
+                            "name": "type",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Type",
+                            "description": "Indicating the type of identifier, address, email or other data item."
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Notes",
+                    "description": "Any notes with further information"
+                }
+            }
+        },
+        "import-component-definition": {
+            "name": "import-component-definition",
+            "path": "\/\/component-definition\/import-component-definition",
+            "position": 1,
+            "required": false,
+            "multiple": true,
+            "holds_data": false,
+            "datatype": "none",
+            "flags": {
+                "0": {
+                    "name": "href",
+                    "required": true,
+                    "datatype": "uri",
+                    "formal-name": "Hyperlink Reference",
+                    "description": "A link to a resource that defines a set of components and\/or capabilities to import into this collection."
+                }
+            },
+            "content": null,
+            "formal-name": "Import Component Definition",
+            "description": "Loads a component definition from another resource."
+        },
+        "component": {
+            "name": "component",
+            "path": "\/\/component-definition\/component",
+            "position": 2,
+            "required": false,
+            "multiple": true,
+            "holds_data": true,
+            "datatype": "prose",
+            "flags": {
+                "0": {
+                    "name": "id",
+                    "required": true,
+                    "datatype": "ID",
+                    "formal-name": "Component Identifier",
+                    "description": "A unique identifier for a component."
+                },
+                "1": {
+                    "name": "name",
+                    "required": false,
+                    "datatype": "string",
+                    "formal-name": "Component Name",
+                    "description": "The component's short, human-readable name."
+                },
+                "2": {
+                    "name": "component-type",
+                    "required": true,
+                    "datatype": "string",
+                    "formal-name": "Component Type",
+                    "description": "A category describing the purpose of the component."
+                }
+            },
+            "content": null,
+            "formal-name": "Component",
+            "description": "A defined component that can be part of an implemented system.",
+            "model": {
+                "title": {
+                    "name": "title",
+                    "path": "\/\/component-definition\/component\/title",
+                    "position": 0,
+                    "required": true,
+                    "multiple": false,
+                    "holds_data": true,
+                    "datatype": "mixed",
+                    "flags": {},
+                    "content": null,
+                    "formal-name": "Title",
+                    "description": "A title for display and navigation"
+                },
+                "prop": {
+                    "name": "prop",
+                    "path": "\/\/component-definition\/component\/prop",
+                    "position": 1,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "string",
+                    "flags": {
+                        "0": {
+                            "name": "name",
+                            "required": true,
+                            "datatype": "string",
+                            "formal-name": "Name",
+                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                        },
+                        "1": {
+                            "name": "id",
+                            "required": false,
+                            "datatype": "ID",
+                            "formal-name": "Identifier",
+                            "description": "Unique identifier of the containing object"
+                        },
+                        "2": {
+                            "name": "ns",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Namespace",
+                            "description": "A namespace qualifying the name."
+                        },
+                        "3": {
+                            "name": "class",
+                            "required": false,
+                            "datatype": "NMTOKENS",
+                            "formal-name": "Class",
+                            "description": "Indicating the type or classification of the containing object"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Property",
+                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                },
+                "link": {
+                    "name": "link",
+                    "path": "\/\/component-definition\/component\/link",
+                    "position": 2,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "mixed",
+                    "flags": {
+                        "0": {
+                            "name": "href",
+                            "required": true,
+                            "datatype": "uri-reference",
+                            "formal-name": "hypertext reference",
+                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                        },
+                        "1": {
+                            "name": "rel",
+                            "required": false,
+                            "datatype": "NCName",
+                            "formal-name": "Relation",
+                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                        },
+                        "2": {
+                            "name": "media-type",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Media type",
+                            "description": "Describes the media type of the linked resource"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Link",
+                    "description": "A reference to a local or remote resource"
+                },
+                "supplier": {
+                    "name": "supplier",
+                    "path": "\/\/component-definition\/component\/supplier",
+                    "position": 3,
+                    "required": true,
+                    "multiple": false,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {
+                        "0": {
+                            "name": "party-id",
+                            "required": true,
+                            "datatype": "IDREF",
+                            "formal-name": "Party Reference",
+                            "description": "References a party defined in metadata."
+                        },
+                        "1": {
+                            "name": "role-id",
+                            "required": true,
+                            "datatype": "string",
+                            "formal-name": "Role identifier",
+                            "description": "References a role element defined in metadata."
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Supplier",
+                    "description": "TBD"
+                },
+                "control-implementation": {
+                    "name": "control-implementation",
+                    "path": "\/\/component-definition\/component\/control-implementation",
+                    "position": 4,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {},
+                    "content": null,
+                    "formal-name": "Control Implementation",
+                    "description": "Defines how the component or capability supports a set of controls.",
+                    "model": {
+                        "can-meet-requirement-set": {
+                            "name": "can-meet-requirement-set",
+                            "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set",
+                            "position": 0,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "source",
+                                    "required": true,
+                                    "datatype": "uri-reference",
+                                    "formal-name": "Source Resource Reference",
+                                    "description": "A reference to an OSCAL catalog or profile providing the referenced control or subcontrol definition."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Can Meet",
+                            "description": "Defines what sets of controls are supported by the component.",
+                            "model": {
+                                "prop": {
+                                    "name": "prop",
+                                    "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/prop",
+                                    "position": 0,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "name",
+                                            "required": true,
+                                            "datatype": "string",
+                                            "formal-name": "Name",
+                                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "ID",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "ns",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Namespace",
+                                            "description": "A namespace qualifying the name."
+                                        },
+                                        "3": {
+                                            "name": "class",
+                                            "required": false,
+                                            "datatype": "NMTOKENS",
+                                            "formal-name": "Class",
+                                            "description": "Indicating the type or classification of the containing object"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Property",
+                                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                },
+                                "link": {
+                                    "name": "link",
+                                    "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/link",
+                                    "position": 1,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "mixed",
+                                    "flags": {
+                                        "0": {
+                                            "name": "href",
+                                            "required": true,
+                                            "datatype": "uri-reference",
+                                            "formal-name": "hypertext reference",
+                                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                        },
+                                        "1": {
+                                            "name": "rel",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Relation",
+                                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                        },
+                                        "2": {
+                                            "name": "media-type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Media type",
+                                            "description": "Describes the media type of the linked resource"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Link",
+                                    "description": "A reference to a local or remote resource"
+                                },
+                                "implemented-requirement": {
+                                    "name": "implemented-requirement",
+                                    "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement",
+                                    "position": 2,
+                                    "required": true,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "prose",
+                                    "flags": {
+                                        "0": {
+                                            "name": "requirement-id",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Requirement Identifier Reference",
+                                            "description": "A reference to a requirement defined on another requirement set that should be included here."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "ID",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "control-id",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Control Identifier Reference",
+                                            "description": "A reference to a control identifier."
+                                        },
+                                        "3": {
+                                            "name": "subcontrol-id",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Subcontrol Identifier Reference",
+                                            "description": "A reference to a subcontrol identifier."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Control-based Requirement",
+                                    "description": "TBD",
+                                    "model": {
+                                        "prop": {
+                                            "name": "prop",
+                                            "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/prop",
+                                            "position": 0,
+                                            "required": false,
+                                            "multiple": true,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {
+                                                "0": {
+                                                    "name": "name",
+                                                    "required": true,
+                                                    "datatype": "string",
+                                                    "formal-name": "Name",
+                                                    "description": "Identifying the purpose and intended use of the property, part or other object."
+                                                },
+                                                "1": {
+                                                    "name": "id",
+                                                    "required": false,
+                                                    "datatype": "ID",
+                                                    "formal-name": "Identifier",
+                                                    "description": "Unique identifier of the containing object"
+                                                },
+                                                "2": {
+                                                    "name": "ns",
+                                                    "required": false,
+                                                    "datatype": "string",
+                                                    "formal-name": "Namespace",
+                                                    "description": "A namespace qualifying the name."
+                                                },
+                                                "3": {
+                                                    "name": "class",
+                                                    "required": false,
+                                                    "datatype": "NMTOKENS",
+                                                    "formal-name": "Class",
+                                                    "description": "Indicating the type or classification of the containing object"
+                                                }
+                                            },
+                                            "content": null,
+                                            "formal-name": "Property",
+                                            "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                        },
+                                        "link": {
+                                            "name": "link",
+                                            "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/link",
+                                            "position": 1,
+                                            "required": false,
+                                            "multiple": true,
+                                            "holds_data": true,
+                                            "datatype": "mixed",
+                                            "flags": {
+                                                "0": {
+                                                    "name": "href",
+                                                    "required": true,
+                                                    "datatype": "uri-reference",
+                                                    "formal-name": "hypertext reference",
+                                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                                },
+                                                "1": {
+                                                    "name": "rel",
+                                                    "required": false,
+                                                    "datatype": "NCName",
+                                                    "formal-name": "Relation",
+                                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                                },
+                                                "2": {
+                                                    "name": "media-type",
+                                                    "required": false,
+                                                    "datatype": "string",
+                                                    "formal-name": "Media type",
+                                                    "description": "Describes the media type of the linked resource"
+                                                }
+                                            },
+                                            "content": null,
+                                            "formal-name": "Link",
+                                            "description": "A reference to a local or remote resource"
+                                        },
+                                        "using": {
+                                            "name": "using",
+                                            "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using",
+                                            "position": 2,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": false,
+                                            "datatype": "none",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Using",
+                                            "description": "The set of implementations needed to support the control requirements.",
+                                            "model": {
+                                                "implementation": {
+                                                    "name": "implementation",
+                                                    "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation",
+                                                    "position": 0,
+                                                    "required": true,
+                                                    "multiple": true,
+                                                    "holds_data": true,
+                                                    "datatype": "prose",
+                                                    "flags": {
+                                                        "0": {
+                                                            "name": "configuration-id",
+                                                            "required": false,
+                                                            "datatype": "IDREF",
+                                                            "formal-name": "Configuration Identifier Reference",
+                                                            "description": "A reference to a configuration defined on the component."
+                                                        },
+                                                        "1": {
+                                                            "name": "artifact-id",
+                                                            "required": false,
+                                                            "datatype": "IDREF",
+                                                            "formal-name": "Artifact Identifier Reference",
+                                                            "description": "A reference to an artifact defined on the component."
+                                                        },
+                                                        "2": {
+                                                            "name": "statement-id",
+                                                            "required": false,
+                                                            "datatype": "NCName",
+                                                            "formal-name": "Statement Identifier",
+                                                            "description": "Pointer to a speific requirement statement within a control or subcontrol."
+                                                        }
+                                                    },
+                                                    "content": null,
+                                                    "formal-name": "Implementation",
+                                                    "description": "An implementation needed to support the control requirements.",
+                                                    "model": {
+                                                        "prop": {
+                                                            "name": "prop",
+                                                            "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/prop",
+                                                            "position": 0,
+                                                            "required": false,
+                                                            "multiple": true,
+                                                            "holds_data": true,
+                                                            "datatype": "string",
+                                                            "flags": {
+                                                                "0": {
+                                                                    "name": "name",
+                                                                    "required": true,
+                                                                    "datatype": "string",
+                                                                    "formal-name": "Name",
+                                                                    "description": "Identifying the purpose and intended use of the property, part or other object."
+                                                                },
+                                                                "1": {
+                                                                    "name": "id",
+                                                                    "required": false,
+                                                                    "datatype": "ID",
+                                                                    "formal-name": "Identifier",
+                                                                    "description": "Unique identifier of the containing object"
+                                                                },
+                                                                "2": {
+                                                                    "name": "ns",
+                                                                    "required": false,
+                                                                    "datatype": "string",
+                                                                    "formal-name": "Namespace",
+                                                                    "description": "A namespace qualifying the name."
+                                                                },
+                                                                "3": {
+                                                                    "name": "class",
+                                                                    "required": false,
+                                                                    "datatype": "NMTOKENS",
+                                                                    "formal-name": "Class",
+                                                                    "description": "Indicating the type or classification of the containing object"
+                                                                }
+                                                            },
+                                                            "content": null,
+                                                            "formal-name": "Property",
+                                                            "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                                        },
+                                                        "link": {
+                                                            "name": "link",
+                                                            "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/link",
+                                                            "position": 1,
+                                                            "required": false,
+                                                            "multiple": true,
+                                                            "holds_data": true,
+                                                            "datatype": "mixed",
+                                                            "flags": {
+                                                                "0": {
+                                                                    "name": "href",
+                                                                    "required": true,
+                                                                    "datatype": "uri-reference",
+                                                                    "formal-name": "hypertext reference",
+                                                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                                                },
+                                                                "1": {
+                                                                    "name": "rel",
+                                                                    "required": false,
+                                                                    "datatype": "NCName",
+                                                                    "formal-name": "Relation",
+                                                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                                                },
+                                                                "2": {
+                                                                    "name": "media-type",
+                                                                    "required": false,
+                                                                    "datatype": "string",
+                                                                    "formal-name": "Media type",
+                                                                    "description": "Describes the media type of the linked resource"
+                                                                }
+                                                            },
+                                                            "content": null,
+                                                            "formal-name": "Link",
+                                                            "description": "A reference to a local or remote resource"
+                                                        },
+                                                        "with-argument": {
+                                                            "name": "with-argument",
+                                                            "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/with-argument",
+                                                            "position": 2,
+                                                            "required": false,
+                                                            "multiple": true,
+                                                            "holds_data": false,
+                                                            "datatype": "none",
+                                                            "flags": {
+                                                                "0": {
+                                                                    "name": "name",
+                                                                    "required": true,
+                                                                    "datatype": "NCName",
+                                                                    "formal-name": "Argument Name",
+                                                                    "description": "The name of the argument."
+                                                                }
+                                                            },
+                                                            "content": null,
+                                                            "formal-name": "With Argument",
+                                                            "description": "An argument to pass to the referenced configuration.",
+                                                            "model": {
+                                                                "use-param": {
+                                                                    "name": "use-param",
+                                                                    "path": "\/\/component-definition\/component\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/with-argument\/use-param",
+                                                                    "position": 0,
+                                                                    "required": false,
+                                                                    "multiple": false,
+                                                                    "holds_data": true,
+                                                                    "datatype": "NCName",
+                                                                    "flags": {},
+                                                                    "content": null,
+                                                                    "formal-name": "Using Parameter",
+                                                                    "description": "An identified parameter from the catalog or profile who's value is assigned to the argument."
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "configuration": {
+                    "name": "configuration",
+                    "path": "\/\/component-definition\/component\/configuration",
+                    "position": 5,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {
+                        "0": {
+                            "name": "id",
+                            "required": true,
+                            "datatype": "ID",
+                            "formal-name": "Configuration Identifier",
+                            "description": "A unique identifier for the configuration."
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Configuration",
+                    "description": "Information on how to configure the component (for technical types of components).",
+                    "model": {
+                        "prop": {
+                            "name": "prop",
+                            "path": "\/\/component-definition\/component\/configuration\/prop",
+                            "position": 0,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {
+                                "0": {
+                                    "name": "name",
+                                    "required": true,
+                                    "datatype": "string",
+                                    "formal-name": "Name",
+                                    "description": "Identifying the purpose and intended use of the property, part or other object."
+                                },
+                                "1": {
+                                    "name": "id",
+                                    "required": false,
+                                    "datatype": "ID",
+                                    "formal-name": "Identifier",
+                                    "description": "Unique identifier of the containing object"
+                                },
+                                "2": {
+                                    "name": "ns",
+                                    "required": false,
+                                    "datatype": "string",
+                                    "formal-name": "Namespace",
+                                    "description": "A namespace qualifying the name."
+                                },
+                                "3": {
+                                    "name": "class",
+                                    "required": false,
+                                    "datatype": "NMTOKENS",
+                                    "formal-name": "Class",
+                                    "description": "Indicating the type or classification of the containing object"
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Property",
+                            "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                        },
+                        "link": {
+                            "name": "link",
+                            "path": "\/\/component-definition\/component\/configuration\/link",
+                            "position": 1,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "mixed",
+                            "flags": {
+                                "0": {
+                                    "name": "href",
+                                    "required": true,
+                                    "datatype": "uri-reference",
+                                    "formal-name": "hypertext reference",
+                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                },
+                                "1": {
+                                    "name": "rel",
+                                    "required": false,
+                                    "datatype": "NCName",
+                                    "formal-name": "Relation",
+                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                },
+                                "2": {
+                                    "name": "media-type",
+                                    "required": false,
+                                    "datatype": "string",
+                                    "formal-name": "Media type",
+                                    "description": "Describes the media type of the linked resource"
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Link",
+                            "description": "A reference to a local or remote resource"
+                        },
+                        "argument": {
+                            "name": "argument",
+                            "path": "\/\/component-definition\/component\/configuration\/argument",
+                            "position": 2,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "name",
+                                    "required": true,
+                                    "datatype": "NCName",
+                                    "formal-name": "Argument Name",
+                                    "description": "The name of an argument to be passed into a script."
+                                },
+                                "1": {
+                                    "name": "type",
+                                    "required": true,
+                                    "datatype": "string",
+                                    "formal-name": "Argument Data Type",
+                                    "description": "The data type of the argument."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "argument",
+                            "description": "TBD"
+                        },
+                        "mechanism": {
+                            "name": "mechanism",
+                            "path": "\/\/component-definition\/component\/configuration\/mechanism",
+                            "position": 3,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "id",
+                                    "required": false,
+                                    "datatype": "ID",
+                                    "formal-name": "Mechanism Identifier",
+                                    "description": "A unique identifier for the configuration mechanism."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "mechanism",
+                            "description": "Information on a mechanism used to configure the component.",
+                            "model": {
+                                "prop": {
+                                    "name": "prop",
+                                    "path": "\/\/component-definition\/component\/configuration\/mechanism\/prop",
+                                    "position": 0,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "name",
+                                            "required": true,
+                                            "datatype": "string",
+                                            "formal-name": "Name",
+                                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "ID",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "ns",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Namespace",
+                                            "description": "A namespace qualifying the name."
+                                        },
+                                        "3": {
+                                            "name": "class",
+                                            "required": false,
+                                            "datatype": "NMTOKENS",
+                                            "formal-name": "Class",
+                                            "description": "Indicating the type or classification of the containing object"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Property",
+                                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                },
+                                "link": {
+                                    "name": "link",
+                                    "path": "\/\/component-definition\/component\/configuration\/mechanism\/link",
+                                    "position": 1,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "mixed",
+                                    "flags": {
+                                        "0": {
+                                            "name": "href",
+                                            "required": true,
+                                            "datatype": "uri-reference",
+                                            "formal-name": "hypertext reference",
+                                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                        },
+                                        "1": {
+                                            "name": "rel",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Relation",
+                                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                        },
+                                        "2": {
+                                            "name": "media-type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Media type",
+                                            "description": "Describes the media type of the linked resource"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Link",
+                                    "description": "A reference to a local or remote resource"
+                                },
+                                "configuration-method": {
+                                    "name": "configuration-method",
+                                    "path": "\/\/component-definition\/component\/configuration\/mechanism\/configuration-method",
+                                    "position": 2,
+                                    "required": true,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "prose",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "Configuration Method",
+                                    "description": "A mechanism used to deploy the configuration.",
+                                    "model": {
+                                        "script": {
+                                            "name": "script",
+                                            "path": "\/\/component-definition\/component\/configuration\/mechanism\/configuration-method\/script",
+                                            "position": 0,
+                                            "required": true,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Script",
+                                            "description": "An executable script."
+                                        }
+                                    }
+                                },
+                                "verification-method": {
+                                    "name": "verification-method",
+                                    "path": "\/\/component-definition\/component\/configuration\/mechanism\/verification-method",
+                                    "position": 3,
+                                    "required": true,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "prose",
+                                    "flags": {},
+                                    "content": null,
+                                    "formal-name": "Verification Method",
+                                    "description": "A mechanism used to verify a previously deployed configuration.",
+                                    "model": {
+                                        "script": {
+                                            "name": "script",
+                                            "path": "\/\/component-definition\/component\/configuration\/mechanism\/verification-method\/script",
+                                            "position": 0,
+                                            "required": true,
+                                            "multiple": false,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Script",
+                                            "description": "An executable script."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "artifact": {
+                    "name": "artifact",
+                    "path": "\/\/component-definition\/component\/artifact",
+                    "position": 6,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {
+                        "0": {
+                            "name": "id",
+                            "required": true,
+                            "datatype": "ID",
+                            "formal-name": "Artifact Identifier",
+                            "description": "A unique identifier for the artifact."
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Configuration",
+                    "description": "Information on how to use the component (for documentary types of components).",
+                    "model": {
+                        "prop": {
+                            "name": "prop",
+                            "path": "\/\/component-definition\/component\/artifact\/prop",
+                            "position": 0,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {
+                                "0": {
+                                    "name": "name",
+                                    "required": true,
+                                    "datatype": "string",
+                                    "formal-name": "Name",
+                                    "description": "Identifying the purpose and intended use of the property, part or other object."
+                                },
+                                "1": {
+                                    "name": "id",
+                                    "required": false,
+                                    "datatype": "ID",
+                                    "formal-name": "Identifier",
+                                    "description": "Unique identifier of the containing object"
+                                },
+                                "2": {
+                                    "name": "ns",
+                                    "required": false,
+                                    "datatype": "string",
+                                    "formal-name": "Namespace",
+                                    "description": "A namespace qualifying the name."
+                                },
+                                "3": {
+                                    "name": "class",
+                                    "required": false,
+                                    "datatype": "NMTOKENS",
+                                    "formal-name": "Class",
+                                    "description": "Indicating the type or classification of the containing object"
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Property",
+                            "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                        },
+                        "link": {
+                            "name": "link",
+                            "path": "\/\/component-definition\/component\/artifact\/link",
+                            "position": 1,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "mixed",
+                            "flags": {
+                                "0": {
+                                    "name": "href",
+                                    "required": true,
+                                    "datatype": "uri-reference",
+                                    "formal-name": "hypertext reference",
+                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                },
+                                "1": {
+                                    "name": "rel",
+                                    "required": false,
+                                    "datatype": "NCName",
+                                    "formal-name": "Relation",
+                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                },
+                                "2": {
+                                    "name": "media-type",
+                                    "required": false,
+                                    "datatype": "string",
+                                    "formal-name": "Media type",
+                                    "description": "Describes the media type of the linked resource"
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Link",
+                            "description": "A reference to a local or remote resource"
+                        },
+                        "implementation-source": {
+                            "name": "implementation-source",
+                            "path": "\/\/component-definition\/component\/artifact\/implementation-source",
+                            "position": 2,
+                            "required": true,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "href",
+                                    "required": true,
+                                    "datatype": "uri",
+                                    "formal-name": "Source Resource Reference",
+                                    "description": "Where to get the artifact"
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Artifact Implementation Source",
+                            "description": "TBD",
+                            "model": {
+                                "prop": {
+                                    "name": "prop",
+                                    "path": "\/\/component-definition\/component\/artifact\/implementation-source\/prop",
+                                    "position": 0,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "name",
+                                            "required": true,
+                                            "datatype": "string",
+                                            "formal-name": "Name",
+                                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "ID",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "ns",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Namespace",
+                                            "description": "A namespace qualifying the name."
+                                        },
+                                        "3": {
+                                            "name": "class",
+                                            "required": false,
+                                            "datatype": "NMTOKENS",
+                                            "formal-name": "Class",
+                                            "description": "Indicating the type or classification of the containing object"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Property",
+                                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                },
+                                "link": {
+                                    "name": "link",
+                                    "path": "\/\/component-definition\/component\/artifact\/implementation-source\/link",
+                                    "position": 1,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "mixed",
+                                    "flags": {
+                                        "0": {
+                                            "name": "href",
+                                            "required": true,
+                                            "datatype": "uri-reference",
+                                            "formal-name": "hypertext reference",
+                                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                        },
+                                        "1": {
+                                            "name": "rel",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Relation",
+                                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                        },
+                                        "2": {
+                                            "name": "media-type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Media type",
+                                            "description": "Describes the media type of the linked resource"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Link",
+                                    "description": "A reference to a local or remote resource"
+                                }
+                            }
+                        },
+                        "verification-process": {
+                            "name": "verification-process",
+                            "path": "\/\/component-definition\/component\/artifact\/verification-process",
+                            "position": 3,
+                            "required": true,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "href",
+                                    "required": true,
+                                    "datatype": "uri",
+                                    "formal-name": "Verification Process Resource Reference",
+                                    "description": "Where to get the process to verify the artifact is implemented."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Artifact Verification Process",
+                            "description": "TBD",
+                            "model": {
+                                "prop": {
+                                    "name": "prop",
+                                    "path": "\/\/component-definition\/component\/artifact\/verification-process\/prop",
+                                    "position": 0,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "name",
+                                            "required": true,
+                                            "datatype": "string",
+                                            "formal-name": "Name",
+                                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "ID",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "ns",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Namespace",
+                                            "description": "A namespace qualifying the name."
+                                        },
+                                        "3": {
+                                            "name": "class",
+                                            "required": false,
+                                            "datatype": "NMTOKENS",
+                                            "formal-name": "Class",
+                                            "description": "Indicating the type or classification of the containing object"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Property",
+                                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                },
+                                "link": {
+                                    "name": "link",
+                                    "path": "\/\/component-definition\/component\/artifact\/verification-process\/link",
+                                    "position": 1,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "mixed",
+                                    "flags": {
+                                        "0": {
+                                            "name": "href",
+                                            "required": true,
+                                            "datatype": "uri-reference",
+                                            "formal-name": "hypertext reference",
+                                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                        },
+                                        "1": {
+                                            "name": "rel",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Relation",
+                                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                        },
+                                        "2": {
+                                            "name": "media-type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Media type",
+                                            "description": "Describes the media type of the linked resource"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Link",
+                                    "description": "A reference to a local or remote resource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "capability": {
+            "name": "capability",
+            "path": "\/\/component-definition\/capability",
+            "position": 3,
+            "required": false,
+            "multiple": true,
+            "holds_data": true,
+            "datatype": "prose",
+            "flags": {
+                "0": {
+                    "name": "id",
+                    "required": true,
+                    "datatype": "ID",
+                    "formal-name": "Capability Identifier",
+                    "description": "A unique identifier for a capability."
+                },
+                "1": {
+                    "name": "name",
+                    "required": false,
+                    "datatype": "string",
+                    "formal-name": "Capability Name",
+                    "description": "The capability's human-readable name."
+                }
+            },
+            "content": null,
+            "formal-name": "Capability",
+            "description": "A grouping of other components and\/or capabilities.",
+            "model": {
+                "prop": {
+                    "name": "prop",
+                    "path": "\/\/component-definition\/capability\/prop",
+                    "position": 0,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "string",
+                    "flags": {
+                        "0": {
+                            "name": "name",
+                            "required": true,
+                            "datatype": "string",
+                            "formal-name": "Name",
+                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                        },
+                        "1": {
+                            "name": "id",
+                            "required": false,
+                            "datatype": "ID",
+                            "formal-name": "Identifier",
+                            "description": "Unique identifier of the containing object"
+                        },
+                        "2": {
+                            "name": "ns",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Namespace",
+                            "description": "A namespace qualifying the name."
+                        },
+                        "3": {
+                            "name": "class",
+                            "required": false,
+                            "datatype": "NMTOKENS",
+                            "formal-name": "Class",
+                            "description": "Indicating the type or classification of the containing object"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Property",
+                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                },
+                "link": {
+                    "name": "link",
+                    "path": "\/\/component-definition\/capability\/link",
+                    "position": 1,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "mixed",
+                    "flags": {
+                        "0": {
+                            "name": "href",
+                            "required": true,
+                            "datatype": "uri-reference",
+                            "formal-name": "hypertext reference",
+                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                        },
+                        "1": {
+                            "name": "rel",
+                            "required": false,
+                            "datatype": "NCName",
+                            "formal-name": "Relation",
+                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                        },
+                        "2": {
+                            "name": "media-type",
+                            "required": false,
+                            "datatype": "string",
+                            "formal-name": "Media type",
+                            "description": "Describes the media type of the linked resource"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Link",
+                    "description": "A reference to a local or remote resource"
+                },
+                "incorporates-capability": {
+                    "name": "incorporates-capability",
+                    "path": "\/\/component-definition\/capability\/incorporates-capability",
+                    "position": 2,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {
+                        "0": {
+                            "name": "capability-id",
+                            "required": true,
+                            "datatype": "IDREF",
+                            "formal-name": "Capability Reference",
+                            "description": "A reference to a capability by its identifier"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Incorporates Capability",
+                    "description": "TBD"
+                },
+                "incorporates-component": {
+                    "name": "incorporates-component",
+                    "path": "\/\/component-definition\/capability\/incorporates-component",
+                    "position": 3,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {
+                        "0": {
+                            "name": "component-id",
+                            "required": false,
+                            "datatype": "IDREF",
+                            "formal-name": "Component Reference",
+                            "description": "A reference to a component by its identifier"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Incorporates Component",
+                    "description": "TBD"
+                },
+                "control-implementation": {
+                    "name": "control-implementation",
+                    "path": "\/\/component-definition\/capability\/control-implementation",
+                    "position": 4,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": true,
+                    "datatype": "prose",
+                    "flags": {},
+                    "content": null,
+                    "formal-name": "Control Implementation",
+                    "description": "Defines how the component or capability supports a set of controls.",
+                    "model": {
+                        "can-meet-requirement-set": {
+                            "name": "can-meet-requirement-set",
+                            "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set",
+                            "position": 0,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "source",
+                                    "required": true,
+                                    "datatype": "uri-reference",
+                                    "formal-name": "Source Resource Reference",
+                                    "description": "A reference to an OSCAL catalog or profile providing the referenced control or subcontrol definition."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Can Meet",
+                            "description": "Defines what sets of controls are supported by the component.",
+                            "model": {
+                                "prop": {
+                                    "name": "prop",
+                                    "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/prop",
+                                    "position": 0,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "name",
+                                            "required": true,
+                                            "datatype": "string",
+                                            "formal-name": "Name",
+                                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "ID",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "ns",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Namespace",
+                                            "description": "A namespace qualifying the name."
+                                        },
+                                        "3": {
+                                            "name": "class",
+                                            "required": false,
+                                            "datatype": "NMTOKENS",
+                                            "formal-name": "Class",
+                                            "description": "Indicating the type or classification of the containing object"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Property",
+                                    "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                },
+                                "link": {
+                                    "name": "link",
+                                    "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/link",
+                                    "position": 1,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "mixed",
+                                    "flags": {
+                                        "0": {
+                                            "name": "href",
+                                            "required": true,
+                                            "datatype": "uri-reference",
+                                            "formal-name": "hypertext reference",
+                                            "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                        },
+                                        "1": {
+                                            "name": "rel",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Relation",
+                                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                        },
+                                        "2": {
+                                            "name": "media-type",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Media type",
+                                            "description": "Describes the media type of the linked resource"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Link",
+                                    "description": "A reference to a local or remote resource"
+                                },
+                                "implemented-requirement": {
+                                    "name": "implemented-requirement",
+                                    "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement",
+                                    "position": 2,
+                                    "required": true,
+                                    "multiple": true,
+                                    "holds_data": true,
+                                    "datatype": "prose",
+                                    "flags": {
+                                        "0": {
+                                            "name": "requirement-id",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Requirement Identifier Reference",
+                                            "description": "A reference to a requirement defined on another requirement set that should be included here."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "ID",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "control-id",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Control Identifier Reference",
+                                            "description": "A reference to a control identifier."
+                                        },
+                                        "3": {
+                                            "name": "subcontrol-id",
+                                            "required": false,
+                                            "datatype": "NCName",
+                                            "formal-name": "Subcontrol Identifier Reference",
+                                            "description": "A reference to a subcontrol identifier."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Control-based Requirement",
+                                    "description": "TBD",
+                                    "model": {
+                                        "prop": {
+                                            "name": "prop",
+                                            "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/prop",
+                                            "position": 0,
+                                            "required": false,
+                                            "multiple": true,
+                                            "holds_data": true,
+                                            "datatype": "string",
+                                            "flags": {
+                                                "0": {
+                                                    "name": "name",
+                                                    "required": true,
+                                                    "datatype": "string",
+                                                    "formal-name": "Name",
+                                                    "description": "Identifying the purpose and intended use of the property, part or other object."
+                                                },
+                                                "1": {
+                                                    "name": "id",
+                                                    "required": false,
+                                                    "datatype": "ID",
+                                                    "formal-name": "Identifier",
+                                                    "description": "Unique identifier of the containing object"
+                                                },
+                                                "2": {
+                                                    "name": "ns",
+                                                    "required": false,
+                                                    "datatype": "string",
+                                                    "formal-name": "Namespace",
+                                                    "description": "A namespace qualifying the name."
+                                                },
+                                                "3": {
+                                                    "name": "class",
+                                                    "required": false,
+                                                    "datatype": "NMTOKENS",
+                                                    "formal-name": "Class",
+                                                    "description": "Indicating the type or classification of the containing object"
+                                                }
+                                            },
+                                            "content": null,
+                                            "formal-name": "Property",
+                                            "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                        },
+                                        "link": {
+                                            "name": "link",
+                                            "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/link",
+                                            "position": 1,
+                                            "required": false,
+                                            "multiple": true,
+                                            "holds_data": true,
+                                            "datatype": "mixed",
+                                            "flags": {
+                                                "0": {
+                                                    "name": "href",
+                                                    "required": true,
+                                                    "datatype": "uri-reference",
+                                                    "formal-name": "hypertext reference",
+                                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                                },
+                                                "1": {
+                                                    "name": "rel",
+                                                    "required": false,
+                                                    "datatype": "NCName",
+                                                    "formal-name": "Relation",
+                                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                                },
+                                                "2": {
+                                                    "name": "media-type",
+                                                    "required": false,
+                                                    "datatype": "string",
+                                                    "formal-name": "Media type",
+                                                    "description": "Describes the media type of the linked resource"
+                                                }
+                                            },
+                                            "content": null,
+                                            "formal-name": "Link",
+                                            "description": "A reference to a local or remote resource"
+                                        },
+                                        "using": {
+                                            "name": "using",
+                                            "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using",
+                                            "position": 2,
+                                            "required": false,
+                                            "multiple": false,
+                                            "holds_data": false,
+                                            "datatype": "none",
+                                            "flags": {},
+                                            "content": null,
+                                            "formal-name": "Using",
+                                            "description": "The set of implementations needed to support the control requirements.",
+                                            "model": {
+                                                "implementation": {
+                                                    "name": "implementation",
+                                                    "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation",
+                                                    "position": 0,
+                                                    "required": true,
+                                                    "multiple": true,
+                                                    "holds_data": true,
+                                                    "datatype": "prose",
+                                                    "flags": {
+                                                        "0": {
+                                                            "name": "configuration-id",
+                                                            "required": false,
+                                                            "datatype": "IDREF",
+                                                            "formal-name": "Configuration Identifier Reference",
+                                                            "description": "A reference to a configuration defined on the component."
+                                                        },
+                                                        "1": {
+                                                            "name": "artifact-id",
+                                                            "required": false,
+                                                            "datatype": "IDREF",
+                                                            "formal-name": "Artifact Identifier Reference",
+                                                            "description": "A reference to an artifact defined on the component."
+                                                        },
+                                                        "2": {
+                                                            "name": "statement-id",
+                                                            "required": false,
+                                                            "datatype": "NCName",
+                                                            "formal-name": "Statement Identifier",
+                                                            "description": "Pointer to a speific requirement statement within a control or subcontrol."
+                                                        }
+                                                    },
+                                                    "content": null,
+                                                    "formal-name": "Implementation",
+                                                    "description": "An implementation needed to support the control requirements.",
+                                                    "model": {
+                                                        "prop": {
+                                                            "name": "prop",
+                                                            "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/prop",
+                                                            "position": 0,
+                                                            "required": false,
+                                                            "multiple": true,
+                                                            "holds_data": true,
+                                                            "datatype": "string",
+                                                            "flags": {
+                                                                "0": {
+                                                                    "name": "name",
+                                                                    "required": true,
+                                                                    "datatype": "string",
+                                                                    "formal-name": "Name",
+                                                                    "description": "Identifying the purpose and intended use of the property, part or other object."
+                                                                },
+                                                                "1": {
+                                                                    "name": "id",
+                                                                    "required": false,
+                                                                    "datatype": "ID",
+                                                                    "formal-name": "Identifier",
+                                                                    "description": "Unique identifier of the containing object"
+                                                                },
+                                                                "2": {
+                                                                    "name": "ns",
+                                                                    "required": false,
+                                                                    "datatype": "string",
+                                                                    "formal-name": "Namespace",
+                                                                    "description": "A namespace qualifying the name."
+                                                                },
+                                                                "3": {
+                                                                    "name": "class",
+                                                                    "required": false,
+                                                                    "datatype": "NMTOKENS",
+                                                                    "formal-name": "Class",
+                                                                    "description": "Indicating the type or classification of the containing object"
+                                                                }
+                                                            },
+                                                            "content": null,
+                                                            "formal-name": "Property",
+                                                            "description": "A value with a name, attributed to the containing control, subcontrol, part, or group."
+                                                        },
+                                                        "link": {
+                                                            "name": "link",
+                                                            "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/link",
+                                                            "position": 1,
+                                                            "required": false,
+                                                            "multiple": true,
+                                                            "holds_data": true,
+                                                            "datatype": "mixed",
+                                                            "flags": {
+                                                                "0": {
+                                                                    "name": "href",
+                                                                    "required": true,
+                                                                    "datatype": "uri-reference",
+                                                                    "formal-name": "hypertext reference",
+                                                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                                                },
+                                                                "1": {
+                                                                    "name": "rel",
+                                                                    "required": false,
+                                                                    "datatype": "NCName",
+                                                                    "formal-name": "Relation",
+                                                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
+                                                                },
+                                                                "2": {
+                                                                    "name": "media-type",
+                                                                    "required": false,
+                                                                    "datatype": "string",
+                                                                    "formal-name": "Media type",
+                                                                    "description": "Describes the media type of the linked resource"
+                                                                }
+                                                            },
+                                                            "content": null,
+                                                            "formal-name": "Link",
+                                                            "description": "A reference to a local or remote resource"
+                                                        },
+                                                        "with-argument": {
+                                                            "name": "with-argument",
+                                                            "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/with-argument",
+                                                            "position": 2,
+                                                            "required": false,
+                                                            "multiple": true,
+                                                            "holds_data": false,
+                                                            "datatype": "none",
+                                                            "flags": {
+                                                                "0": {
+                                                                    "name": "name",
+                                                                    "required": true,
+                                                                    "datatype": "NCName",
+                                                                    "formal-name": "Argument Name",
+                                                                    "description": "The name of the argument."
+                                                                }
+                                                            },
+                                                            "content": null,
+                                                            "formal-name": "With Argument",
+                                                            "description": "An argument to pass to the referenced configuration.",
+                                                            "model": {
+                                                                "use-param": {
+                                                                    "name": "use-param",
+                                                                    "path": "\/\/component-definition\/capability\/control-implementation\/can-meet-requirement-set\/implemented-requirement\/using\/implementation\/with-argument\/use-param",
+                                                                    "position": 0,
+                                                                    "required": false,
+                                                                    "multiple": false,
+                                                                    "holds_data": true,
+                                                                    "datatype": "NCName",
+                                                                    "flags": {},
+                                                                    "content": null,
+                                                                    "formal-name": "Using Parameter",
+                                                                    "description": "An identified parameter from the catalog or profile who's value is assigned to the argument."
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "back-matter": {
+            "name": "back-matter",
+            "path": "\/\/component-definition\/back-matter",
+            "position": 4,
+            "required": false,
+            "multiple": false,
+            "holds_data": false,
+            "datatype": "none",
+            "flags": {},
+            "content": null,
+            "formal-name": "Back matter",
+            "description": "A collection of citations and resource references.",
+            "model": {
+                "citation": {
+                    "name": "citation",
+                    "path": "\/\/component-definition\/back-matter\/citation",
+                    "position": 0,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": false,
+                    "datatype": "none",
+                    "flags": {
+                        "0": {
+                            "name": "id",
+                            "required": true,
+                            "datatype": "ID",
+                            "formal-name": "Identifier",
+                            "description": "Unique identifier of the containing object"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Citation",
+                    "description": "A citation to resources, either external or internal (by means of internal cross-reference).",
+                    "model": {
+                        "target": {
+                            "name": "target",
+                            "path": "\/\/component-definition\/back-matter\/citation\/target",
+                            "position": 0,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Citation target",
+                            "description": "An address for retrieval of a citation"
+                        },
+                        "title": {
+                            "name": "title",
+                            "path": "\/\/component-definition\/back-matter\/citation\/title",
+                            "position": 1,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "mixed",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Title",
+                            "description": "A title for display and navigation"
+                        },
+                        "desc": {
+                            "name": "desc",
+                            "path": "\/\/component-definition\/back-matter\/citation\/desc",
+                            "position": 2,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Description",
+                            "description": "A short textual description"
+                        },
+                        "doc-id": {
+                            "name": "doc-id",
+                            "path": "\/\/component-definition\/back-matter\/citation\/doc-id",
+                            "position": 3,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {
+                                "0": {
+                                    "name": "type",
+                                    "required": true,
+                                    "datatype": "string",
+                                    "formal-name": "Type",
+                                    "description": "Indicating the type of identifier, address, email or other data item."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Document Identifier",
+                            "description": "A document identifier qualified by an identifier type."
+                        }
+                    }
+                },
+                "resource": {
+                    "name": "resource",
+                    "path": "\/\/component-definition\/back-matter\/resource",
+                    "position": 1,
+                    "required": false,
+                    "multiple": true,
+                    "holds_data": false,
+                    "datatype": "none",
+                    "flags": {
+                        "0": {
+                            "name": "id",
+                            "required": true,
+                            "datatype": "ID",
+                            "formal-name": "Identifier",
+                            "description": "Unique identifier of the containing object"
+                        }
+                    },
+                    "content": null,
+                    "formal-name": "Resource",
+                    "description": "A resource associated with the present document.",
+                    "model": {
+                        "desc": {
+                            "name": "desc",
+                            "path": "\/\/component-definition\/back-matter\/resource\/desc",
+                            "position": 0,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Description",
+                            "description": "A short textual description"
+                        },
+                        "1": {
+                            "name": "rlink",
+                            "path": "\/\/component-definition\/back-matter\/resource\/rlink",
+                            "position": 1,
+                            "required": false,
+                            "multiple": true,
+                            "holds_data": false,
+                            "datatype": "none",
+                            "flags": {
+                                "0": {
+                                    "name": "href",
+                                    "required": true,
+                                    "datatype": "uri-reference",
+                                    "formal-name": "hypertext reference",
+                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
+                                },
+                                "1": {
+                                    "name": "media-type",
+                                    "required": false,
+                                    "datatype": "string",
+                                    "formal-name": "Media type",
+                                    "description": "Describes the media type of the linked resource"
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Related link",
+                            "description": "A pointer to an external copy of a document with optional hash for verification",
+                            "model": {
+                                "hash": {
+                                    "name": "hash",
+                                    "path": "\/\/component-definition\/back-matter\/resource\/rlink\/hash",
+                                    "position": 0,
+                                    "required": false,
+                                    "multiple": false,
+                                    "holds_data": true,
+                                    "datatype": "string",
+                                    "flags": {
+                                        "0": {
+                                            "name": "algorithm",
+                                            "required": true,
+                                            "datatype": "string",
+                                            "formal-name": "Hash algorithm",
+                                            "description": "Method by which a hash is derived"
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Hash",
+                                    "description": "A representation of a cryptographic digest generated over a resource using a hash algorithm."
+                                }
+                            }
+                        },
+                        "2": {
+                            "name": "base64",
+                            "path": "\/\/component-definition\/back-matter\/resource\/base64",
+                            "position": 1,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "string",
+                            "flags": {},
+                            "content": null,
+                            "formal-name": "Base64",
+                            "description": ""
+                        },
+                        "notes": {
+                            "name": "notes",
+                            "path": "\/\/component-definition\/back-matter\/resource\/notes",
+                            "position": 2,
+                            "required": false,
+                            "multiple": false,
+                            "holds_data": true,
+                            "datatype": "prose",
+                            "flags": {
+                                "0": {
+                                    "name": "type",
+                                    "required": false,
+                                    "datatype": "string",
+                                    "formal-name": "Type",
+                                    "description": "Indicating the type of identifier, address, email or other data item."
+                                }
+                            },
+                            "content": null,
+                            "formal-name": "Notes",
+                            "description": "Any notes with further information"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

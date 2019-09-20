@@ -1,0 +1,666 @@
+header {
+	position: fixed; 
+	left: 0; 
+	top: 0; 
+	width: 100%; 
+	background-color: black;
+	z-index: 99;
+    margin: 0;
+    padding: 10px;
+    color: white;
+    background-color: black;
+	font-size:18px;
+}
+
+header.popup {
+	position: fixed; 
+	left: 0; 
+	top: 0; 
+	width: 100%; 
+	background-color: black;
+	z-index: 1;
+    margin: 0;
+    padding: 0px;
+    color: white;
+    background-color: black;
+	font-size:15px;
+}
+
+footer {
+    margin: 0;
+    padding: 10px;
+    color: white;
+    background-color: black;
+	font-size:25px;
+}
+
+body {
+    font-family: Clabri, Verdana,sans-serif;
+	background-color:white; 
+	color: black; 
+	text-align:center;
+	font-size:14px;
+    margin: 0;
+	margin-top: 100px;
+    }
+
+section {
+    margin: 5px;
+    padding: 10px;
+    background-color: lightgrey;
+}
+
+.zone {
+    text-align:left;
+    font-size:12px;
+    background-color:white; 
+    color:black;
+	max-height: 300px;
+	margin: 0 auto;
+	overflow: auto;
+/*	spacing: 0; */
+	padding: 0;
+	border-spacing:0px;
+	border-collapse: collapse;
+}
+
+.debug {
+    width:100%;
+    text-align:left;
+    font-size:12px;
+    background-color:#e0e0e0;
+	color:black;
+	max-height: 300px;
+	margin: 0 auto;
+	overflow: auto;
+	font-family: "Courier New", Courier, monospace;
+	padding: 5px;
+/*	align: center;*/ 
+	display: block;
+}
+
+.fixed-width {
+    text-align:left;
+    font-size:12px;
+    background-color:#e0e0e0;
+	color:black;
+	padding: 2px;
+	font-family: "Courier New", Courier, monospace;
+}
+
+#progress p {
+	display: block;
+	width: 500px;
+	padding: 2px 5px;
+	margin: 2px 0;
+	border: 1px inset #446;
+	border-radius: 5px;
+}
+
+#progress p.success {
+	background: #0c0 none 0 0 no-repeat;
+}
+
+#progress p.failed {
+	background: #c00 none 0 0 no-repeat;
+}
+
+#filedrag {
+	display: none;
+	font-weight: bold;
+	text-align: center;
+	padding: 1em 0;
+	margin: 1em 0;
+	color: #555;
+	border: 2px dashed #555;
+	border-radius: 7px;
+	cursor: default;
+}
+
+#filedrag.hover {
+	color: #f00;
+	border-color: #f00;
+	border-style: solid;
+	box-shadow: inset 0 3px 4px #888;
+}
+
+#messages {
+	padding: 0 10px;
+	margin: 1em 0;
+	border: 1px solid #999;
+}
+
+#debug-menu {
+	color: rgb(28, 138, 219);
+	font-weight: bold;
+  }
+
+#debug-menu:hover {
+	color: rgb(227, 28, 61);
+	font-weight: bold;
+	cursor: pointer;
+	}
+
+.menu {
+	border: none; 
+	margin: 0px auto; 
+	border-collapse:separate; 
+	vertical-align:middle; 
+	padding: 5px;  
+	border-spacing: 10px; 
+}
+	
+.filelistbutton {
+	background-color: white; 
+	color: black;
+	padding: 2px;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bold;
+	height: 50px;
+	text-decoration:none;
+	font-weight:normal; 
+	text-align:left;
+	border:0;
+  }
+
+.filelistbutton:hover {
+	background-color: rgb(227, 28, 61);
+	color:white;
+	cursor: pointer;
+	}
+
+.button {
+	background-color: rgb(28, 138, 219); 
+	color: white;
+	padding: 2px;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bold;
+	height: 50px;
+	text-decoration:none;
+  }
+
+.button:hover {
+	background-color: rgb(227, 28, 61);
+	color:white;
+	cursor: pointer;
+	}
+
+img.buttonicon {
+	vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    }
+
+a.buttonlink {text-decoration: none; }
+/*
+.hover:hover {
+	background-color: #e0e0e0;
+	cursor: pointer;
+	}	
+*/	
+input {
+	background-color:#ceeaff; 
+	border: none; 
+	border-radius: 4px; 
+	padding: 4px;
+	margin: 2px;
+}	
+
+input.attribute {
+	background-color:#e0e0e0;
+	border: none; 
+	border-radius: 4px; 
+	padding: 4px;
+	margin: 2px;
+}	
+
+textarea.oscal {
+	background-color:white; 
+	border-radius: 8px; 
+	margin: 2px;
+	width: 95%;
+	height: 250px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	background-color: #f8f8f8;
+	outline: none;
+	}	
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c9c9cb;
+  opacity: 1; /* Firefox */
+}
+
+::-webkit-input-placeholder { /* Chrome, Opera, Safari */
+  color: #c9c9cb;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c9c9cb;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #c9c9cb;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 2px; 
+    border: 1px solid black; 
+    padding: 2px;
+}
+
+table td {
+    border-collapse: separate;
+    border-spacing: 2px; 
+    border: 1px solid black; 
+    padding: 2px;
+}
+
+table th {
+    border-spacing: 0;
+	border: 1px solid black;
+	background-color: rgb(28, 138, 219);  /* 2, 191, 231 */
+	font-weight: bold;
+	font-size:16px;
+	color:white;
+	text-align: center;
+}
+
+table.fileinfo {
+    border: 0; 
+    padding: 5px; 
+    border-collapse: separate;
+    border-spacing: 5px; 
+    border-bottom: 0; /* 1px solid #ddd; */
+}
+
+table.fileinfo td {
+    border: 0; 
+    padding: 5px; 
+    border-collapse: separate;
+    border-spacing: 5px; 
+    border-bottom: 1px solid #ddd;
+	font-size:12px;
+}
+
+table.form {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: none; 
+    padding: 2px;
+ 	background-color: white;  /* rgb(28, 138, 219);  2, 191, 231 */
+	font-weight: normal;
+	font-size:12px;
+	color:black;
+	text-align: left;
+}
+
+table.form td {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: none; 
+    padding: 2px;
+ 	background-color: white; /* rgb(28, 138, 219);  2, 191, 231 */
+	font-weight: normal;
+	font-size:12px;
+	color:black;
+	text-align: left;
+}
+
+table.form th {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: none; 
+    padding: 2px;
+ 	background-color: white; /* rgb(28, 138, 219);  2, 191, 231 */
+	font-weight: bold;
+	font-size:14px;
+	color:black;
+	text-align: left;
+}
+
+table.fileinfo tr {
+    border: 0; 
+    padding: 5px; 
+    border-collapse: separate;
+    border-spacing: 5px; 
+    border-bottom: 1px solid #ddd;
+	font-size:12px;
+}
+
+table.fileinfo th {
+    border-spacing: 0;
+	border: 1px solid black;
+	background-color: rgb(28, 138, 219);  /* 2, 191, 231 */
+	font-weight: bold;
+	font-size:14px;
+	color:white;
+	text-align: center;
+}
+
+table.zone td {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: none; 
+    padding: 0px;
+}
+
+table.zone {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: none; 
+    padding: 0px;
+}
+
+
+/* ***** below this line needs review for possible dead code ***** */
+
+table.review td {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: 1px solid black; 
+    padding: 2px;
+}
+
+table.review {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: 1px solid black; 
+    padding: 2px;
+}
+
+h1.control {
+    font-family: 'Times New Roman', Times, serif;
+    text-align:left;
+    font-size:20px;
+    font-weight: bold;
+	overflow: auto;
+}
+
+h1.subcontrol {
+    font-family: 'Times New Roman', Times, serif;
+    text-align:left;
+    font-size:18px;
+    font-weight: bold;
+	overflow: auto;
+
+}
+
+div.control-statement {
+    border-collapse: collapse;
+    border-spacing: 2px; 
+    border: none; 
+    padding: 2px;
+    padding-bottom: 5px;
+    text-align:center;
+    vertical-align:top; 
+    font-family: 'Times New Roman', Times, serif;
+    background-color:white; 
+    color:black;
+    text-align:left;
+    font-size:16px;
+}
+
+table.control-statement td {
+    border-collapse: collapse;
+    border-spacing: 2px; 
+    border: none; 
+    padding: 2px;
+    padding-bottom: 5px;
+    text-align:center;
+    vertical-align:top; 
+    font-family: 'Times New Roman', Times, serif;
+    background-color:white; 
+    color:black;
+    text-align:left;
+    font-size:16px;
+}
+
+table.control-statement {
+    border-collapse: collapse;
+    border-spacing: 2px; 
+    border: none; 
+    padding: 2px;
+    padding-bottom: 5px;
+    text-align:center;
+    vertical-align:top;;
+    font-family: 'Times New Roman', Times, serif;
+    background-color:white; 
+    color:black;
+    text-align:left;
+    font-size:16px;
+}
+
+control-statement {
+    font-family: 'Times New Roman', Times, serif !important;
+    background-color:white; 
+    color:black;
+    text-align:left;
+    font-size:16px;
+}
+
+table.control-response th {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: 1px solid; 
+    border-color: white;
+    padding: 2px;
+    text-align:center !important;
+    vertical-align:top; 
+    font-family: Clabri, Verdana,sans-serif;
+    background-color:rgb(17, 46, 81); 
+    color:white;
+    text-align:left;
+    font-size:14px;
+}
+
+table.control-response td {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: 1px solid black; 
+    padding: 6px;
+    text-align:center;
+    vertical-align:top; 
+    font-family: Clabri, Verdana,sans-serif;
+    background-color:white; 
+    color:black;
+    text-align:left;
+    font-size:16px;
+}
+
+table.control-response {
+    border-collapse: separate;
+    border-spacing: 0px; 
+    border: none ; 
+    padding: 0px;
+    text-align:center;
+    vertical-align:top;;
+    font-family: Clabri, Verdana,sans-serif;
+    background-color:white; 
+    color:black;
+    text-align:left;
+    font-size:16px;
+}
+
+control-response {
+    font-family: Clabri, Verdana,sans-serif;
+    background-color:white; 
+    color:black;
+    text-align:left;
+    font-size:16px;
+}
+
+instruction {
+    font-family: Clabri, Verdana,sans-serif;
+    background-color:rgb(174, 176, 181); 
+    color:rgb(155, 218, 241);
+    text-align:left;
+    font-size:14px;
+}
+
+h1 {
+	font-size: 1.5em;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 1.3em;
+	font-weight: normal;
+}
+
+legend {
+	font-weight: bold;
+	color: #333;
+}
+
+img {
+	max-width: 100%;
+}
+
+pre {
+	width: 95%;
+	max-width:95%;
+	font-family: monospace;
+	font-size: 0.9em;
+	padding: 1px;
+	/* margin: 0 0 1em auto; */
+	border: 1px inset #666;
+	background-color: #eee;
+	overflow: auto;
+	tab-size: 3;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+/* white-space: -moz-pre-wrap;   Mozilla, since 1999 */
+/*    white-space: -pre-wrap;       Opera 4-6 */
+/*     white-space: -o-pre-wrap;    Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+article {
+    margin: 5px;
+    padding: 10px;
+    background-color: white;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 5px;
+}
+
+.th2 {
+    border-spacing: 0;
+	border: 1px solid black;
+	background-color: rgb(225, 243, 248);
+	font-weight: bold;
+	font-size:16px;
+	text-align: center;
+}
+
+.info {
+    border-spacing: 0;
+	border: 1px solid black;
+	background-color: rgb(2, 191, 231);
+	font-weight: bold;
+	font-size:12px;
+}
+
+
+.not-yet {
+    border-spacing: 0;
+	border: 1px solid black;
+	color: rgb(91, 97, 17);
+	font-size:12px;
+	font-style: italic;
+	
+}
+
+
+.good {
+    border-spacing: 0;
+	border: 1px solid black;
+	background-color: green;
+	color: white;
+	text-align: center;
+	font-size:12px;
+}
+
+.bad {
+    border-spacing: 0;
+	border: 1px solid black;
+	background-color: red;
+	color: white;
+	text-align: center;
+	font-size:12px;
+}
+
+.caution {
+    border-spacing: 0;
+	border: 1px solid black;
+	background-color: yellow;
+	color: black;
+	font-size:12px;
+}
+
+
+table.center {
+	margin-left:auto;
+	margin-right:auto;
+	margin: 0px auto;
+	}
+	
+.blink {
+	animation-duration: .8s;
+	animation-name: blink;
+	animation-iteration-count: 2; /* infinite;*/
+	animation-timing-function: steps(2, start);
+}
+
+@keyframes blink {
+	80% {
+	visibility:hidden;
+    }
+}
+
+/* below this line is likely dead code, but should be confirmed */
+
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px; 
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.site-footer, .page-wrap:after {
+  height: 142px; 
+}
+.site-footer {
+  background: black;
+}
+
+iframe {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-top: #000000;
+  border-right: #000000;
+  border-left: #000000;
+  border-bottom: #000000; /*  4px dotted; */
+}
+
+legend
+{
+	font-weight: bold;
+	color: #333;
+}
