@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html>
+<head lang='en'>
+	<title></title>
+	<link rel='stylesheet' type='text/css' media='all' href='default.css'/>
+    <link rel='stylesheet' href='jodit.min.css'>
+	<script src='oscal-forms.js'></script>
+    <script src='jodit.min.js'></script>
+</head>
+
+<body>
+<div id='before-form'></div>
+<form id='form-party' method='POST' action='/oscal-forms.php?'>		<div style='width: 100%; text-align:left;' >
+		<b>Party (organization Or Person)</b>
+		<img src='/img/tools-spacer.png' />			<img src='/img/tools-blank.png' title='Move up' style='cursor: pointer;' width='15' height='15' />		<img src='/img/tools-spacer.png' />
+		<img onclick="moveDown(this)" src='/img/tools-down.png' title='Move down' style='cursor: pointer;' width='15' height='15' />
+		<img src='/img/tools-spacer.png' />
+
+		<img onclick="remove(this)" src='/img/tools-trash.png' title='Remove' style='cursor: pointer;' width='15' height='15' />
+		<img src='/img/tools-spacer.png' />
+
+		<img onclick="addBelow(this)" src='/img/tools-plus.png' title='Add another beneath this' style='cursor: pointer;' width='15' height='15' />
+		<br />
+		<table>
+					<div style='width: 100%; text-align:left;' >
+			<b>Organization</b>
+			<br />
+			<table>
+			
+					<!-- Form Row: org-name -->
+					<tr>
+						<td style='width: auto; text-align: right; vertical-align: top;'>
+						
+							<span title='Field Name: org-name -- Field Type: string'>Organization Name</span>
+						</td>
+						<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='org-name' type='text' style='width: 500px;' value='Joint Task Force, Transformation Initiative' placeholder='Full (legal) name of an organization' title='Full (legal) name of an organization' />
+
+						</td>
+						<td style='width: auto; text-align: left; vertical-align: top;'>
+						</td>
+					</tr>
+					<!-- Form Row: short-name -->
+					<tr>
+						<td style='width: auto; text-align: right; vertical-align: top;'>
+						
+							<span title='Field Name: short-name -- Field Type: string'>Short-name</span>
+						</td>
+						<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='short-name' type='text' style='width: 500px;' value='' placeholder='A common name, short name or acronym' title='A common name, short name or acronym' />
+
+						</td>
+						<td style='width: auto; text-align: left; vertical-align: top;'>
+						</td>
+					</tr>						<!-- Form Row: org-id -->
+						<tr>
+							<td style='width: auto; text-align: right; vertical-align: top;'>
+							
+								<span title='Field Name: org-id -- Field Type: string'>Organization Identifier</span>
+							</td>
+							<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='org-id' type='text' style='width: 500px;' value='' placeholder='An identifier for an organization using a designated scheme.' title='An identifier for an organization using a designated scheme.' />
+
+							</td>
+							<td style='width: auto; text-align: left; vertical-align: top;'>
+								<img src='/img/tools-spacer.png' />
+								<img onclick="moveUp(this)" src='/img/tools-up.png' title='Move up' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="moveDown(this)" src='/img/tools-down.png' title='Move down' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="remove(this)" src='/img/tools-trash.png' title='Remove' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="addBelow(this)" src='/img/tools-plus.png' title='Add another beneath this' style='cursor: pointer;' width='15' height='15' />
+							</td>
+						</tr>							<!-- MULTI 1 of 1 -->
+								<!-- Form Row: email -->
+								<tr>
+									<td style='width: auto; text-align: right; vertical-align: top;'>
+									
+										<span title='Field Name: email -- Field Type: string'>Email</span>
+									</td>
+									<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='email' type='text' style='width: 500px;' value='sec-cert@nist.gov' placeholder='Email address' title='Email address' />
+
+									</td>
+									<td style='width: auto; text-align: left; vertical-align: top;'>
+										<img src='/img/tools-spacer.png' />
+										<img onclick="moveUp(this)" src='/img/tools-up.png' title='Move up' style='cursor: pointer;' width='15' height='15' />
+										<img src='/img/tools-spacer.png' />
+										<img onclick="moveDown(this)" src='/img/tools-down.png' title='Move down' style='cursor: pointer;' width='15' height='15' />
+										<img src='/img/tools-spacer.png' />
+										<img onclick="remove(this)" src='/img/tools-trash.png' title='Remove' style='cursor: pointer;' width='15' height='15' />
+										<img src='/img/tools-spacer.png' />
+										<img onclick="addBelow(this)" src='/img/tools-plus.png' title='Add another beneath this' style='cursor: pointer;' width='15' height='15' />
+									</td>
+								</tr>						<!-- Form Row: phone -->
+						<tr>
+							<td style='width: auto; text-align: right; vertical-align: top;'>
+							
+								<span title='Field Name: phone -- Field Type: string'>Telephone</span>
+							</td>
+							<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='phone' type='text' style='width: 500px;' value='' placeholder='Contact number by telephone' title='Contact number by telephone' />
+
+							</td>
+							<td style='width: auto; text-align: left; vertical-align: top;'>
+								<img src='/img/tools-spacer.png' />
+								<img onclick="moveUp(this)" src='/img/tools-up.png' title='Move up' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="moveDown(this)" src='/img/tools-down.png' title='Move down' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="remove(this)" src='/img/tools-trash.png' title='Remove' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="addBelow(this)" src='/img/tools-plus.png' title='Add another beneath this' style='cursor: pointer;' width='15' height='15' />
+							</td>
+						</tr>						<!-- Form Row: url -->
+						<tr>
+							<td style='width: auto; text-align: right; vertical-align: top;'>
+							
+								<span title='Field Name: url -- Field Type: string'>URL</span>
+							</td>
+							<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='url' type='text' style='width: 500px;' value='' placeholder='URL for web site or Internet presence' title='URL for web site or Internet presence' />
+
+							</td>
+							<td style='width: auto; text-align: left; vertical-align: top;'>
+								<img src='/img/tools-spacer.png' />
+								<img onclick="moveUp(this)" src='/img/tools-up.png' title='Move up' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="moveDown(this)" src='/img/tools-down.png' title='Move down' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="remove(this)" src='/img/tools-trash.png' title='Remove' style='cursor: pointer;' width='15' height='15' />
+								<img src='/img/tools-spacer.png' />
+								<img onclick="addBelow(this)" src='/img/tools-plus.png' title='Add another beneath this' style='cursor: pointer;' width='15' height='15' />
+							</td>
+						</tr>
+					<!-- Form Row: notes -->
+					<tr>
+						<td style='width: auto; text-align: right; vertical-align: top;'>
+						
+							<span title='Field Name: notes -- Field Type: prose'>Notes</span>
+						</td>
+						<td style='width:auto; text-align: left; vertical-align: top;'>
+								<div  title='Any notes with further information' >
+									<textarea  id='textarea-notes' name='notes' class='prose_editing' style='width: 500px; height: 50px;' title='Any notes with further information' placeholder='Any notes with further information'></textarea>
+									<script>
+										var oscal_notes = new Jodit('#textarea-notes'  , {
+											  'height': 140,
+											  'minHeight': 140,
+											  'minHeight': 140,
+											  'maxWidth': 600,
+											  'toolbarAdaptive': false,
+											  'defaultActionOnPaste': 'insert_clear_html',
+											  'buttons': '|,bold,italic,underline,superscript,subscript,|,ul,ol,table,|,paragraph,,hr,image,link,|,undo,redo,cut,eraser,copyformat,symbol,|,source,fullsize,selectall,print,about'
+											});
+										</script>
+									</div>
+						</td>
+						<td style='width: auto; text-align: left; vertical-align: top;'>
+						</td>
+					</tr>
+			   </table>
+			   <br />
+			</div>
+				<!-- Form Row: notes -->
+				<tr>
+					<td style='width: auto; text-align: right; vertical-align: top;'>
+					
+						<span title='Field Name: notes -- Field Type: prose'>Notes</span>
+					</td>
+					<td style='width:auto; text-align: left; vertical-align: top;'>
+							<div  title='Any notes with further information' >
+								<textarea  id='textarea-notes' name='notes' class='prose_editing' style='width: 500px; height: 50px;' title='Any notes with further information' placeholder='Any notes with further information'></textarea>
+								<script>
+									var oscal_notes = new Jodit('#textarea-notes'  , {
+										  'height': 140,
+										  'minHeight': 140,
+										  'minHeight': 140,
+										  'maxWidth': 600,
+										  'toolbarAdaptive': false,
+										  'defaultActionOnPaste': 'insert_clear_html',
+										  'buttons': '|,bold,italic,underline,superscript,subscript,|,ul,ol,table,|,paragraph,,hr,image,link,|,undo,redo,cut,eraser,copyformat,symbol,|,source,fullsize,selectall,print,about'
+										});
+									</script>
+								</div>
+					</td>
+					<td style='width: auto; text-align: left; vertical-align: top;'>
+					</td>
+				</tr>
+				<!-- Form Row: id -->
+				<tr>
+					<td style='width: auto; text-align: right; vertical-align: top;'>
+					
+						<span title='Field Name: id -- Field Type: ID'>ID</span>
+					</td>
+					<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='id' type='text' style='width: 500px;' value='Joint Task Force, Transformation InitiativeNational Institute of Standards and TechnologyAttn: Computer Security DivisionInformation Technology Laboratory100 Bureau Drive (Mail Stop 8930)GaithersburgMD20899-8930sec-cert@nist.gov' placeholder='[ No description available ]' title='[ No description available ]' />
+
+					</td>
+					<td style='width: auto; text-align: left; vertical-align: top;'>
+					</td>
+				</tr>
+				<!-- Form Row: role-id -->
+				<tr>
+					<td style='width: auto; text-align: right; vertical-align: top;'>
+					
+						<span title='Field Name: role-id -- Field Type: IDREFS'>Role-id</span>
+					</td>
+					<td style='width:auto; text-align: left; vertical-align: top;'>	<input  id='**id**' name='role-id' type='text' style='width: 500px;' value='Joint Task Force, Transformation InitiativeNational Institute of Standards and TechnologyAttn: Computer Security DivisionInformation Technology Laboratory100 Bureau Drive (Mail Stop 8930)GaithersburgMD20899-8930sec-cert@nist.gov' placeholder='[ No description available ]' title='[ No description available ]' />
+
+					</td>
+					<td style='width: auto; text-align: left; vertical-align: top;'>
+					</td>
+				</tr>
+		   </table>
+		   <br />
+		</div><table class='menu'>
+	<tr>
+		<td class='button' onclick='parent.location.href=parent.location.href'>
+<img style='vertical-align:middle' src='./img/arrow-left.png' width='40' height='40' />&nbsp;Go Back<br />(Abort Changes)&nbsp;		</td>
+		<td class='button' onclick='submitForm()'><img style='vertical-align:middle' src='./img/edit.png' width='40' height='40' />&nbsp;Commit Changes&nbsp;
+		</td>
+	</tr>
+</table>
+</form>
+
+<div id='after-form'></div>	<hr />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<div id='debug-title' class='zone'>
+		<hr />
+		<b>DEBUG MESSAGES</b>&nbsp;
+		[<span id='debug-menu' onclick="toggle_visibility('debug')">&nbsp;TOGGLE VISIBILITY&nbsp;</span>]
+		&nbsp;&nbsp;To disable DEBUG MESSAGES, set <b>SHOW_DEBUG</b> to <b>false</b> in <b>oscal-config.php</b>
+	</div>	<div id='debug' class='debug'><?= 
+-- NAMESPACE: http://csrc.nist.gov/ns/oscal/1.0<br />
+-- Namespace registered successfully<br />ROOT ELEMENT: catalog<br />RECOGNIZED: OSCAL Catalog<br />
+-- SETTING proj-2019-03-27--15-31-10-000000<br />
+-- LIST XPATH: /*/oscal:metadata<br />
+-- TYPE: object<br />
+-- Length: 1<br />
+-- LIST XPATH: //oscal:party<br />
+-- TYPE: object<br />
+-- Length: 1<br />
+-- LIST XPATH: //oscal:party/oscal:person<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:person-name<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:short-name<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:org-name<br />
+-- LIST XPATH: //oscal:party/oscal:person/oscal:person-id<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:person-id[@type]<br />
+-- LIST XPATH: //oscal:party/oscal:person/oscal:org-id<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:org-id[@type]<br />
+-- LIST XPATH: //oscal:party/oscal:person/oscal:email<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:email[@type]<br />
+-- LIST XPATH: //oscal:party/oscal:person/oscal:phone<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:phone[@type]<br />
+-- LIST XPATH: //oscal:party/oscal:person/oscal:url<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:url[@type]<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:person/oscal:notes<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org/oscal:org-name<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org/oscal:short-name<br />
+-- LIST XPATH: //oscal:party/oscal:org/oscal:org-id<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org/oscal:org-id[@type]<br />
+-- LIST XPATH: //oscal:party/oscal:org/oscal:email<br />
+-- TYPE: object<br />
+-- Length: 1<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org/oscal:email[@type]<br />
+-- LIST XPATH: //oscal:party/oscal:org/oscal:phone<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org/oscal:phone[@type]<br />
+-- LIST XPATH: //oscal:party/oscal:org/oscal:url<br />
+-- TYPE: object<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org/oscal:url[@type]<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:org/oscal:notes<br />
+-- ONE-ITEM XPATH: //oscal:party/oscal:notes<br />
+-- ONE-ITEM XPATH: //oscal:party[@id]<br />
+-- ONE-ITEM XPATH: //oscal:party[@role-id]<br /> ?></div></td>
+</body>
+</html>

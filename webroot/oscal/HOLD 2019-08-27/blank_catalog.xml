@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="oscal-control-display.xsl"?>
+<catalog xmlns="http://csrc.nist.gov/ns/oscal/1.0"
+         id="empty"
+         model-version="0.9.12">
+   <title>File Title</title>
+   <metadata>
+      <title>Catalog Title</title>
+      <publication-date/>
+      
+      <role id="creator"><title>Document creator</title></role>
+      <role id="contact"><title>Contact</title></role>
+      
+      <party id="party-01" role-id="creator contact">
+         <org>
+            <org-name>Organization Name</org-name>
+            <address>
+               <addr-line>Address Line</addr-line>
+               <city>City</city>
+               <state>ST</state><postal-code>00000-00</postal-code>
+            </address>
+            <email>poc@example.gov</email>
+         </org>
+      </party>
+   </metadata>
+   
+   <declarations/>
+   <references>
+      <ref id="ref001">
+         <citation href="http://example.gov/document.pdf">Example Document</citation>
+      </ref>
+   </references>
+   <group class="family" id="ex">
+      <title>Requirement Family Title</title>
+      <control class="class" id="ex-1">
+         <title>Control Title</title>
+         <param id="ex-1_prm_1">
+            <label>Example Parameter</label>
+         </param>
+         <prop class="label">EX-1</prop>
+         <part class="statement" id="ex-1_smt">
+            <p>Main statement</p>
+            <part class="item" id="ex-1_smt.a">
+               <prop class="label">a.</prop>
+               <p>Part with parameter: <insert param-id="ex-1_prm_1"/>:</p>
+               <part class="item" id="ex-1_smt.a.1">
+                  <prop class="label">1.</prop>
+                  <p>Sub-part text</p>
+               </part>
+            </part>
+         </part>
+         <part class="guidance" id="ex-1_gdn">
+            <p>This is additional guidance regarding the control.</p>
+            <link rel="related" href="#ex-2">EX-2</link>
+         </part>
+         <part class="objective" id="ex-1_obj">
+            <p>Control objective statement.</p>
+            <part class="objective" id="ex-1.a_obj">
+               <prop class="label">EX-1(a)</prop>
+               <part class="objective" id="ex-1.a_obj.1">
+                  <prop class="label">EX-1(a)[1]</prop>
+                  <p></p>
+               </part>
+               <part class="objective" id="ex-1.a_obj.2">
+                  <prop class="label">EX-1(a)[2]</prop>
+                  <p></p>
+               </part>
+            </part>
+         </part>
+         <part class="assessment">
+            <prop class="method">EXAMINE</prop>
+            <part class="objects">
+               <p>1st item to examine</p>
+               <p>2nd item to examine</p>
+            </part>
+         </part>
+         <part class="assessment">
+            <prop class="method">INTERVIEW</prop>
+            <part class="objects">
+               <p>1st interview topic and/or target roles</p>
+               <p>2nd interview topic and/or target roles</p>
+            </part>
+         </part>
+         <part class="assessment">
+            <prop class="method">TEST</prop>
+            <part class="objects">
+               <p>1st Test target and/or test objective</p>
+               <p>2nd Test target and/or test objective</p>
+            </part>
+         </part>
+         <subcontrol class="SP800-53-enhancement" id="ex-1.1">
+            <title>Sub-Control Title</title>
+            <prop class="label">EX-1(1)</prop>
+            <part class="statement" id="ex-1.1_smt">
+               <p>Sub-control requirement statement. (Sub-controls may also use parameters.)</p>
+            </part>
+            <part class="guidance" id="ex-1.1_gdn">
+               <p>This is additional guidance regarding the sub-control.</p>
+            </part>
+            <part class="objective" id="ex-1.1_obj">
+               <p>Sub-control objective statement.</p>
+            </part>
+            <part class="assessment">
+               <prop class="method">EXAMINE</prop>
+               <part class="objects">
+                  <p>1st item to examine</p>
+                  <p>2nd item to examine</p>
+               </part>
+            </part>
+            <part class="assessment">
+               <prop class="method">INTERVIEW</prop>
+               <part class="objects">
+                  <p>1st interview topic and/or target roles</p>
+                  <p>2nd interview topic and/or target roles</p>
+               </part>
+            </part>
+            <part class="assessment">
+               <prop class="method">TEST</prop>
+               <part class="objects">
+                  <p>1st Test target and/or test objective</p>
+                  <p>2nd Test target and/or test objective</p>
+               </part>
+            </part>
+         </subcontrol>
+      </control>
+   </group>
+</catalog>
