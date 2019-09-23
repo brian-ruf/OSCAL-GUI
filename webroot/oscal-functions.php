@@ -26,6 +26,7 @@ libxml_use_internal_errors(true);
 $oscal_objects = array();
 $oscal_schema_map = array();
 $oscal_flat_schema_map = array();
+$messages = "";
 
 // ============================================================================
 // ==  Xpath Manipulation Functions
@@ -54,7 +55,7 @@ function StripAttributes($xpath) {
 		}
 		$ret_val .= substr($xpath, $close_bracket +1, strlen($xpath) - $close_bracket);
 	}
-	Logging ("STRIPED XPATH: " . $ret_val);
+	Messages ("STRIPED XPATH: " . $ret_val);
 
 return $ret_val;
 }
@@ -72,7 +73,7 @@ function GetFullXpath($element){
 	}
 	
 	$ret_val = "/" . $ret_val;
-//	Logging("FULL PATH: " . $ret_val);
+//	Messages("FULL PATH: " . $ret_val);
 	return $ret_val;
 }
 
@@ -153,7 +154,7 @@ $logging = "** QueryOneItem (" . $query . "):<br />";
 		$logging .= "ERROR: Invalid Xpath Query!";
 	}
 	
-//	Logging($logging);
+//	Messages($logging);
  	return $ret_val;
 }
 
@@ -185,7 +186,7 @@ function QueryList(&$oscal_objects, $query) {
 		$ret_val = false;
 	}
 
-//	Logging($logging);
+//	Messages($logging);
  	return $ret_val;
 }
 
@@ -217,7 +218,7 @@ function QueryListResult(&$oscal_objects, $query) {
 		$ret_val = false;
 	}
 
-//	Logging($logging);
+//	Messages($logging);
  	return $ret_val;
 }
 
@@ -257,7 +258,7 @@ function QueryOneItemArray(&$oscal_objects, $query, $flags=array()) {
 		$ret_val = array();
 	}
 
-//	Logging($logging);
+//	Messages($logging);
  	return $ret_val;
 }
 
@@ -319,7 +320,7 @@ function QueryListArray(&$oscal_objects, $query, $flags=array()) {
 		$ret_val = array();
 	}
 	
-//	Logging($logging);
+//	Messages($logging);
  	return $ret_val;
 }
 
@@ -355,7 +356,7 @@ function GetFlatSchemaMap($root, $refresh=false) {
 			$root = StripNameSpace($root);
 		}
 
-		Logging("LOADING FLAT SCHEMA MAP: " . $root);
+		Messages("LOADING FLAT SCHEMA MAP: " . $root);
 
 		if ($refresh || ! isset($oscal_flat_schema_map[$root])) {
 			$file_input = file_get_contents(OSCAL_LOCAL_FILES . "oscal_" . $root . "_flat_schemamap.json");
@@ -363,7 +364,7 @@ function GetFlatSchemaMap($root, $refresh=false) {
 				$oscal_flat_schema_map[$root] = json_decode($file_input, true);
 				$ret_val = $oscal_flat_schema_map[$root];
 			} else {
-				Logging("ERROR READING FILE");
+				Messages("ERROR READING FILE");
 			}
 		} else {
 			$ret_val = $oscal_flat_schema_map[$root];
@@ -401,7 +402,7 @@ function GetSchemaMap($root, $refresh=false) {
 			$root = StripNameSpace($root);
 		}
 
-		Logging("LOADING SCHEMA MAP: " . $root);
+		Messages("LOADING SCHEMA MAP: " . $root);
 
 			if ($refresh || ! isset($oscal_schema_map[$root])) {
 				$file_input = file_get_contents(OSCAL_LOCAL_FILES . "oscal_" . $root . "_schemamap.json");
@@ -409,7 +410,7 @@ function GetSchemaMap($root, $refresh=false) {
 					$oscal_schema_map[$root] = json_decode($file_input, true);
 					$ret_val = $oscal_schema_map[$root];
 				} else {
-					Logging("ERROR READING FILE");
+					Messages("ERROR READING FILE");
 				}
 			} else {
 				$ret_val = $oscal_schema_map[$root];
@@ -688,7 +689,7 @@ function InsertOSCALdata($oscal_obj, $xpath_to_parent, $data){
 	$ret_val = false;
 
 
-//	Logging ("-- INSERTING: " . $data->nodeName);
+//	Messages ("-- INSERTING: " . $data->nodeName);
 	// Use xpath to get parent object
 	$parent_obj = QueryListResult($oscal_obj, $xpath_to_parent);
 	if ($parent_obj !== false) {
@@ -707,7 +708,7 @@ function InsertOSCALdata($oscal_obj, $xpath_to_parent, $data){
 				$found_element = false;
 				$xpath_to_parents_remaining_children = "";
 				while ($child_element_index){
-//					Logging ("   -- CHECKING: " . $flat_schema_map[$full_path_to_parent]["model"][$child_element_index-1]);
+//					Messages ("   -- CHECKING: " . $flat_schema_map[$full_path_to_parent]["model"][$child_element_index-1]);
 					if ($data->nodeName == $flat_schema_map[$full_path_to_parent]["model"][$child_element_index-1] ) {
 						$found_element = true;
 						break;
@@ -752,7 +753,7 @@ function InsertOSCALdata($oscal_obj, $xpath_to_parent, $data){
 		$messages .= "<br />   !! " . ("ERROR: Invalid path to parent. Unable to continue (". $xpath_to_parent . ")");
 	}
 
-//	Logging($messages);
+//	Messages($messages);
 	if (! $ret_val) {
 		$ret_val = $messages;
 	}
@@ -831,11 +832,11 @@ $messages = "";
 					// Other elements in the array may be removed, but are captured for now
 					
 					if ( isset($oscal_roots[$oscal_root_element->nodeName]) ) {
-						Logging("ROOT FOUND: " . $oscal_root_element->nodeName);
+						Messages("ROOT FOUND: " . $oscal_root_element->nodeName);
 						$Valid_OSCAL_Root = true;
 						$type = $oscal_roots[$oscal_root_element->nodeName]["title"];
 						$xmlschema = OSCAL_LOCAL_FILES . $oscal_roots[$oscal_root_element->nodeName]["files"]["schema"]["local_file"];
-						Logging("ROOT FOUND: " . $oscal_roots[$oscal_root_element->nodeName]["files"]["schema"]["local_file"]);
+						Messages("ROOT FOUND: " . $oscal_roots[$oscal_root_element->nodeName]["files"]["schema"]["local_file"]);
 						$metaschema = "";
 						$messages .= "RECOGNIZED: " . $type;
 					} else {
@@ -863,7 +864,7 @@ $messages = "";
 			$status = false;
 		}
 
-		Logging($messages);
+		Messages($messages);
 		
 		// If everything went well, populate an array with return values.
 		// Otherwise, populate an array with error information.
@@ -877,7 +878,7 @@ $messages = "";
 								"schema" => $xmlschema, "metaschema" => $metaschema);
 			if (strlen($oscalproject)>0) {
 				$oscal_objects[$oscalproject] = $ret_val;
-				Logging("SETTING " . $oscalproject);
+				Messages("SETTING " . $oscalproject);
 			}
 		} else {
 			$messages = "<br /><span style='font-weight:bold; color:red;'>UNABLE TO OPEN:</span> " . $oscalfile . "<br />" . $messages;
@@ -896,12 +897,12 @@ function SaveOSCALfile($oscal){
 	
 	$status = $oscal['DOM']->save($oscal['file']);
 	if ($status) {
-		Logging(" ---- FILE SAVED! ---- ");
+		Messages(" ---- FILE SAVED! ---- ");
 		
 		$oscal = OpenOSCALfile($oscal['file'], $oscal['project'], true);
 		
 	} else {
-		Logging(" !!!! ERROR SAVING FILE! !!!! ");
+		Messages(" !!!! ERROR SAVING FILE! !!!! ");
 	}
 
 	return $status;
@@ -937,7 +938,7 @@ $messages = "";
 		$messages .=  "\n" . $ret_val['message'] . "\n";
 	}
 	
-Logging($messages);
+Messages($messages);
 
 return $ret_val;
 }
@@ -1040,9 +1041,9 @@ function FindOSCALFileInDir($dir) {
 
 	if ($xml_file_found) {
 		$ret_val = $file;
-//		Logging("FOUND FILE: " . $file);
+//		Messages("FOUND FILE: " . $file);
 	} else {
-		Logging("NO OSCAL FILE FOUND IN: " . $dir);
+		Messages("NO OSCAL FILE FOUND IN: " . $dir);
 		$ret_val = false;
 	}
 	return $ret_val;
@@ -1095,10 +1096,10 @@ function CreateJSON($file_from, $file_to) {
 
 	$result = "";
 	$ExString = 'java -jar ' . SAXON_HE . ' -s:"' . $file_from . '" -o:"' . $file_to . '" -xsl:"' . OSCAL_LOCAL_FILES . $converter . '" ' . $flags . '  2>&1';
-	Logging($ExString);
+	Messages($ExString);
 	exec($ExString, $ExOutput, $result);
 	
-	Logging("XML to JSON RESULT FOR " . $file_to . ": " . $result);
+	Messages("XML to JSON RESULT FOR " . $file_to . ": " . $result);
 		
 	return $ExOutput;
 }
@@ -1111,9 +1112,9 @@ $ret_val = false;
 		if ( $file_input !== false) {
 			$json_file_array = json_decode($file_input, false);
 			$ret_val = key($json_file_array);
-			Logging("JSON ROOT: " . $ret_val);
+			Messages("JSON ROOT: " . $ret_val);
 		} else {
-			Logging("ERROR READING FILE");
+			Messages("ERROR READING FILE");
 		}
 return $ret_val;
 }
@@ -1122,24 +1123,24 @@ return $ret_val;
 function OSCAL_JSON2XML($file_from, $file_to) {
 	global $oscal_roots;
 	$rootname = GetOSCAJSONLRoot($file_from);
-	Logging("JSON ROOT: " . $rootname);
+	Messages("JSON ROOT: " . $rootname);
 	$file_from = MakeURI($file_from);
-	Logging("FROM: " . $file_from);
+	Messages("FROM: " . $file_from);
 //	$file_to = FriendlyPath($file_to);
-	Logging("TO: " . $file_to);
+	Messages("TO: " . $file_to);
 	$converter = $oscal_roots[$rootname]["files"]["json2xml"]["local_file"];
-	Logging("CONVERTER: " . $converter);
+	Messages("CONVERTER: " . $converter);
 	$flags = "-it";
 	$ExOutput = array();
 
 	$result = "";
 	$ExString = 'java -jar ' . SAXON_HE . ' -o:"' . $file_to . '" -xsl:"' . OSCAL_LOCAL_FILES . $converter . '" '  . $flags . ' json-file="' . $file_from . '"   2>&1';
-	Logging($ExString);
+	Messages($ExString);
 	exec($ExString, $ExOutput, $result);
 
 //	exec('java -jar ' . SAXON_HE . ' -o:"' . $file_to . '" -xsl:"' . OSCAL_LOCAL_FILES . $converter . '" '  . $flags . ' json-file"' . $file_from . '" 2>&1', $ExOutput, $result);
 	
-	Logging("JSON to XML RESULT FOR " . $file_to . ": " . $result);
+	Messages("JSON to XML RESULT FOR " . $file_to . ": " . $result);
 		
 	return $ExOutput;
 }
@@ -1363,10 +1364,10 @@ function RemoveWhiteSpace($str, $comment="") {
 			$str = str_replace("  ", " ", $str);
 			$str_len = strlen($str);
 		}
-//		Logging("White Space Removed: " . $comment);
+//		Messages("White Space Removed: " . $comment);
 	} else {
 		$str = "";
-		Logging("Unable to remove white space. Not a string: " . $comment);
+		Messages("Unable to remove white space. Not a string: " . $comment);
 	}
     return $str;
 }
@@ -1444,10 +1445,10 @@ function GetProjectDetail($project_id, $item_ref){
 		$ret_val = $file_project_list[$project_id][$item_ref];
 	} else {
 		$ret_val = false;
-		Logging("PROJECT ID NOT FOUND! (" . $project_id . ")");
+		Messages("PROJECT ID NOT FOUND! (" . $project_id . ")");
 	}
 
-	Logging("PROJECT DETAIL for " . $project_id . " (" . $item_ref . "): " . $ret_val);
+	Messages("PROJECT DETAIL for " . $project_id . " (" . $item_ref . "): " . $ret_val);
 	return $ret_val;
 }
 
@@ -1725,6 +1726,19 @@ function recurse_array($values){
     }
     return $content;
 }
+
+function Messages($content){
+	global $messages;
+
+	if (function_exists('Logging')) {
+		Logging($messages);
+		$messages = "";
+	} else {
+		$messages .= "\n-- " . $content . "<br />";	
+	}
+	
+}
+
 // ----------------------------------------------------------------------------
 // Generates a globally unique identifeer (v4 UUID)
 // The function exists when running PHP on Windows, but must be created 
@@ -1740,6 +1754,9 @@ if (!function_exists('com_create_guid')) {
     );
   }
 }
+// ============================================================================
+
 // ----------------------------------------------------------------------------
+
 
 ?>

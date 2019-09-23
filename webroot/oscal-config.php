@@ -44,6 +44,12 @@ define ("DATE_TIME_PRESENT_FORMAT", "l F j\, Y g:i:s A \(T\)");
 // IMPORTANT: This must align with the OSCAL specification.
 define ("DATE_TIME_STORE_FORMAT", "Y-m-d\TH:i:s.uP");
 
+// The official OSCAL namespace as defined by NIST.
+//    Only change this if:
+//       1. NIST changes the official namespace
+//       2. You are creaetng a variant of OSCAL and need to assign your own namespace. 
+//       NOTE: Variats of OSCAL are not supported by OSCAL.
+define("OSCAL_NS", "http://csrc.nist.gov/ns/oscal/1.0");
 
 /*  =====================================================  */ 
 /*  ===  USE CAUTION WHEN MODIFIYING BELOW THIS LINE  ===  */ 
