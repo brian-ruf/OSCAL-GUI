@@ -1,5 +1,13 @@
 <?php 
 include_once("oscal-objects.php");
+if (isset($_SESSION['myFORM'])) {
+	$oscal_catalog = $_SESSION['myFORM'];
+	echo "<br />from session variable<br />";
+} else {
+	$oscal_catalog = New OSCAL("D:\GitRepos\OSCAL-GUI\webroot\projects\proj-2019-03-27--15-31-10-000000\NIST_SP-800-53_rev4_catalog.xml");
+	echo "<br />setting<br />";
+}
+
 include_once("oscal-begin.php");
 include_once("oscal-functions.php");
 include_once("oscal-formfunctions.php");
@@ -18,17 +26,10 @@ $page_title = "FORM TEST";
 <body>
 
 <?php
-if (isset($_SESSION['myFORM'])) {
-	$oscal_catalog = $_SESSION['myFORM'];
-	echo "<br />from session variable<br />";
-} else {
-	$oscal_catalog = New OSCAL("D:\GitRepos\OSCAL-GUI\webroot\projects\proj-2019-03-27--15-31-10-000000\NIST_SP-800-53_rev4_catalog.xml");
-	echo "<br />setting<br />";
-}
 echo $oscal_catalog->GetTitle();
-//$metadata = $oscal_catalog->Query("//metadata");
+$metadata = $oscal_catalog->Query("//metadata");
 echo "<br />";
-echo var_dump($oscal_catalog->dom);
+echo var_dump($oscal_catalog->xpath);
 ?>
 
 <?php
