@@ -63,7 +63,7 @@ class OSCAL {
 		$this->project_id = "";
 		$this->file_name = ""; // includes full path to file
 		$this->file_base_name = "";
-		$this->title = "[NO TITLE]";
+		$this->title = "";
 		$this->namespace_explicit = "";
 		$this->namespace_alias = "oscal";
 		$this->recognized = false;   // Is the root element a recognized OSCAL root?
@@ -197,7 +197,7 @@ class OSCAL {
 	public function Save($file_name=""){
 		
 		if ($file_name == "") {
-			$file_name = $this->file_name
+			$file_name = $this->file_name;
 		}
 		$this->status = $this->dom->Save($file_name);
 		if ($this->status) {
@@ -249,6 +249,56 @@ class OSCAL {
 		}
 		return $this->status;
 	}
+	
+	// ----------------------------------------------------------------------------
+	// Runs an xpath query against the OSCAL object, and returns as follows:
+	//     - if one or more results are found, returns a DOMNodeList
+	//        (See https://www.php.net/manual/en/domxpath.query.php )
+	//     - if no results are found, returns false.
+	public function Query($query) {
+		$this->messages->Debug("** Query (" . $query . "):");
+		$ret_val = false;
+
+		if ($this->namespace_explicit==="") {
+			// Do nothing
+		} else {
+			$query = AddNamespace2xpath($query, $this->namespace_alias);
+		}
+
+		$this->messages->Debug(" XPATH: " . $query);
+		$result = $this->xpath->query($query);
+		$this->messages->Debug(" = (TYPE: " . gettype($result) . ")");
+		
+		if ($result !== false) {
+			if ($result->length > 0) {
+				$this->messages->Debug(" FOUND: " . $result->length);
+				$ret_val = $result;
+			} else {
+				$this->messages->Debug(" FOUND: -0-");
+				$ret_val = false;
+			}
+		} else {
+			$this->messages->Debug("ERROR: Invalid Xpath Query!");
+			$ret_val = false;
+		}
+
+		return $ret_val;
+	}	
+	
+	// ----------------------------------------------------------------------------
+	public function GetTitle($refresh=false){
+		if ($refresh || $this->title == "") {
+			$title = $this->Query("//metadata/title");
+			if ($title === false) {
+				$this->title = "[NO TITLE]";
+			} else {
+				$this->title = $title->item(0)->nodeValue;
+			}
+		}
+		
+		return $this->title;
+	}
+	
 }
 
 // A class to collect messages during a processing event, where 
