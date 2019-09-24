@@ -34,7 +34,7 @@ switch($_GET["mode"]) {
 		break;
 	case 'makeforms':
 		$script = "zoneManagement('oscal-formcreator.php?type=" . $_GET["type"] . "')";
-		$page_title = "Open Project";
+		$page_title = "Make Forms";
 		break;
 	case 'open':
 		$script = "zoneManagement('oscal-content.php?mode=open&project=" . $_GET["project"] . "')";

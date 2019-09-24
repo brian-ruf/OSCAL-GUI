@@ -12,7 +12,7 @@
          <m:schema-version>1.0.0-milestone2</m:schema-version>
          <m:short-name>oscal-ssp</m:short-name>
          <m:remarks>
-            <m:p>The OSCAL Control SSP format can be used to describe the information typically specified in a system security plan, such as those defined in SP 800-18 or used by FedRAMP.</m:p>
+            <m:p>The OSCAL Control SSP format can be used to describe the information typically specified in a system security plan, such as those defined in SP 800-18.</m:p>
             <m:p>The root of the OSCAL System Security Plan (SSP) format is <m:code>system-security-plan</m:code>.</m:p>
             <m:p>NOTE: This documentation is a work in progress. As a result, documentation for many of the information elements is missing or incomplete.</m:p>
          </m:remarks>
@@ -31,8 +31,9 @@
       <xs:complexType>
          <xs:sequence>
             <xs:element ref="oscal-ssp:title" minOccurs="1" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:last-modified-date" minOccurs="0" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:version" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:published" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:last-modified" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:version" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:oscal-version" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:doc-id" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
@@ -80,7 +81,7 @@
                   <b>hypertext reference</b>: A link to a document or document fragment (actual, nominal or projected)</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="rel" type="xs:NCName">
+         <xs:attribute name="rel">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Relation</m:formal-name>
@@ -90,7 +91,7 @@
                   <b>Relation</b>: Describes the type of relationship provided by the link. This can be an indicator of the link's purpose.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="media-type" type="xs:string">
+         <xs:attribute name="media-type">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Media type</m:formal-name>
@@ -102,7 +103,17 @@
          </xs:attribute>
       </xs:complexType>
    </xs:element>
-   <xs:element name="last-modified-date" type="oscal-ssp:dateTime-with-timezone">
+   <xs:element name="published" type="oscal-ssp:dateTime-with-timezone">
+      <xs:annotation>
+         <xs:appinfo>
+            <m:formal-name>Publication Date</m:formal-name>
+            <m:description>The date this document was published.</m:description>
+         </xs:appinfo>
+         <xs:documentation>
+            <b>Publication Date</b>: The date this document was published.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="last-modified" type="oscal-ssp:dateTime-with-timezone">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Last modified date</m:formal-name>
@@ -175,12 +186,10 @@
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Property</m:formal-name>
-            <m:description>A value with a name, attributed to the containing control, subcontrol, part,
-      or group.</m:description>
+            <m:description>A value with a name, attributed to the containing control, part, or group.</m:description>
          </xs:appinfo>
          <xs:documentation>
-            <b>Property</b>: A value with a name, attributed to the containing control, subcontrol, part,
-      or group.</xs:documentation>
+            <b>Property</b>: A value with a name, attributed to the containing control, part, or group.</xs:documentation>
       </xs:annotation>
       <xs:complexType mixed="true">
          <xs:attribute name="name" use="required">
@@ -220,7 +229,7 @@
                         <xs:enumeration value="status">
                            <xs:annotation>
                               <xs:documentation>
-                                 <p>The status of a control or subcontrol. The value can be 'withdrawn' to indicate that the control or subcontrol has been withdrawn and should no longer be used.</p>
+                                 <p>The status of a control. For example, a value of 'Withdrawn' can indicate that the control has been withdrawn and should no longer be used.</p>
                               </xs:documentation>
                            </xs:annotation>
                         </xs:enumeration>
@@ -229,7 +238,7 @@
                </xs:union>
             </xs:simpleType>
          </xs:attribute>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -239,7 +248,7 @@
                   <b>Identifier</b>: Unique identifier of the containing object</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="ns" type="xs:string">
+         <xs:attribute name="ns">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Namespace</m:formal-name>
@@ -249,7 +258,7 @@
                   <b>Namespace</b>: A namespace qualifying the name.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="class" type="xs:NMTOKENS">
+         <xs:attribute name="class">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Class</m:formal-name>
@@ -272,11 +281,12 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
+            <xs:element ref="oscal-ssp:role-id" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="oscal-ssp:person" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="oscal-ssp:org" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:notes" minOccurs="0" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -286,39 +296,17 @@
                   <b>Identifier</b>: Unique identifier of the containing object</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="role-id">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Role identifier</m:formal-name>
-                  <m:description>References a <m:code>role</m:code> element defined in metadata.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Role identifier</b>: References a role element defined in metadata.</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:IDREFS">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:IDREFS">
-                        <xs:enumeration value="content-creator">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for creating the content.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="content-maintainer">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for maintainer the content on an ongoing basis.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
       </xs:complexType>
+   </xs:element>
+   <xs:element name="party-id">
+      <xs:annotation>
+         <xs:appinfo>
+            <m:formal-name>Party Reference</m:formal-name>
+            <m:description>References a <m:code>party</m:code> defined in <m:code>metadata</m:code>.</m:description>
+         </xs:appinfo>
+         <xs:documentation>
+            <b>Party Reference</b>: References a party defined in metadata.</xs:documentation>
+      </xs:annotation>
    </xs:element>
    <xs:element name="person">
       <xs:annotation>
@@ -376,7 +364,7 @@
             <b>Personal Identifier</b>: An identifier for a person (such as an ORCID) using a designated scheme.</xs:documentation>
       </xs:annotation>
       <xs:complexType mixed="true">
-         <xs:attribute name="type" type="xs:string">
+         <xs:attribute name="type">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Type</m:formal-name>
@@ -398,7 +386,7 @@
             <b>Organization Identifier</b>: An identifier for an organization using a designated scheme.</xs:documentation>
       </xs:annotation>
       <xs:complexType mixed="true">
-         <xs:attribute name="type" type="xs:string">
+         <xs:attribute name="type">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Type</m:formal-name>
@@ -421,7 +409,7 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:element ref="oscal-ssp:hash" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:hash" minOccurs="0" maxOccurs="unbounded"/>
          </xs:sequence>
          <xs:attribute name="href" use="required" type="oscal-ssp:uri-reference">
             <xs:annotation>
@@ -433,7 +421,7 @@
                   <b>hypertext reference</b>: A link to a document or document fragment (actual, nominal or projected)</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="media-type" type="xs:string">
+         <xs:attribute name="media-type">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Media type</m:formal-name>
@@ -668,7 +656,7 @@
          <xs:sequence>
             <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
          </xs:sequence>
-         <xs:attribute name="type" type="xs:string">
+         <xs:attribute name="type">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Type</m:formal-name>
@@ -709,7 +697,7 @@
             </xs:choice>
             <xs:element ref="oscal-ssp:notes" minOccurs="0" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
+         <xs:attribute name="id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -771,7 +759,7 @@
             <xs:element ref="oscal-ssp:short-name" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:desc" minOccurs="0" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
+         <xs:attribute name="id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -782,6 +770,38 @@
             </xs:annotation>
          </xs:attribute>
       </xs:complexType>
+   </xs:element>
+   <xs:element name="role-id">
+      <xs:annotation>
+         <xs:appinfo>
+            <m:formal-name>Role identifier</m:formal-name>
+            <m:description>References a <m:code>role</m:code> element defined in metadata.</m:description>
+         </xs:appinfo>
+         <xs:documentation>
+            <b>Role identifier</b>: References a role element defined in metadata.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:union memberTypes="xs:NCName">
+            <xs:simpleType>
+               <xs:restriction base="xs:NCName">
+                  <xs:enumeration value="content-creator">
+                     <xs:annotation>
+                        <xs:documentation>
+                           <p>Identifies a party responsible for creating the content.</p>
+                        </xs:documentation>
+                     </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="content-maintainer">
+                     <xs:annotation>
+                        <xs:documentation>
+                           <p>Identifies a party responsible for maintaining the content on an ongoing basis.</p>
+                        </xs:documentation>
+                     </xs:annotation>
+                  </xs:enumeration>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:union>
+      </xs:simpleType>
    </xs:element>
    <xs:element name="title">
       <xs:annotation>
@@ -822,7 +842,7 @@
             <xs:element ref="oscal-ssp:desc" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:doc-id" minOccurs="0" maxOccurs="unbounded"/>
          </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
+         <xs:attribute name="id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -845,533 +865,25 @@
       </xs:annotation>
       <xs:complexType mixed="true"/>
    </xs:element>
-   <xs:element name="supplier">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Supplier</m:formal-name>
-            <m:description>TBD</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Supplier</b>: TBD</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="party-id" use="required" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Party Reference</m:formal-name>
-                  <m:description>References a <m:code>party</m:code> defined in <m:code>metadata</m:code>.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Party Reference</b>: References a party defined in metadata.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="role-id" use="required">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Role identifier</m:formal-name>
-                  <m:description>References a <m:code>role</m:code> element defined in metadata.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Role identifier</b>: References a role element defined in metadata.</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:IDREFS">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:IDREFS">
-                        <xs:enumeration value="content-creator">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for creating the content.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="content-maintainer">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for maintainer the content on an ongoing basis.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="implemented-requirement">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Control-based Requirement</m:formal-name>
-            <m:description>TBD</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Control-based Requirement</b>: TBD</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:using" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="requirement-id" type="xs:NCName">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Requirement Identifier Reference</m:formal-name>
-                  <m:description>A reference to a requirement defined on another requirement set that should be included here.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Requirement Identifier Reference</b>: A reference to a requirement defined on another requirement set that should be included here.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="id" type="xs:ID">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Identifier</m:formal-name>
-                  <m:description>Unique identifier of the containing object</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Identifier</b>: Unique identifier of the containing object</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="control-id" type="xs:NCName">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Control Identifier Reference</m:formal-name>
-                  <m:description>A reference to a control identifier.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Control Identifier Reference</b>: A reference to a control identifier.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="subcontrol-id" type="xs:NCName">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Subcontrol Identifier Reference</m:formal-name>
-                  <m:description>A reference to a subcontrol identifier.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Subcontrol Identifier Reference</b>: A reference to a subcontrol identifier.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="using">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Using</m:formal-name>
-            <m:description>The set of implementations needed to support the control requirements.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Using</b>: The set of implementations needed to support the control requirements.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:element ref="oscal-ssp:implementation" minOccurs="1" maxOccurs="unbounded"/>
-         </xs:sequence>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="implementation">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Implementation</m:formal-name>
-            <m:description>An implementation needed to support the control requirements.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Implementation</b>: An implementation needed to support the control requirements.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:with-argument" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="configuration-id" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Configuration Identifier Reference</m:formal-name>
-                  <m:description>A reference to a configuration defined on the component.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Configuration Identifier Reference</b>: A reference to a configuration defined on the component.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="artifact-id" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Artifact Identifier Reference</m:formal-name>
-                  <m:description>A reference to an artifact defined on the component.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Artifact Identifier Reference</b>: A reference to an artifact defined on the component.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="statement-id" type="xs:NCName">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Statement Identifier</m:formal-name>
-                  <m:description>Pointer to a speific requirement statement within a control or subcontrol.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Statement Identifier</b>: Pointer to a speific requirement statement within a control or subcontrol.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-      <xs:unique name="implementation-with-argument-keys">
-         <xs:selector xpath="oscal-ssp:with-argument"/>
-         <xs:field xpath="@name"/>
-      </xs:unique>
-   </xs:element>
-   <xs:element name="with-argument">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>With Argument</m:formal-name>
-            <m:description>An argument to pass to the referenced configuration.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>With Argument</b>: An argument to pass to the referenced configuration.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:element ref="oscal-ssp:use-param" minOccurs="0" maxOccurs="1"/>
-         </xs:sequence>
-         <xs:attribute name="name" use="required" type="xs:NCName">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Argument Name</m:formal-name>
-                  <m:description>The name of the argument.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Argument Name</b>: The name of the argument.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="use-param" type="xs:NCName">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Using Parameter</m:formal-name>
-            <m:description>An identified parameter from the catalog or profile who's value is assigned to the argument.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Using Parameter</b>: An identified parameter from the catalog or profile who's value is assigned to the argument.</xs:documentation>
-      </xs:annotation>
-   </xs:element>
-   <xs:element name="configuration">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Configuration</m:formal-name>
-            <m:description>Information on how to configure the component (for technical types of components).</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Configuration</b>: Information on how to configure the component (for technical types of components).</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:argument" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:mechanism" minOccurs="0" maxOccurs="unbounded"/>
-         </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Configuration Identifier</m:formal-name>
-                  <m:description>A unique identifier for the configuration.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Configuration Identifier</b>: A unique identifier for the configuration.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-      <xs:unique name="configuration-argument-keys">
-         <xs:selector xpath="oscal-ssp:argument"/>
-         <xs:field xpath="@name"/>
-      </xs:unique>
-   </xs:element>
-   <xs:element name="mechanism">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>mechanism</m:formal-name>
-            <m:description>Information on a mechanism used to configure the component.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>mechanism</b>: Information on a mechanism used to configure the component.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:configuration-method" minOccurs="1" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:verification-method" minOccurs="1" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Mechanism Identifier</m:formal-name>
-                  <m:description>A unique identifier for the configuration mechanism.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Mechanism Identifier</b>: A unique identifier for the configuration mechanism.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="configuration-method">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Configuration Method</m:formal-name>
-            <m:description>A mechanism used to deploy the configuration.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Configuration Method</b>: A mechanism used to deploy the configuration.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:script" minOccurs="1" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="verification-method">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Verification Method</m:formal-name>
-            <m:description>A mechanism used to verify a previously deployed configuration.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Verification Method</b>: A mechanism used to verify a previously deployed configuration.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:script" minOccurs="1" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="script" type="xs:string">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Script</m:formal-name>
-            <m:description>An executable script.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Script</b>: An executable script.</xs:documentation>
-      </xs:annotation>
-   </xs:element>
-   <xs:element name="argument">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>argument</m:formal-name>
-            <m:description>TBD</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>argument</b>: TBD</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="name" use="required" type="xs:NCName">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Argument Name</m:formal-name>
-                  <m:description>The name of an argument to be passed into a script.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Argument Name</b>: The name of an argument to be passed into a script.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="type" use="required">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Argument Data Type</m:formal-name>
-                  <m:description>The data type of the argument.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Argument Data Type</b>: The data type of the argument.</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:restriction base="xs:NCName">
-                  <xs:enumeration value="duration-seconds"/>
-                  <xs:enumeration value="duration-minutes"/>
-                  <xs:enumeration value="duration-hours"/>
-                  <xs:enumeration value="duration-days"/>
-                  <xs:enumeration value="integer"/>
-                  <xs:enumeration value="decimal"/>
-                  <xs:enumeration value="string"/>
-               </xs:restriction>
-            </xs:simpleType>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="artifact">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Configuration</m:formal-name>
-            <m:description>Information on how to use the component (for documentary types of components).</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Configuration</b>: Information on how to use the component (for documentary types of components).</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:implementation-source" minOccurs="1" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:verification-process" minOccurs="1" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Artifact Identifier</m:formal-name>
-                  <m:description>A unique identifier for the artifact.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Artifact Identifier</b>: A unique identifier for the artifact.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="implementation-source">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Artifact Implementation Source</m:formal-name>
-            <m:description>TBD</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Artifact Implementation Source</b>: TBD</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="href" use="required" type="oscal-ssp:uri">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Source Resource Reference</m:formal-name>
-                  <m:description>Where to get the artifact</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Source Resource Reference</b>: Where to get the artifact</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="verification-process">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Artifact Verification Process</m:formal-name>
-            <m:description>TBD</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Artifact Verification Process</b>: TBD</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="href" use="required" type="oscal-ssp:uri">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Verification Process Resource Reference</m:formal-name>
-                  <m:description>Where to get the process to verify the artifact is implemented.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Verification Process Resource Reference</b>: Where to get the process to verify the artifact is implemented.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="incorporates-component">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Incorporates Component</m:formal-name>
-            <m:description>TBD</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Incorporates Component</b>: TBD</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="component-id" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Component Reference</m:formal-name>
-                  <m:description>A reference to a component by its identifier</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Component Reference</b>: A reference to a component by its identifier</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="incorporates-capability">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Incorporates Capability</m:formal-name>
-            <m:description>TBD</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Incorporates Capability</b>: TBD</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="capability-id" use="required" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Capability Reference</m:formal-name>
-                  <m:description>A reference to a capability by its identifier</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Capability Reference</b>: A reference to a capability by its identifier</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
    <xs:element name="system-security-plan" m:root="yes">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>System Security Plan (SSP)</m:formal-name>
-            <m:description>TBD</m:description>
+            <m:description>A system security plan, such as those defined in SP 800-18</m:description>
          </xs:appinfo>
          <xs:documentation>
-            <b>System Security Plan (SSP)</b>: TBD</xs:documentation>
+            <b>System Security Plan (SSP)</b>: A system security plan, such as those defined in SP 800-18</xs:documentation>
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
             <xs:element ref="oscal-ssp:metadata" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:import-profile" minOccurs="1" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:system-characteristics" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:system-characteristics" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:system-implementation" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:control-implementation" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:back-matter" minOccurs="0" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
+         <xs:attribute name="id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -1394,7 +906,19 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
          <xs:attribute name="href" use="required" type="oscal-ssp:uri-reference">
             <xs:annotation>
@@ -1424,13 +948,25 @@
             <xs:element ref="oscal-ssp:system-id" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:system-name" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:system-name-short" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="description" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
             <xs:element ref="oscal-ssp:security-sensitivity-level"
                         minOccurs="1"
                         maxOccurs="1"/>
             <xs:element ref="oscal-ssp:system-information" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:security-impact-level" minOccurs="1" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:security-eauth" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:security-eauth" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:status" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:deployment-model" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:service-model" minOccurs="0" maxOccurs="unbounded"/>
@@ -1440,15 +976,10 @@
             <xs:element ref="oscal-ssp:authorization-boundary" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:network-architecture" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:data-flow" minOccurs="0" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:system-role" minOccurs="1" maxOccurs="unbounded"/>
          </xs:sequence>
       </xs:complexType>
-      <xs:unique name="system-characteristics-system-role-keys">
-         <xs:selector xpath="oscal-ssp:system-role"/>
-         <xs:field xpath="@id"/>
-      </xs:unique>
    </xs:element>
-   <xs:element name="system-id" type="xs:string">
+   <xs:element name="system-id">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>System Identification</m:formal-name>
@@ -1458,7 +989,7 @@
             <b>System Identification</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="system-name" type="xs:string">
+   <xs:element name="system-name">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>System Name (Full)</m:formal-name>
@@ -1468,7 +999,7 @@
             <b>System Name (Full)</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="system-name-short" type="xs:string">
+   <xs:element name="system-name-short">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>System Name (Short)</m:formal-name>
@@ -1507,7 +1038,7 @@
             <xs:element ref="oscal-ssp:information-type"
                         minOccurs="1"
                         maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:designation" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:designation" minOccurs="0" maxOccurs="unbounded"/>
          </xs:sequence>
       </xs:complexType>
    </xs:element>
@@ -1526,7 +1057,7 @@
             <xs:element ref="oscal-ssp:declaration" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:qualifiers" minOccurs="0" maxOccurs="unbounded"/>
          </xs:sequence>
-         <xs:attribute name="name" type="xs:string">
+         <xs:attribute name="name" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Name</m:formal-name>
@@ -1538,7 +1069,7 @@
          </xs:attribute>
       </xs:complexType>
    </xs:element>
-   <xs:element name="declaration" type="xs:boolean">
+   <xs:element name="declaration">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Declaration</m:formal-name>
@@ -1578,7 +1109,7 @@
             <xs:element ref="oscal-ssp:qual-response" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:qual-notes" minOccurs="0" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -1590,7 +1121,7 @@
          </xs:attribute>
       </xs:complexType>
    </xs:element>
-   <xs:element name="qual-question" type="xs:string">
+   <xs:element name="qual-question">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Qualifier Question</m:formal-name>
@@ -1600,7 +1131,7 @@
             <b>Qualifier Question</b>: A question that must be answered about this system.</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="qual-response" type="xs:string">
+   <xs:element name="qual-response">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Qualifier Question Response</m:formal-name>
@@ -1609,8 +1140,26 @@
          <xs:documentation>
             <b>Qualifier Question Response</b>: The response to the question.</xs:documentation>
       </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="yes">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>The answer is afirmative.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="no">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>The answer is negative.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+         </xs:restriction>
+      </xs:simpleType>
    </xs:element>
-   <xs:element name="qual-notes" type="xs:string">
+   <xs:element name="qual-notes">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Qualifier Question Response Notes</m:formal-name>
@@ -1635,12 +1184,24 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="description" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
             <xs:element ref="oscal-ssp:confidentiality-impact" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:integrity-impact" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:availability-impact" minOccurs="1" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -1650,7 +1211,7 @@
                   <b>Identifier</b>: Unique identifier of the containing object</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="nist-id" type="xs:string">
+         <xs:attribute name="nist-id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>NIST 800-60 Information Type Identifier</m:formal-name>
@@ -1658,6 +1219,16 @@
                </xs:appinfo>
                <xs:documentation>
                   <b>NIST 800-60 Information Type Identifier</b>: Pointer to the information type in NIST SP 800-60.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="name" use="required">
+            <xs:annotation>
+               <xs:appinfo>
+                  <m:formal-name>Information Type Name</m:formal-name>
+                  <m:description>The name of the information type.</m:description>
+               </xs:appinfo>
+               <xs:documentation>
+                  <b>Information Type Name</b>: The name of the information type.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
       </xs:complexType>
@@ -1675,7 +1246,21 @@
          <xs:sequence>
             <xs:element ref="oscal-ssp:base" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:selected" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="adjustment-justification" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Adjustment Justification</m:formal-name>
+                     <m:description>If the selected security level is different from the base security level, this
+			contains the justificaiton for the change.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Adjustment Justification</b>: If the selected security level is different from the base security level, this
+			contains the justificaiton for the change.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
       </xs:complexType>
    </xs:element>
@@ -1692,7 +1277,21 @@
          <xs:sequence>
             <xs:element ref="oscal-ssp:base" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:selected" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="adjustment-justification" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Adjustment Justification</m:formal-name>
+                     <m:description>If the selected security level is different from the base security level, this
+			contains the justificaiton for the change.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Adjustment Justification</b>: If the selected security level is different from the base security level, this
+			contains the justificaiton for the change.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
       </xs:complexType>
    </xs:element>
@@ -1709,7 +1308,21 @@
          <xs:sequence>
             <xs:element ref="oscal-ssp:base" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:selected" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="adjustment-justification" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Adjustment Justification</m:formal-name>
+                     <m:description>If the selected security level is different from the base security level, this
+			contains the justificaiton for the change.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Adjustment Justification</b>: If the selected security level is different from the base security level, this
+			contains the justificaiton for the change.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
       </xs:complexType>
    </xs:element>
@@ -1724,47 +1337,31 @@
             <b>Base Level (Confidentiality, Integrity, or Availability)</b>: The prescribed base (Confidentiality, Integrity, or Availability) security
 			impact level.</xs:documentation>
       </xs:annotation>
-      <xs:complexType>
-         <xs:attribute name="impact-level">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Impact level</m:formal-name>
-                  <m:description>TBD</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Impact level</b>: TBD</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:string">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="low">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="moderate">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="high">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
-      </xs:complexType>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="low">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="moderate">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="high">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+         </xs:restriction>
+      </xs:simpleType>
    </xs:element>
    <xs:element name="selected">
       <xs:annotation>
@@ -1777,7 +1374,31 @@
             <b>Selected Level (Confidentiality, Integrity, or Availability)</b>: The selected (Confidentiality, Integrity, or Availability) security impact
 			level.</xs:documentation>
       </xs:annotation>
-      <xs:complexType/>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="low">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="moderate">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="high">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+         </xs:restriction>
+      </xs:simpleType>
    </xs:element>
    <xs:element name="security-impact-level">
       <xs:annotation>
@@ -1811,47 +1432,31 @@
          <xs:documentation>
             <b>Security Objective (Confidentiality)</b>: TBD</xs:documentation>
       </xs:annotation>
-      <xs:complexType>
-         <xs:attribute name="impact-level">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Impact level</m:formal-name>
-                  <m:description>TBD</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Impact level</b>: TBD</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:string">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="low">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="moderate">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="high">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
-      </xs:complexType>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="low">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="moderate">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="high">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+         </xs:restriction>
+      </xs:simpleType>
    </xs:element>
    <xs:element name="security-objective-integrity">
       <xs:annotation>
@@ -1862,47 +1467,31 @@
          <xs:documentation>
             <b>Security Objective (Integrity)</b>: TBD</xs:documentation>
       </xs:annotation>
-      <xs:complexType>
-         <xs:attribute name="impact-level">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Impact level</m:formal-name>
-                  <m:description>TBD</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Impact level</b>: TBD</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:string">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="low">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="moderate">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="high">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
-      </xs:complexType>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="low">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="moderate">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="high">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+         </xs:restriction>
+      </xs:simpleType>
    </xs:element>
    <xs:element name="security-objective-availability">
       <xs:annotation>
@@ -1913,47 +1502,31 @@
          <xs:documentation>
             <b>Security Objective (Availability)</b>: TBD</xs:documentation>
       </xs:annotation>
-      <xs:complexType>
-         <xs:attribute name="impact-level">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Impact level</m:formal-name>
-                  <m:description>TBD</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Impact level</b>: TBD</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:string">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="low">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="moderate">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="high">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
-      </xs:complexType>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="low">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'low' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="moderate">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'moderate' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="high">
+               <xs:annotation>
+                  <xs:documentation>
+                     <p>A 'high' sensitivity level such as what is defined in FIPS-199.</p>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:enumeration>
+         </xs:restriction>
+      </xs:simpleType>
    </xs:element>
    <xs:element name="security-eauth">
       <xs:annotation>
@@ -1973,7 +1546,7 @@
          </xs:sequence>
       </xs:complexType>
    </xs:element>
-   <xs:element name="security-auth-ial" type="xs:string">
+   <xs:element name="security-auth-ial">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Security Authentication (Identity Assurance Level)</m:formal-name>
@@ -1983,7 +1556,7 @@
             <b>Security Authentication (Identity Assurance Level)</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="security-auth-aal" type="xs:string">
+   <xs:element name="security-auth-aal">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Security Authentication (Authenticator Assurance Level)</m:formal-name>
@@ -1993,7 +1566,7 @@
             <b>Security Authentication (Authenticator Assurance Level)</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="security-auth-fal" type="xs:string">
+   <xs:element name="security-auth-fal">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Security Authentication (Federation Assurance Level)</m:formal-name>
@@ -2003,7 +1576,7 @@
             <b>Security Authentication (Federation Assurance Level)</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="security-eauth-level" type="xs:string">
+   <xs:element name="security-eauth-level">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Security eAuthentication Level</m:formal-name>
@@ -2024,7 +1597,19 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
          <xs:attribute name="state" use="required">
             <xs:annotation>
@@ -2088,7 +1673,19 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
          <xs:attribute name="type" use="required">
             <xs:annotation>
@@ -2129,9 +1726,21 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
-         <xs:attribute name="type" use="required" type="xs:string">
+         <xs:attribute name="type" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name/>
@@ -2164,7 +1773,7 @@
                         minOccurs="1"
                         maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -2176,7 +1785,7 @@
          </xs:attribute>
       </xs:complexType>
    </xs:element>
-   <xs:element name="leveraged-authorization-name" type="xs:string">
+   <xs:element name="leveraged-authorization-name">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Leveraged system Name</m:formal-name>
@@ -2186,7 +1795,7 @@
             <b>Leveraged system Name</b>: Name of the leveraged system.</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="leveraged-authorization-service-provider" type="xs:string">
+   <xs:element name="leveraged-authorization-service-provider">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Leveraged System Service Provider Name</m:formal-name>
@@ -2218,9 +1827,33 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="description" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
             <xs:element ref="oscal-ssp:diagram" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
       </xs:complexType>
       <xs:unique name="authorization-boundary-diagram-keys">
@@ -2239,9 +1872,21 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="description" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
+         <xs:attribute name="id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Diagram ID</m:formal-name>
@@ -2274,9 +1919,33 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="description" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
             <xs:element ref="oscal-ssp:diagram" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
       </xs:complexType>
       <xs:unique name="network-architecture-diagram-keys">
@@ -2295,9 +1964,33 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="description" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
             <xs:element ref="oscal-ssp:diagram" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
       </xs:complexType>
       <xs:unique name="data-flow-diagram-keys">
@@ -2305,25 +1998,60 @@
          <xs:field xpath="@id"/>
       </xs:unique>
    </xs:element>
-   <xs:element name="system-role">
+   <xs:element name="system-implementation">
       <xs:annotation>
          <xs:appinfo>
-            <m:formal-name>Role</m:formal-name>
-            <m:description>Defining a role to be assigned to a party or agent</m:description>
+            <m:formal-name>System Implementation</m:formal-name>
+            <m:description>Provides information as to how the system is implemented.</m:description>
          </xs:appinfo>
          <xs:documentation>
-            <b>Role</b>: Defining a role to be assigned to a party or agent</xs:documentation>
+            <b>System Implementation</b>: Provides information as to how the system is implemented.</xs:documentation>
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
+            <xs:element ref="oscal-ssp:system-role" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:service" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:interconnection" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:system-inventory" minOccurs="0" maxOccurs="1"/>
+         </xs:sequence>
+      </xs:complexType>
+      <xs:unique name="system-implementation-system-role-keys">
+         <xs:selector xpath="oscal-ssp:system-role"/>
+         <xs:field xpath="@id"/>
+      </xs:unique>
+   </xs:element>
+   <xs:element name="system-role">
+      <xs:annotation>
+         <xs:appinfo>
+            <m:formal-name>System Role</m:formal-name>
+            <m:description>Defining a role to be assigned to a party or agent</m:description>
+         </xs:appinfo>
+         <xs:documentation>
+            <b>System Role</b>: Defining a role to be assigned to a party or agent</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="oscal-ssp:role-id" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:title" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:short-name" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="description" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
             <xs:element ref="oscal-ssp:privilege" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="oscal-ssp:responsibility" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:statistics" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:statistics" minOccurs="0" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
+         <xs:attribute name="id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>System Role ID</m:formal-name>
@@ -2333,39 +2061,7 @@
                   <b>System Role ID</b>: TBD</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="role-id" use="required">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Role identifier</m:formal-name>
-                  <m:description>References a <m:code>role</m:code> element defined in metadata.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Role identifier</b>: References a role element defined in metadata.</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:IDREFS">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:IDREFS">
-                        <xs:enumeration value="content-creator">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for creating the content.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="content-maintainer">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for maintainer the content on an ongoing basis.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
-         <xs:attribute name="name" use="required" type="xs:string">
+         <xs:attribute name="name" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Name</m:formal-name>
@@ -2375,17 +2071,17 @@
                   <b>Name</b>: Identifying the purpose and intended use of the property, part or other object.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="external" use="required" type="xs:boolean">
+         <xs:attribute name="external">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>external</m:formal-name>
-                  <m:description>TBD</m:description>
+                  <m:description>TBD. If not provided, the default is 'false'.</m:description>
                </xs:appinfo>
                <xs:documentation>
-                  <b>external</b>: TBD</xs:documentation>
+                  <b>external</b>: TBD. If not provided, the default is 'false'.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="access" use="required" type="xs:string">
+         <xs:attribute name="access" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>access</m:formal-name>
@@ -2395,7 +2091,7 @@
                   <b>access</b>: TBD</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="sensitivity-level" use="required" type="xs:string">
+         <xs:attribute name="sensitivity-level" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>sensitivity-level</m:formal-name>
@@ -2407,19 +2103,19 @@
          </xs:attribute>
       </xs:complexType>
    </xs:element>
-   <xs:element name="privilege" type="xs:string">
+   <xs:element name="privilege">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Privilege</m:formal-name>
             <m:description>Identifies the type/level of system privilege for the role.
-			For FedRAMP, the only valid values are "p" (Privileged), "np" (Non-Privileged), or "nla" (No Logical Access).</m:description>
+         For FedRAMP, the only valid values are "p" (Privileged), "np" (Non-Privileged), or "nla" (No Logical Access).</m:description>
          </xs:appinfo>
          <xs:documentation>
             <b>Privilege</b>: Identifies the type/level of system privilege for the role.
-			For FedRAMP, the only valid values are "p" (Privileged), "np" (Non-Privileged), or "nla" (No Logical Access).</xs:documentation>
+         For FedRAMP, the only valid values are "p" (Privileged), "np" (Non-Privileged), or "nla" (No Logical Access).</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="responsibility" type="xs:string">
+   <xs:element name="responsibility">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Responsibility</m:formal-name>
@@ -2455,7 +2151,7 @@
          </xs:sequence>
       </xs:complexType>
    </xs:element>
-   <xs:element name="internal-user-total-current" type="xs:positiveInteger">
+   <xs:element name="internal-user-total-current">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Total Current Internal Users</m:formal-name>
@@ -2465,7 +2161,7 @@
             <b>Total Current Internal Users</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="internal-user-total-future" type="xs:positiveInteger">
+   <xs:element name="internal-user-total-future">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Total Future Internal Users</m:formal-name>
@@ -2475,7 +2171,7 @@
             <b>Total Future Internal Users</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="external-user-total-current" type="xs:positiveInteger">
+   <xs:element name="external-user-total-current">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Total Current External Users</m:formal-name>
@@ -2485,7 +2181,7 @@
             <b>Total Current External Users</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="external-user-total-future" type="xs:positiveInteger">
+   <xs:element name="external-user-total-future">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Total Future External Users</m:formal-name>
@@ -2494,180 +2190,6 @@
          <xs:documentation>
             <b>Total Future External Users</b>: TBD</xs:documentation>
       </xs:annotation>
-   </xs:element>
-   <xs:element name="system-implementation">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>System Implementation</m:formal-name>
-            <m:description>Provides information as to how the system is implemented.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>System Implementation</b>: Provides information as to how the system is implemented.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:element ref="oscal-ssp:component" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:capability" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:service" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:interconnection" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:system-inventory" minOccurs="0" maxOccurs="1"/>
-         </xs:sequence>
-      </xs:complexType>
-      <xs:unique name="system-implementation-component-keys">
-         <xs:selector xpath="oscal-ssp:component"/>
-         <xs:field xpath="@id"/>
-      </xs:unique>
-      <xs:unique name="system-implementation-capability-keys">
-         <xs:selector xpath="oscal-ssp:capability"/>
-         <xs:field xpath="@id"/>
-      </xs:unique>
-   </xs:element>
-   <xs:element name="component">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Component</m:formal-name>
-            <m:description>A defined component that can be part of an implemented system.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Component</b>: A defined component that can be part of an implemented system.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:supplier" minOccurs="1" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:configuration" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:artifact" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Component Identifier</m:formal-name>
-                  <m:description>A unique identifier for a component.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Component Identifier</b>: A unique identifier for a component.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="name" type="xs:string">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Component Name</m:formal-name>
-                  <m:description>The component's human-readable name.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Component Name</b>: The component's human-readable name.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="component-type">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Component Type</m:formal-name>
-                  <m:description>A category describing the purpose of the component.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Component Type</b>: A category describing the purpose of the component.</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:string">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="software">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Any software, operating system, or firmware</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="hardware"/>
-                        <xs:enumeration value="service">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>A service that may provide APIs.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="policy"/>
-                        <xs:enumeration value="process"/>
-                        <xs:enumeration value="proceedure"/>
-                        <xs:enumeration value="plan"/>
-                        <xs:enumeration value="guidance">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Any guideline or recommendation</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="standard"/>
-                        <xs:enumeration value="validation"/>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
-         </xs:attribute>
-      </xs:complexType>
-      <xs:unique name="component-configuration-keys">
-         <xs:selector xpath="oscal-ssp:configuration"/>
-         <xs:field xpath="@id"/>
-      </xs:unique>
-      <xs:unique name="component-artifact-keys">
-         <xs:selector xpath="oscal-ssp:artifact"/>
-         <xs:field xpath="@id"/>
-      </xs:unique>
-   </xs:element>
-   <xs:element name="capability">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Capability</m:formal-name>
-            <m:description>A grouping of other components and/or capabilities.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Capability</b>: A grouping of other components and/or capabilities.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:incorporates-capability"
-                        minOccurs="0"
-                        maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:incorporates-component"
-                        minOccurs="0"
-                        maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="id" use="required" type="xs:ID">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Capability Identifier</m:formal-name>
-                  <m:description>A unique identifier for a capability.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Capability Identifier</b>: A unique identifier for a capability.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="name" type="xs:string">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Capability Name</m:formal-name>
-                  <m:description>The capability's human-readable name.</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Capability Name</b>: The capability's human-readable name.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-      <xs:unique name="capability-incorporates-component-keys">
-         <xs:selector xpath="oscal-ssp:incorporates-component"/>
-         <xs:field xpath="@component-id"/>
-      </xs:unique>
-      <xs:unique name="capability-incorporates-capability-keys">
-         <xs:selector xpath="oscal-ssp:incorporates-capability"/>
-         <xs:field xpath="@capability-id"/>
-      </xs:unique>
    </xs:element>
    <xs:element name="service">
       <xs:annotation>
@@ -2684,11 +2206,8 @@
          <xs:sequence>
             <xs:element ref="oscal-ssp:protocol" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="oscal-ssp:purpose" minOccurs="0" maxOccurs="1"/>
-            <xs:element ref="oscal-ssp:used-by-component"
-                        minOccurs="0"
-                        maxOccurs="unbounded"/>
          </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -2698,7 +2217,7 @@
                   <b>Identifier</b>: Unique identifier of the containing object</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="name" type="xs:string">
+         <xs:attribute name="name">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Name</m:formal-name>
@@ -2723,7 +2242,7 @@
          <xs:sequence>
             <xs:element ref="oscal-ssp:port-range" minOccurs="0" maxOccurs="unbounded"/>
          </xs:sequence>
-         <xs:attribute name="name" type="xs:string">
+         <xs:attribute name="name">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Name</m:formal-name>
@@ -2745,7 +2264,7 @@
             <b>Port Range</b>: TBD</xs:documentation>
       </xs:annotation>
       <xs:complexType mixed="true">
-         <xs:attribute name="start" type="xs:nonNegativeInteger">
+         <xs:attribute name="start">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Start</m:formal-name>
@@ -2755,7 +2274,7 @@
                   <b>Start</b>: Indicates the starting port number in a port range.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="end" type="xs:nonNegativeInteger">
+         <xs:attribute name="end">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>End</m:formal-name>
@@ -2765,7 +2284,7 @@
                   <b>End</b>: Indicates the ending port number in a port range.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="transport" type="xs:string">
+         <xs:attribute name="transport">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Transport</m:formal-name>
@@ -2790,31 +2309,6 @@
          <xs:group ref="oscal-ssp:everything-inline"/>
       </xs:complexType>
    </xs:element>
-   <xs:element name="used-by-component">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Used By</m:formal-name>
-            <m:description>Identifies a type of uses for the service. A component can be optionally identified.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Used By</b>: Identifies a type of uses for the service. A component can be optionally identified.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-         </xs:sequence>
-         <xs:attribute name="component-id" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Component Reference</m:formal-name>
-                  <m:description>A reference to a component by its identifier</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Component Reference</b>: A reference to a component by its identifier</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
    <xs:element name="interconnection">
       <xs:annotation>
          <xs:appinfo>
@@ -2834,7 +2328,7 @@
             <xs:element ref="oscal-ssp:isa-name" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:isa-date" minOccurs="0" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -2846,7 +2340,7 @@
          </xs:attribute>
       </xs:complexType>
    </xs:element>
-   <xs:element name="external-system-name" type="xs:string">
+   <xs:element name="external-system-name">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>External System Name</m:formal-name>
@@ -2856,7 +2350,7 @@
             <b>External System Name</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="external-system-org" type="xs:string">
+   <xs:element name="external-system-org">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>External System Organization</m:formal-name>
@@ -2879,7 +2373,7 @@
       </xs:annotation>
       <xs:complexType mixed="true"/>
    </xs:element>
-   <xs:element name="isa-name" type="xs:string">
+   <xs:element name="isa-name">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>ISA Name</m:formal-name>
@@ -2889,7 +2383,7 @@
             <b>ISA Name</b>: Title of the Interconnection Security Agreement (ISA).</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="isa-date" type="xs:string">
+   <xs:element name="isa-date">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>ISA Date</m:formal-name>
@@ -2899,7 +2393,7 @@
             <b>ISA Date</b>: Date of the Interconnection Security Agreement (ISA).</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="vendor" type="xs:string">
+   <xs:element name="vendor">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Vendor</m:formal-name>
@@ -2909,7 +2403,7 @@
             <b>Vendor</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="ip-address" type="xs:string">
+   <xs:element name="ip-address">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Internet Protocol Address</m:formal-name>
@@ -2931,6 +2425,19 @@
       <xs:complexType>
          <xs:sequence>
             <xs:element ref="oscal-ssp:inventory-item" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
       </xs:complexType>
    </xs:element>
@@ -2949,15 +2456,26 @@
             <xs:element ref="oscal-ssp:dns-name" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="oscal-ssp:host-item" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="oscal-ssp:software-item" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:comments" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:serial-no" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="oscal-ssp:network-id" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:asset-owner" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:asset-administrator"
+            <xs:element ref="oscal-ssp:responsible-party"
                         minOccurs="0"
                         maxOccurs="unbounded"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
          </xs:sequence>
-         <xs:attribute name="id" type="xs:ID">
+         <xs:attribute name="id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Identifier</m:formal-name>
@@ -2967,17 +2485,7 @@
                   <b>Identifier</b>: Unique identifier of the containing object</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="component-id" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Component Reference</m:formal-name>
-                  <m:description>A reference to a component by its identifier</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Component Reference</b>: A reference to a component by its identifier</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="virtual" type="xs:boolean">
+         <xs:attribute name="virtual">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Virtual</m:formal-name>
@@ -2989,7 +2497,7 @@
 			(="no").</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="public" type="xs:boolean">
+         <xs:attribute name="public">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Public</m:formal-name>
@@ -3002,8 +2510,47 @@
             </xs:annotation>
          </xs:attribute>
       </xs:complexType>
+      <xs:unique name="inventory-item-responsible-party-keys">
+         <xs:selector xpath="oscal-ssp:responsible-party"/>
+         <xs:field xpath="@system-role-id"/>
+      </xs:unique>
    </xs:element>
-   <xs:element name="dns-name" type="xs:string">
+   <xs:element name="responsible-party">
+      <xs:annotation>
+         <xs:appinfo>
+            <m:formal-name>Responsible Party</m:formal-name>
+            <m:description>A reference to an organization or person assigned a referenced system role that is responsible for the containing inventory item.</m:description>
+         </xs:appinfo>
+         <xs:documentation>
+            <b>Responsible Party</b>: A reference to an organization or person assigned a referenced system role that is responsible for the containing inventory item.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="oscal-ssp:party-id" minOccurs="1" maxOccurs="unbounded"/>
+         </xs:sequence>
+         <xs:attribute name="system-role-id" use="required">
+            <xs:annotation>
+               <xs:appinfo>
+                  <m:formal-name>Responsible System Role</m:formal-name>
+                  <m:description>The system role that is responsible.</m:description>
+               </xs:appinfo>
+               <xs:documentation>
+                  <b>Responsible System Role</b>: The system role that is responsible.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="system-role-id">
+      <xs:annotation>
+         <xs:appinfo>
+            <m:formal-name>System Role Identifier Reference</m:formal-name>
+            <m:description>A reference to a system role defined within this document.</m:description>
+         </xs:appinfo>
+         <xs:documentation>
+            <b>System Role Identifier Reference</b>: A reference to a system role defined within this document.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="dns-name">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Network Name</m:formal-name>
@@ -3058,7 +2605,7 @@
       </xs:annotation>
       <xs:complexType mixed="true"/>
    </xs:element>
-   <xs:element name="mac-address" type="xs:string">
+   <xs:element name="mac-address">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Media Access Control (MAC) Address</m:formal-name>
@@ -3070,7 +2617,7 @@
 			blank if one does not exist, or it is a dynamic field.</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="os-name" type="xs:string">
+   <xs:element name="os-name">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Operating System Name</m:formal-name>
@@ -3080,7 +2627,7 @@
             <b>Operating System Name</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="os-version" type="xs:string">
+   <xs:element name="os-version">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Operating System Version Number</m:formal-name>
@@ -3103,7 +2650,7 @@
       </xs:annotation>
       <xs:complexType mixed="true"/>
    </xs:element>
-   <xs:element name="asset-type" type="xs:string">
+   <xs:element name="asset-type">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Asset Type</m:formal-name>
@@ -3115,7 +2662,7 @@
 			Server, etc.) Do not use vendor or product names here.</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="hardware-model" type="xs:string">
+   <xs:element name="hardware-model">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Hardware Model</m:formal-name>
@@ -3125,7 +2672,7 @@
             <b>Hardware Model</b>: Model number of the hardware.</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="authenticated-scan" type="xs:boolean">
+   <xs:element name="authenticated-scan">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Authenticated Scan</m:formal-name>
@@ -3160,7 +2707,7 @@
          </xs:sequence>
       </xs:complexType>
    </xs:element>
-   <xs:element name="software-name" type="xs:string">
+   <xs:element name="software-name">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Software Product Name</m:formal-name>
@@ -3170,7 +2717,7 @@
             <b>Software Product Name</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="software-version" type="xs:string">
+   <xs:element name="software-version">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Software Version Number</m:formal-name>
@@ -3180,7 +2727,7 @@
             <b>Software Version Number</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="software-patch-level" type="xs:string">
+   <xs:element name="software-patch-level">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Software Patch Level (If applicable)</m:formal-name>
@@ -3190,7 +2737,7 @@
             <b>Software Patch Level (If applicable)</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="function" type="xs:string">
+   <xs:element name="function">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Function</m:formal-name>
@@ -3200,19 +2747,7 @@
             <b>Function</b>: TBD</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="comments" type="xs:string">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Comments</m:formal-name>
-            <m:description>Any additional information that could be useful to an auditor or
-			reviewer.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Comments</b>: Any additional information that could be useful to an auditor or
-			reviewer.</xs:documentation>
-      </xs:annotation>
-   </xs:element>
-   <xs:element name="serial-no" type="xs:string">
+   <xs:element name="serial-no">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Serial Number</m:formal-name>
@@ -3222,7 +2757,7 @@
             <b>Serial Number</b>: Product serial number or internal asset tag number.</xs:documentation>
       </xs:annotation>
    </xs:element>
-   <xs:element name="network-id" type="xs:string">
+   <xs:element name="network-id">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Network ID</m:formal-name>
@@ -3230,30 +2765,6 @@
          </xs:appinfo>
          <xs:documentation>
             <b>Network ID</b>: Virtual LAN or Network ID.</xs:documentation>
-      </xs:annotation>
-   </xs:element>
-   <xs:element name="asset-owner" type="xs:string">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Asset Owner</m:formal-name>
-            <m:description>The individual, title, or role who "owns" the asset on behalf of the
-			organization.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Asset Owner</b>: The individual, title, or role who "owns" the asset on behalf of the
-			organization.</xs:documentation>
-      </xs:annotation>
-   </xs:element>
-   <xs:element name="asset-administrator" type="xs:string">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Asset Administrator</m:formal-name>
-            <m:description>The individual, title, role, or team responsible for operating and maintaining
-			the asset.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Asset Administrator</b>: The individual, title, role, or team responsible for operating and maintaining
-			the asset.</xs:documentation>
       </xs:annotation>
    </xs:element>
    <xs:element name="control-implementation">
@@ -3267,136 +2778,148 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:meets-requirement-set"
-                        minOccurs="0"
-                        maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:by-component" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:by-capability" minOccurs="0" maxOccurs="unbounded"/>
-         </xs:sequence>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="by-component">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Component Control Implementation</m:formal-name>
-            <m:description>Defines how the referenced component implements a set of controls.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Component Control Implementation</b>: Defines how the referenced component implements a set of controls.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:meets-requirement-set"
-                        minOccurs="0"
-                        maxOccurs="unbounded"/>
-         </xs:sequence>
-         <xs:attribute name="component-id" use="required" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Component Reference</m:formal-name>
-                  <m:description>A reference to a component by its identifier</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Component Reference</b>: A reference to a component by its identifier</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="by-capability">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>capability Control Implementation</m:formal-name>
-            <m:description>Defines how the referenced capability implements a set of controls.</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>capability Control Implementation</b>: Defines how the referenced capability implements a set of controls.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:meets-requirement-set"
-                        minOccurs="0"
-                        maxOccurs="unbounded"/>
-         </xs:sequence>
-         <xs:attribute name="capability-id" use="required" type="xs:IDREF">
-            <xs:annotation>
-               <xs:appinfo>
-                  <m:formal-name>Capability Reference</m:formal-name>
-                  <m:description>A reference to a capability by its identifier</m:description>
-               </xs:appinfo>
-               <xs:documentation>
-                  <b>Capability Reference</b>: A reference to a capability by its identifier</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-      </xs:complexType>
-   </xs:element>
-   <xs:element name="meets-requirement-set">
-      <xs:annotation>
-         <xs:appinfo>
-            <m:formal-name>Meets</m:formal-name>
-            <m:description>Defines what sets of controls are supported by the system (as a whole).</m:description>
-         </xs:appinfo>
-         <xs:documentation>
-            <b>Meets</b>: Defines what sets of controls are supported by the system (as a whole).</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:sequence>
-            <xs:element ref="oscal-ssp:responsible-role"
-                        minOccurs="0"
-                        maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:set-param" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="description" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
             <xs:element ref="oscal-ssp:implemented-requirement"
                         minOccurs="1"
                         maxOccurs="unbounded"/>
          </xs:sequence>
       </xs:complexType>
    </xs:element>
-   <xs:element name="responsible-role">
+   <xs:element name="implemented-requirement">
       <xs:annotation>
          <xs:appinfo>
-            <m:formal-name>Responsible Role</m:formal-name>
+            <m:formal-name>Control-based Requirement</m:formal-name>
             <m:description>TBD</m:description>
          </xs:appinfo>
          <xs:documentation>
-            <b>Responsible Role</b>: TBD</xs:documentation>
+            <b>Control-based Requirement</b>: TBD</xs:documentation>
       </xs:annotation>
       <xs:complexType>
-         <xs:attribute name="role-id" use="required">
+         <xs:sequence>
+            <xs:element name="description" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:element ref="oscal-ssp:role-id" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:set-param" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:statement" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="id">
             <xs:annotation>
                <xs:appinfo>
-                  <m:formal-name>Role identifier</m:formal-name>
-                  <m:description>References a <m:code>role</m:code> element defined in metadata.</m:description>
+                  <m:formal-name>Identifier</m:formal-name>
+                  <m:description>Unique identifier of the containing object</m:description>
                </xs:appinfo>
                <xs:documentation>
-                  <b>Role identifier</b>: References a role element defined in metadata.</xs:documentation>
+                  <b>Identifier</b>: Unique identifier of the containing object</xs:documentation>
             </xs:annotation>
-            <xs:simpleType>
-               <xs:union memberTypes="xs:IDREFS">
-                  <xs:simpleType>
-                     <xs:restriction base="xs:IDREFS">
-                        <xs:enumeration value="content-creator">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for creating the content.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="content-maintainer">
-                           <xs:annotation>
-                              <xs:documentation>
-                                 <p>Identifies a party responsible for maintainer the content on an ongoing basis.</p>
-                              </xs:documentation>
-                           </xs:annotation>
-                        </xs:enumeration>
-                     </xs:restriction>
-                  </xs:simpleType>
-               </xs:union>
-            </xs:simpleType>
+         </xs:attribute>
+         <xs:attribute name="control-id">
+            <xs:annotation>
+               <xs:appinfo>
+                  <m:formal-name>Control Identifier Reference</m:formal-name>
+                  <m:description>A reference to a control identifier.</m:description>
+               </xs:appinfo>
+               <xs:documentation>
+                  <b>Control Identifier Reference</b>: A reference to a control identifier.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+      <xs:unique name="implemented-requirement-set-param-keys">
+         <xs:selector xpath="oscal-ssp:set-param"/>
+         <xs:field xpath="@param-id"/>
+      </xs:unique>
+      <xs:unique name="implemented-requirement-statement-keys">
+         <xs:selector xpath="oscal-ssp:statement"/>
+         <xs:field xpath="@statement-id"/>
+      </xs:unique>
+   </xs:element>
+   <xs:element name="statement">
+      <xs:annotation>
+         <xs:appinfo>
+            <m:formal-name>Specific Statement</m:formal-name>
+            <m:description>Describes which specific statements are addressed by a requirement, by pointing to a speific requirement statement within a control.</m:description>
+         </xs:appinfo>
+         <xs:documentation>
+            <b>Specific Statement</b>: Describes which specific statements are addressed by a requirement, by pointing to a speific requirement statement within a control.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="description" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Description</m:formal-name>
+                     <m:description>A description supporting the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Description</b>: A description supporting the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:element ref="oscal-ssp:system-role-id" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:prop" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oscal-ssp:link" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="remarks" minOccurs="0" maxOccurs="1">
+               <xs:annotation>
+                  <xs:appinfo>
+                     <m:formal-name>Remarks</m:formal-name>
+                     <m:description>Additional commentary on the parent item.</m:description>
+                  </xs:appinfo>
+                  <xs:documentation>
+                     <b>Remarks</b>: Additional commentary on the parent item.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:group ref="oscal-ssp:PROSE" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="statement-id">
+            <xs:annotation>
+               <xs:appinfo>
+                  <m:formal-name>Control Statement Reference</m:formal-name>
+                  <m:description>A reference to a control statement by its identifier</m:description>
+               </xs:appinfo>
+               <xs:documentation>
+                  <b>Control Statement Reference</b>: A reference to a control statement by its identifier</xs:documentation>
+            </xs:annotation>
          </xs:attribute>
       </xs:complexType>
    </xs:element>
@@ -3413,9 +2936,9 @@
       </xs:annotation>
       <xs:complexType>
          <xs:sequence>
-            <xs:element ref="oscal-ssp:value" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="oscal-ssp:value" minOccurs="1" maxOccurs="1"/>
          </xs:sequence>
-         <xs:attribute name="param-id" use="required" type="xs:NCName">
+         <xs:attribute name="param-id" use="required">
             <xs:annotation>
                <xs:appinfo>
                   <m:formal-name>Parameter ID</m:formal-name>
@@ -3429,7 +2952,7 @@
          </xs:attribute>
       </xs:complexType>
    </xs:element>
-   <xs:element name="value" type="xs:string">
+   <xs:element name="value">
       <xs:annotation>
          <xs:appinfo>
             <m:formal-name>Value</m:formal-name>
@@ -3694,7 +3217,7 @@
    </xs:group>
    <xs:element name="insert">
       <xs:complexType>
-         <xs:attribute name="param-id" use="required" type="xs:IDREF"/>
+         <xs:attribute name="param-id" use="required" type="xs:NCName"/>
       </xs:complexType>
    </xs:element>
    <xs:attributeGroup name="requiredClass"/>
@@ -3720,7 +3243,7 @@
    </xs:simpleType>
    <xs:simpleType name="email">
       <xs:annotation>
-         <xs:documentation/>
+         <xs:documentation>An email address</xs:documentation>
       </xs:annotation>
       <xs:restriction base="xs:string">
          <xs:whiteSpace value="collapse"/>
@@ -3733,7 +3256,7 @@
    </xs:simpleType>
    <xs:simpleType name="uri">
       <xs:annotation>
-         <xs:documentation/>
+         <xs:documentation>A URI</xs:documentation>
       </xs:annotation>
       <xs:restriction base="xs:anyURI">
          <xs:whiteSpace value="collapse"/>
@@ -3746,7 +3269,7 @@
    </xs:simpleType>
    <xs:simpleType name="uri-reference">
       <xs:annotation>
-         <xs:documentation/>
+         <xs:documentation>A URI reference, such as a relative URL</xs:documentation>
       </xs:annotation>
       <xs:restriction base="xs:anyURI">
          <xs:whiteSpace value="collapse"/>

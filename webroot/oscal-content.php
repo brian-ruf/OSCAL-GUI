@@ -24,13 +24,7 @@ switch($mode) {
 	case 'catalog':
 		HandleCatalog($_GET["project"]);
 		break;
-	case 'catalog-metadata':
-		HandleForm($_GET["file"], "catalog-metadata");
-		break;
-	case 'catalog-party':
-		HandleForm($_GET["file"], "catalog-party");
-		break;
-	case 'mods':
+	case 'profile':
 		HandleProfile($_GET["project"]);
 		break;
 //	case 'ssp':

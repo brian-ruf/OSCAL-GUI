@@ -638,7 +638,7 @@ function CreateOSCALfile($oscalroot, $oscal_id="") {
 
 	$new_oscal = "<?xml version='1.0' encoding='UTF-8'?>
 	<" . $oscalroot . " xmlns='" . $ns . "'
-			 id='" . $oscal_id . "'>
+			 id='" . com_create_guid() . "'>
 			 <metadata />
 	</" . $oscalroot . ">
 	";
@@ -1028,12 +1028,16 @@ function FindOSCALFileInDir($dir) {
 	$dh = opendir($dir);
 	$cntr = 0;
 	while (($file = readdir($dh)) !== false) {
-		if (filetype($dir . "/" . $file) == 'file') {
+//		Logging("FILE: " . $file);
+//		Logging("TYPE: " . filetype($dir . "/" . $file));
+//		if (filetype($dir . "/" . $file) == 'file') {
+//			Logging("FILE");
 			if (strtolower(right_str($file, 4)) == '.xml') {
+				Logging("XML");
 				$xml_file_found = true; 
 				break;
 			}
-		}
+//		}
 		$cntr += 1;
 		if ($cntr > 100) break;
 	}
@@ -1490,6 +1494,7 @@ function GatherProjectList($refresh=false) {
 	$project_list = array();
 	$status = false;
 
+	Logging("GATHER PROJECT LIST");
 	if (isset($_SESSION["project_list"]) && !empty($_SESSION["project_list"]) && !$refresh) {
 		$project_list = $_SESSION["project_list"];
 	} else {
@@ -1498,7 +1503,9 @@ function GatherProjectList($refresh=false) {
 		$dirs = glob($storage_location, GLOB_ONLYDIR);
 		if (count($dirs) > 0) {
 			foreach ($dirs as $dir) {
+				Logging("LOOKING IN " . $dir);
 				if (false !== ($file = FindOSCALFileInDir($dir))) {
+					Logging ("FOUND OSCAL FILE");
 					$project_id = basename($dir); // For now, we are using the base dir as the project ID.
 					$base_dir = basename($dir);
 					$dir .= "/";
