@@ -1,10 +1,5 @@
 <?php
 // OSCAL Objects
-//
-// !!!!!  EXPERIMENTAL AND UNDER CONSTRUCTION !!!!!
-// !!!!!  EXPERIMENTAL AND UNDER CONSTRUCTION !!!!!
-// !!!!!  EXPERIMENTAL AND UNDER CONSTRUCTION !!!!!
-
 // This is a work-in-progress: Converting common OSCAL functions into
 //    PHP classes for a more object-oriented approach.
 
@@ -361,3 +356,10 @@ class Messages {
 		return $this->debug;
 	}
 }
+
+if (isset($_SESSION['OSCAL-objects'])) {
+	$oscal_objects = $_SESSION['OSCAL-objects'];
+} else {
+	$oscal_objects = array();
+}
+
