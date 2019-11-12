@@ -546,12 +546,20 @@ function GetBasicMetadata($oscal_file, $oscalproject="") {
 			$ret_val['title'] = $result;
 		}
 
-		// Get document last modificatoin date
+		// Get document formal publication date
 		$result = QueryOneItem($oscal_objects, OSCAL_METADATA_DATE);
 		if ($result === false || $result == "") {
 			$ret_val['date'] = "";
 		} else {
 			$ret_val['date'] = $result;
+		}
+
+		// Get document last modified date
+		$result = QueryOneItem($oscal_objects, OSCAL_METADATA_LAST_MODIFIED);
+		if ($result === false || $result == "") {
+			$ret_val['last-modified'] = "";
+		} else {
+			$ret_val['last-modified'] = $result;
 		}
 
 		// Get document version

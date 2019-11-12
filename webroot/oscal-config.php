@@ -45,6 +45,14 @@ define ("DATE_TIME_PRESENT_FORMAT", "l F j\, Y g:i:s A \(T\)");
 define ("DATE_TIME_STORE_FORMAT", "Y-m-d\TH:i:s.uP");
 
 
+// DATE FORMATS
+// For date/time formats see: https://www.php.net/manual/en/datetime.createfromformat.php
+// Format for presenting date and time to users 
+define ("DATE_PRESENT_FORMAT", "l F j\, Y");
+// Format for storing date and time in an OSCAL file
+// IMPORTANT: This must align with the OSCAL specification.
+define ("DATE_STORE_FORMAT", "Y-m-dP");
+
 /*  =====================================================  */ 
 /*  ===  USE CAUTION WHEN MODIFIYING BELOW THIS LINE  ===  */ 
 /*  =====================================================  */ 
@@ -162,8 +170,9 @@ define("ICON_SIZE", 15);
 define("OSCAL_METADATA", "//metadata");
 define("OSCAL_METADATA_TITLE", "//metadata/title");
 define("OSCAL_METADATA_VERSION", "//metadata/version");
-define("OSCAL_METADATA_DATE", "//metadata/last-modified-date");
-define("OSCAL_METADATA_SENSITIVITY_LABEL", "//metadata/prop[@name='sensitivity-label']");
+define("OSCAL_METADATA_DATE", "//metadata/published");
+define("OSCAL_METADATA_LAST_MODIFIED", "//metadata/last-modified");
+define("OSCAL_METADATA_SENSITIVITY_LABEL", "//metadata/prop[@name='marking'][@ns='fedramp']");
 
 
 // OSCAL Catalog-Specific XPATH Queries
