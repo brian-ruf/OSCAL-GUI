@@ -465,31 +465,32 @@ $too_many_levels = false;
 function ProcessChildElementFlat($child, &$schema_object, $rel_position, $path, $too_many_levels) {
 global $messages;
 
+	if ($child->hasAttribute('minOccurs')) {
+		if ($child->getAttribute('minOccurs') == "1") {
+			$required = true;
+		}
+	}
+
+	// If maxOccurs attribute exists and ="1", then $multiple = false. Otherwise true.
+	$multiple = true;
+	if ($child->hasAttribute('maxOccurs')) {
+		if ($child->getAttribute('maxOccurs') == "1") {
+			$multiple = false;
+		}
+	}
+
 	if ($child->hasAttribute('ref')) {
 		$element_name = StripNameSpace($child->getAttribute('ref'));
 		// If minOccurs attribute exists and ="1", then $required = true. Otherwise false.
 		$required = false;
-		if ($child->hasAttribute('minOccurs')) {
-			if ($child->getAttribute('minOccurs') == "1") {
-				$required = true;
-			}
-		}
-
-		// If maxOccurs attribute exists and ="1", then $multiple = false. Otherwise true.
-		$multiple = true;
-		if ($child->hasAttribute('maxOccurs')) {
-			if ($child->getAttribute('maxOccurs') == "1") {
-				$multiple = false;
-			}
-		}
 		
 		if ( ! $too_many_levels) {
 			RecurseSchemaFlat($schema_object, $element_name, $required, $multiple, $rel_position, $path);
 //		} else {
 //			$this_map = null;
 		}
-	} else {
-		$messages .= "<br />***MISSING @ref ATTRIBUTE. COULD NOT PROCESS ELEMENT.";
+//	} else {
+//		$messages .= "<br />*** " . $child->getAttribute('name') . " MISSING @ref ATTRIBUTE. COULD NOT PROCESS ELEMENT.";
 //		$this_map = null;
 	}
 //	return $this_map;
@@ -500,23 +501,25 @@ global $messages;
 function ProcessChildElement($child, &$schema_object, $rel_position, $path, $too_many_levels) {
 global $messages;
 
+	$required = false;
+	if ($child->hasAttribute('minOccurs')) {
+		if ($child->getAttribute('minOccurs') == "1") {
+			$required = true;
+		}
+	}
+
+	// If maxOccurs attribute exists and ="1", then $multiple = false. Otherwise true.
+	$multiple = true;
+	if ($child->hasAttribute('maxOccurs')) {
+		if ($child->getAttribute('maxOccurs') == "1") {
+			$multiple = false;
+		}
+	}
+
+
 	if ($child->hasAttribute('ref')) {
 		$element_name = StripNameSpace($child->getAttribute('ref'));
 		// If minOccurs attribute exists and ="1", then $required = true. Otherwise false.
-		$required = false;
-		if ($child->hasAttribute('minOccurs')) {
-			if ($child->getAttribute('minOccurs') == "1") {
-				$required = true;
-			}
-		}
-
-		// If maxOccurs attribute exists and ="1", then $multiple = false. Otherwise true.
-		$multiple = true;
-		if ($child->hasAttribute('maxOccurs')) {
-			if ($child->getAttribute('maxOccurs') == "1") {
-				$multiple = false;
-			}
-		}
 		
 		if ( ! $too_many_levels) {
 			$this_map = RecurseSchema($schema_object, $element_name, $required, $multiple, $rel_position, $path);
@@ -524,8 +527,9 @@ global $messages;
 			$this_map = null;
 		}
 	} else {
-		$messages .= "<br />***MISSING @ref ATTRIBUTE. COULD NOT PROCESS ELEMENT.";
 		$this_map = null;
+//		$messages .= "<br />!!! " . $child->getAttribute('name') . " MISSING @ref ATTRIBUTE. COULD NOT PROCESS ELEMENT.";
+//		$this_map = null;
 	}
 	return $this_map;
 }
