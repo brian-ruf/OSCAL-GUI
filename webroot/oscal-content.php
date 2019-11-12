@@ -196,10 +196,17 @@ function DisplayFiles($metadata) {
 	}
 
 	if ($metadata['date'] !== "" ) {
-		$pub_date = DateTime::createFromFormat(DATE_TIME_STORE_FORMAT, $metadata['date'])->format("F j\, Y");
+		$pub_date = DateTime::createFromFormat(DATE_TIME_STORE_FORMAT, $metadata['date'])->format(DATE_PRESENT_FORMAT);
 		$file_label .= "<br />CITED PUBLICATION DATE<br />" . $pub_date;
 	} else {
 		$file_label .= "<br />PUBLICATION DATE NOT CITED";
+	}
+
+	if ($metadata['last-modified'] !== "" ) {
+		$pub_date = DateTime::createFromFormat(DATE_TIME_STORE_FORMAT, $metadata['last-modified'])->format(DATE_TIME_PRESENT_FORMAT); // "F j\, Y H:m:s"
+		$file_label .= "<br />LAST MODIFIED DATE<br />" . $pub_date;
+	} else {
+		$file_label .= "<br />LAST MODIFIED DATE NOT CITED";
 	}
 
 	$ret_val .= "<table class='filelist' style='width:100%'><tr><td>";
