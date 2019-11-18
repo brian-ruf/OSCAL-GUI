@@ -24,13 +24,7 @@ switch($mode) {
 	case 'catalog':
 		HandleCatalog($_GET["project"]);
 		break;
-	case 'catalog-metadata':
-		HandleForm($_GET["file"], "catalog-metadata");
-		break;
-	case 'catalog-party':
-		HandleForm($_GET["file"], "catalog-party");
-		break;
-	case 'mods':
+	case 'profile':
 		HandleProfile($_GET["project"]);
 		break;
 //	case 'ssp':
@@ -146,8 +140,10 @@ global $project_file, $project_id;
 //						["text" => "System Characteristics", "img" => "./img/screen.png",     "action" => "zoneManagement(\"oscal-content.php?mode=sspchar&project=" . urlencode($project_id) . "\", \"_self\")"],
 //						["text" => "Control Implementation", "img" => "./img/lock.png",       "action" => "zoneManagement(\"oscal-content.php?mode=ssp&project=" . urlencode($project_id) . "\", \"_self\")"],
 //						["text" => "Manage Resources",       "img" => "./img/infinity.png",   "action" => "zoneManagement(\"oscal-content.php?mode=resources&project=" . urlencode($project_id) . "\", \"_self\")"]
-						["text" => "Create JSON",            "img" => "./img/wheel.png",      "action" => "zoneManagement(\"oscal-create-json.php?project=" . urlencode($project_id) . "\", \"_self\")"],
-						["text" => "Go Back",                "img" => "./img/arrow-left.png", "action" => "window.open(\"oscal.php?mode=continue\", \"_self\")"]
+						["text" => "Control Information Summary (CIS)",    "img" => "./img/eye.png",        "action" => "zoneManagement(\"oscal-content.php?mode=cis&project=" . urlencode($project_id) . "\", \"_self\")"],
+						["text" => "Customer Responsibility Matrix (CRM)", "img" => "./img/eye.png",        "action" => "zoneManagement(\"oscal-content.php?mode=crm&project=" . urlencode($project_id) . "\", \"_self\")"],
+						["text" => "Create JSON",                          "img" => "./img/wheel.png",      "action" => "zoneManagement(\"oscal-create-json.php?project=" . urlencode($project_id) . "\", \"_self\")"],
+						["text" => "Go Back",                              "img" => "./img/arrow-left.png", "action" => "window.open(\"oscal.php?mode=continue\", \"_self\")"]
 						);
 				ZoneOutputAppend(MakeMenu($buttons), 'zone-two-left');
 				ZoneOutputAppend(DisplayFiles($metadata), 'zone-two-right');
