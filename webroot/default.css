@@ -358,13 +358,21 @@ table.zone {
 }
 
 
-/* ***** below this line needs review for possible dead code ***** */
-
 table.review td {
     border-collapse: separate;
     border-spacing: 0px; 
     border: 1px solid black; 
     padding: 2px;
+    text-align:center;
+}
+
+.thead{ 
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 0px;
 }
 
 table.review {
@@ -373,6 +381,8 @@ table.review {
     border: 1px solid black; 
     padding: 2px;
 }
+
+/* ***** below this line needs review for possible dead code ***** */
 
 h1.control {
     font-family: 'Times New Roman', Times, serif;
@@ -634,7 +644,7 @@ table.center {
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -142px; 
+  margin-bottom: -40px; 
 }
 
 .page-wrap:after {
@@ -643,7 +653,7 @@ table.center {
 }
 
 .site-footer, .page-wrap:after {
-  height: 142px; 
+  height: 40px; 
 }
 .site-footer {
   background: black;

@@ -130,7 +130,6 @@ if (isset($_SESSION["OSCAL-ROOTS"]) && !empty($_SESSION["OSCAL-ROOTS"]) ) {
 // Every entry in $oscal_additional_files will be downloaded when the user 
 //      selects "Update OSCAL Files" from the main menu. 
 // Enter the full web URL for "web_source" (just as you would type it into a browser).
-// Only enter the filename for "local_file" with no path.
 //     It will be stored in the location specified in "OSCAL_LOCAL_FILES"
 // Be sure to only specify "web_source" URLs that would result in downloading the raw data.
 //     This is especially important for GitHub-hosted files.
@@ -138,6 +137,7 @@ if (isset($_SESSION["OSCAL-ROOTS"]) && !empty($_SESSION["OSCAL-ROOTS"]) ) {
 // NOTE: Only use this for files, not listed in $oscal_roots
 $oscal_additional_files = array(
 //	 "web_source"	=> "",
+	"web_source" => "https://github.com/brianrufgsa/FedRAMP-Template-Creation/raw/master/executable/FedRAMP_Templator.jar"
 	);
 
 
