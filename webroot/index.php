@@ -21,12 +21,6 @@ $page_title = "OSCAL Menu";
 
 <table style="border: none; margin: 0px auto; border-collapse:separate; vertical-align:middle; padding: 5px;  border-spacing: 10px; ">
 
-<!-- tr><th style="text-align: center; font-weight: bold; ">Menu</td></tr -->
-<!--
-<tr><td class="button" onclick="window.open('./oscal.php?mode=new', '_self')" style="text-align: left">
-	<img style="vertical-align:middle" src="img/document.png" width="40" height="40" />&nbsp;&nbsp;Start New Project&nbsp;
-</td></tr>
--->
 
 <tr><td class="button" onclick="window.open('./oscal.php?mode=continue', '_self')" style="text-align: left">
 	<img style="vertical-align:middle" src="img/folder.png" width="40" height="40">&nbsp;&nbsp;Open OSCAL File&nbsp;
@@ -39,6 +33,14 @@ $page_title = "OSCAL Menu";
 <tr><td class="button" onclick="window.open('./oscal-about.php', '_self')" style="text-align: left">
 	<img style="vertical-align:middle" src="img/information.png" width="40" height="40">&nbsp;&nbsp;About&nbsp;
 </td></tr>
+
+<?php if (file_exists("./fedramp/internal/pmo-menu.php")) {  ?>
+
+<tr><td class="button" onclick="window.open('./fedramp/internal/pmo-menu.php', '_self')" style="text-align: left">
+	<img style="vertical-align:middle" src="img/FedRAMP logo_Option 2_no_tagline.png" width="40" height="40">&nbsp;&nbsp;FedRAMP PMO&nbsp;
+</td></tr>
+<?php } ?>
+
 </table>
 
 <br/><br/><br/>

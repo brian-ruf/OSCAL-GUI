@@ -1539,18 +1539,20 @@ function MakeDownloadButtons(&$files, $project_dir, $file_pattern, $file_label, 
 
 	$ret_val .= "<table width='100%' class='fileinfo'>";
 	$ret_val .= "<tr><th colspan='2'>" . $file_label . "</th></tr>";
+	$base_file_name = basename($file);
+//	resolved-profile_catalog.xml
 	foreach ($files as $file) {
 		$ret_val .= "<tr>";
 		$ret_val .= "<td class='button' width='30%'>";
 
-		$ret_val .= "<a class='buttonlink' href='./projects/" . $project_dir . "/" . basename($file) . "' download='" . basename($file) . "'>";
+		$ret_val .= "<a class='buttonlink' href='./projects/" . $project_dir . "/" . $base_file_name . "' download='" . $base_file_name . "'>";
 		$ret_val .= "<table width='100%' class='button'><tr><td class='button'>";
 		$ret_val .= "<img class='buttonicon' src='./img/download2.png' />&nbsp;DOWNLOAD";
 		$ret_val .= "</td></tr></table>";
 		$ret_val .= "</a>"; 
 
 		$ret_val .= "</td>";
-		$ret_val .= "<td> <span style='font-weight:bold;'>" . basename($file) . "</span>";
+		$ret_val .= "<td> <span style='font-weight:bold;'>" . $base_file_name . "</span>";
 		$ret_val .= "<br /><span style='color:red;'>" . $date_label . ":</span><br />" . date(DATE_TIME_PRESENT_FORMAT, filemtime($file)) ;
 		$ret_val .= "</td></tr>";
 
