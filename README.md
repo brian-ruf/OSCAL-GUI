@@ -1,5 +1,5 @@
 # OSCAL-GUI
-An open-source graphical user interface (GUI) for interacting with Open Security Controls Assessment Language (OSCAL) files, dveloped under a collaborative effort between the [Federal Risk and Authorization Management Program (FedRAMP) Program Management Office (PMO)](https://fedramp.gov) and the [National Institute of Science and Technology (NIST) OSCAL Team](https://nist.gov/OSCAL).
+An open-source graphical user interface (GUI) for interacting with Open Security Controls Assessment Language (OSCAL) files, developed under a collaborative effort between the [Federal Risk and Authorization Management Program (FedRAMP) Program Management Office (PMO)](https://fedramp.gov) and the [National Institute of Science and Technology (NIST) OSCAL Team](https://nist.gov/OSCAL).
 
 This tool is designed to work with Extensible Markup Language (XML)-based OSCAL files, and enables conversion of OSCAL files between XML, JavaScript Object Notation (JSON), and Yet another Markup Language (YAML) in any direction.
 
@@ -54,5 +54,5 @@ This tool includes and uses the following open-source modules:
 |  **Assessment** | Syntax for describing content related to Security Assessment Plan (SAP), assessment activities, and evidence gathering. | CY 2019 Q4 |
 |  **Assessment Results** | Syntax for describing Security Assessment Report (SAR) and Plan of Action and Milestones (POA&M) content. | CY 2019 Q4 |
 
-For more inforamtion about OSCAL's architecture, please visit:
+For more information about OSCAL's architecture, please visit:
 [https://pages.nist.gov/OSCAL/docs/](https://pages.nist.gov/OSCAL/docs/)
