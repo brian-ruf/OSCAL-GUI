@@ -10,7 +10,7 @@
 require_once('oscal-config.php');
 
 // ============================================================================
-// ==  OSCAL Class Definition (Experimental)
+// ==  OSCAL Class Definition (EXPERIMENTAL)
 // ============================================================================
 // When instantiating this class, one argument must be passed.
 //    This class will first check to see if the argument is a recognized OSCAL
@@ -231,6 +231,7 @@ class OSCAL {
 		if ($file_name == "") {
 			$file_name = $this->file_name;
 		}
+		$this->SetLastModified()
 		$this->status = $this->dom->Save($file_name);
 		if ($this->status) {
 			$this->messages->Debug(" ---- FILE SAVED! ---- ");
@@ -246,6 +247,110 @@ class OSCAL {
 
 		return $this->status;
 	}
+
+	// ----------------------------------------------------------------------------
+	public function SetLastModified(){
+		
+		$last_modified = date(DATE_TIME_STORE_FORMAT);
+		$last_modified_object = $this->Query(OSCAL_METADATA_LAST_MODIFIED);
+		
+		if ($last_modified_object === false) { // last-modified doesn't exist (non-typical)
+			$last_modified_object = $this->dom->createElement(basename(OSCAL_METADATA_LAST_MODIFIED), $last_modified);
+//			$ret_val = InsertOSCALdata($this->dom, OSCAL_METADATA_LAST_MODIFIED . "/..", $last_modified_object);
+			$ret_val = $this->Insert(OSCAL_METADATA_LAST_MODIFIED . "/..", $last_modified_object);
+		} else {
+			$last_modified_object->item(0)->nodeValue = $last_modified;
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// Accepts:
+	//   $xpath_to_parent: should resolve to a single location in the XML file,
+	//                     which represents the parent of the insertion pointer
+	//   $data: a DOMnode object to be inserted.
+	//
+	// This determines the correct place to insert the child based on OSCAL's
+	//       required sequence of elements as specified in the appropriate
+	//       NIST-provided OSCAL XSD schema file.
+	// RETURNS:
+	//     boolean true if successful.
+	//     string with error messages if unsuccessful.
+	function Insert($xpath_to_parent, $data){
+		$messages = "";
+		$ret_val = false;
+
+
+	//	Messages ("-- INSERTING: " . $data->nodeName);
+		// Use xpath to get parent object
+		$parent_obj = QueryListResult($this->dom, $xpath_to_parent);
+		if ($parent_obj !== false) {
+			// The xpath may have been relative, so determine the full xpath  
+			$full_path_to_parent = GetFullXpath($parent_obj->item(0));
+			if ($full_path_to_parent !== false) {
+				// Using the full xpath, get the flat schema array for this OSCAL layer
+				$flat_schema_map = GetFlatSchemaMap($full_path_to_parent);
+				if ($flat_schema_map !== false) {
+					// reverse the sequence of the array so we loop through from the bottom of the list to the top
+					$child_element_count = count($flat_schema_map[$full_path_to_parent]["model"]);
+					$child_element_index = $child_element_count;
+					// Loop through the array from the bottom up, until we 
+					// find the element name of the child to insert.
+					// Build an xpath query for each child we find below our $data element in the list
+					$found_element = false;
+					$xpath_to_parents_remaining_children = "";
+					while ($child_element_index){
+	//					Messages ("   -- CHECKING: " . $flat_schema_map[$full_path_to_parent]["model"][$child_element_index-1]);
+						if ($data->nodeName == $flat_schema_map[$full_path_to_parent]["model"][$child_element_index-1] ) {
+							$found_element = true;
+							break;
+						} else {
+							if (strlen($xpath_to_parents_remaining_children) > 0) {
+								$xpath_to_parents_remaining_children = " | " . $xpath_to_parents_remaining_children;
+							}
+							$xpath_to_parents_remaining_children = $xpath_to_parent . "/" . $flat_schema_map[$full_path_to_parent]["model"][$child_element_index-1] . $xpath_to_parents_remaining_children;
+						}
+						$child_element_index--;
+					}
+					if ($found_element) {
+						$import_obj= $this->dom->importNode($data, true);
+						// In the specified parameter, find the FIRST element that must appear AFTER the element being inserted.
+						// 		If none exists, use appendChild
+						//      Otherwise, store in $param_next, and use insertBefore($parameter_new, $param_next)
+						$remaining_children_object = $this->Query($xpath_to_parents_remaining_children);
+						if ($remaining_children_object !== false) {
+							$parent_obj->item(0)->insertBefore($import_obj, $remaining_children_object->item(0));
+						} else {
+							$parent_obj->item(0)->appendChild($import_obj);
+						}
+						if ( ! CheckForXMLerrors() ) {
+							$messages .= "<br />   !! " . ("ADDED " . $data->nodeName . " TO " . $xpath_to_parent);
+							$ret_val = true;
+						} else {
+							$messages .= "<br />   !! " . ("ERROR: Unable to insert/append data. Unable to continue (". $xpath_to_parent . ")");
+						}
+					} else {
+						
+					}
+				} else {
+					// ERROR: Unable to get flat schema map. Unable to continue.
+					$messages .= "<br />   !! " . ("ERROR: Unable to get flat schema map. Unable to continue (". $xpath_to_parent . ")");
+				}
+			} else {
+				// ERROR: Unable to get full path to parent. Unable to continue.
+				$messages .= "<br />   !! " . ("ERROR: Unable to get full path to parent. Unable to continue (". $xpath_to_parent . ")");
+			}
+		} else {
+			// ERROR: Invalid path to parent. Unable to continue.
+			$messages .= "<br />   !! " . ("ERROR: Invalid path to parent. Unable to continue (". $xpath_to_parent . ")");
+		}
+
+	//	Messages($messages);
+		if (! $ret_val) {
+			$ret_val = $messages;
+		}
+		return $ret_val;
+	}
+
 
 	// ----------------------------------------------------------------------------
 	public function Create($oscalroot) {
@@ -320,7 +425,7 @@ class OSCAL {
 	// ----------------------------------------------------------------------------
 	public function GetTitle($refresh=false){
 		if ($refresh || $this->title == "") {
-			$title = $this->Query("//metadata/title");
+			$title = $this->Query(OSCAL_METADATA_TITLE);
 			if ($title === false) {
 				$this->title = "[NO TITLE]";
 			} else {

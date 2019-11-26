@@ -80,7 +80,7 @@ ZoneAdjust("background: color url('./img/spinning_rings_fr_red.gif');", "zone-th
 	$date_label = "Created";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	$ret_val .= MakeBackButton("oscal.php?mode=open&project=" . $project_id );

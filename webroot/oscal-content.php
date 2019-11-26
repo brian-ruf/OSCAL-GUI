@@ -217,7 +217,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Last Edited";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	$current_file_timestamp = filemtime($files[0]);
-	$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+	$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION . $project_dir, $file_pattern, $file_label, $date_label);
 
 
 	// =================
@@ -228,7 +228,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Uploaded";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) === 1 && $current_file_timestamp !== filemtime($files[0])) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION . $project_dir, $file_pattern, $file_label, $date_label);
 	} 
 
 	$project_dir = $project_id . "/__other_formats/";
@@ -237,7 +237,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Reflects content as of";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	$project_dir = $project_id . "/__output/";
@@ -246,7 +246,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Generated";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	$project_dir = $project_id . "/__resources/";
@@ -255,7 +255,7 @@ function DisplayFiles($metadata) {
 	$date_label = "";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	return $ret_val;

@@ -195,8 +195,8 @@ function QueryListResult(&$oscal_objects, $query) {
 	$logging = "** QueryListResult (" . $query . "):<br />";
 	$ret_val = false;
 
-	if ($oscal_objects["namespace"]==="") {
-		// Do nothing
+	if ( $oscal_objects["namespace"]==="") {
+		$query = AddNamespace2xpath($query, "*");
 	} else {
 		$query = AddNamespace2xpath($query, $oscal_objects["namespace"]);
 	}
@@ -903,6 +903,7 @@ return $ret_val;
 // ----------------------------------------------------------------------------
 function SaveOSCALfile($oscal){
 	
+	SetLastModified($oscal['DOM']);
 	$status = $oscal['DOM']->save($oscal['file']);
 	if ($status) {
 		Messages(" ---- FILE SAVED! ---- ");
@@ -912,10 +913,85 @@ function SaveOSCALfile($oscal){
 	} else {
 		Messages(" !!!! ERROR SAVING FILE! !!!! ");
 	}
-
 	return $status;
 }
 
+
+// ----------------------------------------------------------------------------
+function SetLastModified($oscal){
+	
+	$last_modified = date(DATE_TIME_STORE_FORMAT);
+	$basename = basename(OSCAL_METADATA_LAST_MODIFIED);
+
+	if (is_array($oscal)) { 
+		$last_modified_object = QueryListResult($oscal, OSCAL_METADATA_LAST_MODIFIED);
+		
+		if ($last_modified_object === false) { // last-modified doesn't exist (non-typical)
+			$last_modified_object = $oscal['DOM']->createElement(basename(OSCAL_METADATA_LAST_MODIFIED), $last_modified);
+			$ret_val = InsertOSCALdata($oscal['DOM'], OSCAL_METADATA_LAST_MODIFIED . "/..", $last_modified_object);
+		} else {
+			$last_modified_object->item(0)->nodeValue = $last_modified;
+		}
+	} else {  // assume DOM
+		$metadata_object = $oscal->getElementsByTagName('metadata');
+		if ($metadata_object->length > 0) {
+			$last_modified_object = $metadata_object->item(0)->getElementsByTagName($basename);
+			if ($last_modified_object->length == 0) {  // last-modified doesn't exist (non-typical)
+				$last_modified_object = $oscal->createElement($basename, $last_modified);
+				$ret_val = InsertOSCALdata($oscal, OSCAL_METADATA_LAST_MODIFIED . "/..", $last_modified_object);
+			} else {
+				$last_modified_object->item(0)->nodeValue = $last_modified;
+			}
+		} else {
+			Logging("No metadata!");
+		}
+	}
+}
+
+// ----------------------------------------------------------------------------
+// $oscal is either a DOM object, or an array with a DOM object associated with 
+//    the ['DOM'] element in the array.
+// $title is the title to replace or append.
+// $append if true, the value of $title is added to any existng title
+//         if false, the value of $title replaces any existing title
+//         if no title exists, the value of $title will become the new title.
+// 
+function SetTitle($oscal, $title, $append=false){
+	
+	$basename = basename(OSCAL_METADATA_TITLE);
+
+	if (is_array($oscal)) { 
+		$title_object = QueryListResult($oscal, OSCAL_METADATA_TITLE);
+		
+		if ($title_object === false) { // title doesn't exist (non-typical)
+			$title_object = $oscal['DOM']->createElement(basename(OSCAL_METADATA_TITLE), $title);
+			$ret_val = InsertOSCALdata($oscal['DOM'], OSCAL_METADATA_TITLE . "/..", $title_object);
+		} else {
+			if ($append) {
+				$title_object->item(0)->nodeValue .= $title;
+			} else {
+				$title_object->item(0)->nodeValue = $title;
+			}
+		}
+	} else {  // assume DOM
+		$metadata_object = $oscal->getElementsByTagName('metadata');
+		if ($metadata_object->length > 0) {
+			$title_object = $metadata_object->item(0)->getElementsByTagName($basename);
+			if ($title_object->length == 0) {   // title doesn't exist (non-typical)
+				$title_object = $oscal->createElement($basename, $title);
+				$ret_val = InsertOSCALdata($oscal, OSCAL_METADATA_LAST_MODIFIED . "/..", $title_object);
+			} else {
+				if ($append) {
+					$title_object->item(0)->nodeValue .= $title;
+				} else {
+					$title_object->item(0)->nodeValue = $title;
+				}
+			}
+		} else {
+			Logging("No metadata!");
+		}
+	}
+}
 
 // ----------------------------------------------------------------------------
 // Checks the syntax of the file against the schema
@@ -1289,7 +1365,7 @@ function ExtractSchemaFile($schema_declaration) {
 
 // ----------------------------------------------------------------------------
 
-function MakeBackButton($url="", $img="./img/arrow-left.png") {
+function MakeBackButton($url="", $img="/img/arrow-left.png") {
 	$output = "";
 	
 	if ($url == "") {
@@ -1539,15 +1615,15 @@ function MakeDownloadButtons(&$files, $project_dir, $file_pattern, $file_label, 
 
 	$ret_val .= "<table width='100%' class='fileinfo'>";
 	$ret_val .= "<tr><th colspan='2'>" . $file_label . "</th></tr>";
-	$base_file_name = basename($file);
 //	resolved-profile_catalog.xml
 	foreach ($files as $file) {
+		$base_file_name = basename($file);
 		$ret_val .= "<tr>";
 		$ret_val .= "<td class='button' width='30%'>";
 
-		$ret_val .= "<a class='buttonlink' href='./projects/" . $project_dir . "/" . $base_file_name . "' download='" . $base_file_name . "'>";
+		$ret_val .= "<a class='buttonlink' href='" . urlencode($project_dir . $base_file_name) . "' download='" . $base_file_name . "'>";
 		$ret_val .= "<table width='100%' class='button'><tr><td class='button'>";
-		$ret_val .= "<img class='buttonicon' src='./img/download2.png' />&nbsp;DOWNLOAD";
+		$ret_val .= "<img class='buttonicon' src='/img/download2.png' />&nbsp;DOWNLOAD";
 		$ret_val .= "</td></tr></table>";
 		$ret_val .= "</a>"; 
 
@@ -1673,25 +1749,55 @@ function check_file ($file){
     if ( !preg_match('/\/\//', $file) ) {
         if ( file_exists($file) ){
             $status = true;
-        }
+        } else {
+			Logging("NOT FOUND LOCALLY: " . $file);
+		}
     }
 
     else {
+		if ( ! (!$file || !is_string($file) || ! preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $file))) {
+			$ch = curl_init($file);
+			if ($ch !== false) {
+				curl_setopt($ch, CURLOPT_HEADER, true);
+				curl_setopt($ch, CURLOPT_NOBODY, true);
+				
+				// !! PHP's cURL implementation cheks the certificate of an https
+				// !! connection; however, it does not "know" the proper root 
+				// !! certificates for GitHub, and fails to complete the connection.
+				// 
+				// !! The following two lines can override SSL validity checking.
+				// !! They are currently configured to allow the connection as long
+				// !! the actual host name matches the host name in the certificate;
+				// !! however, the root CA signature is not verified because cURL 
+				// !! does not recognize it "out of the box". 
+				//
+				// !! For better connection integrity, install the proper 
+				// !! certificatesin the php.ini file as described at the link
+				// !! below, and set CURLOPT_SSL_VERIFYPEER to true below.
+				//
+				// Based on information found here:
+				//     https://thisinterestsme.com/php-curl-ssl-certificate-error/
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // true = verify certificate
 
-        $ch = curl_init($file);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_exec($ch);
-        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				curl_exec($ch);
+				$code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
-        if($code == 200){
-            $status = true;
-        }else{
-            $status = false;
-        }
-        curl_close($ch);
-
+				if($code == 200){
+					$status = true;
+				}else{
+					$status = false;
+					Logging("NOT FOUND REMOTELY: " . $file);
+					Logging("ERRORS: " . curl_error($ch));
+				}
+				curl_close($ch);
+			} else {
+				Logging("CURL ERROR OPENING: " . $file);
+			}
+		} else {
+			Logging("INVALID URL: " . $file);
+		}
     }
-
     return $status;
 }
 

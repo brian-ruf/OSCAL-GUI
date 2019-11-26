@@ -50,7 +50,7 @@ switch($mode) {
 		break;
 	case 'deleteconfirmed':
 		DeleteProject($_GET["project"]);
-		GatherProjectList(refresh);
+		GatherProjectList(true);
 		PresentProjectList();
 		break;
 	case 'export':
@@ -72,6 +72,7 @@ ZoneClose();
 
 // ============================================================================
 function DeleteConfirmation($project_dir) {
+	$output = "";
 
 	$project_list = $_SESSION["project_list"];
 	

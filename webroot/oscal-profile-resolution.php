@@ -84,11 +84,12 @@ $messages = "";
 				if ($metadata['version'] !== "" ) {
 					$title_hover_output .= "VERSION: " . $metadata['version'];
 				}
-				if ($metadata['date'] !== "" ) {
+				
+				if ($metadata['last-modified'] !== "" ) {
 					if (strlen($title_hover_output) > 1) {
 						$title_hover_output .= " -- ";
 					}
-					$title_hover_output .= "DATE: " . $metadata['date'];
+					$title_hover_output .= "LAST MODIFIED: " . $metadata['last-modified'];
 				}
 
 				if ($metadata['label'] !== "" ) {
@@ -123,7 +124,7 @@ $messages = "";
 //					ZoneOutputAppend("<br />IMPORTING FILE #" . $import_file_cntr, 'zone-two');
 					$found = false;
 					$messages .= "<br />-- " .  "<br />IMPORTING: " . $import->getAttribute("href");
-					// NOW:
+					// CURRENT: 
 					// Look to see if file was previously imported into the project.
 					// If not, try to retrieve it via the path.
 						// FUTURE ****:
@@ -137,7 +138,6 @@ $messages = "";
 						$messages .= "<br />-- " .  "<br />   FOUND LOCALLY";
 						$found = true;
 						$import_file = PROJECT_LOCATION . $base_dir . "/__import/" . $import_base_file_name;
-
 					} elseif (check_file($import->getAttribute("href"))) {
 						$messages .= "<br />-- " .  "<br />   FOUND AT PATH SPECIFIED";
 						$found = true;
@@ -153,7 +153,7 @@ $messages = "";
 						}
 					}
 
-					// NOW: 
+					// CURRENT: 
 					// Process <include> 
 					//    Import node for each call (handle presence/absence of @with-control, @with-subcontrol)
 					// Process <exclude> by removing any specified items
@@ -230,6 +230,9 @@ $messages = "";
 			*/
 		
 		// Remove blank lines
+		SetLastModified($cat_new);
+		SetTitle($cat_new, " [RESOLVED]", true);
+
 		$cat_new['DOM'] = ReformatXML($cat_new['DOM']);
 		
 		ZoneCommand('working_notice_stop');
@@ -245,7 +248,6 @@ $messages = "";
 	}
 	Logging ($messages);
 	return $ret_val;
-
 }
 
 // ----------------------------------------------------------------------------
@@ -285,38 +287,18 @@ function ModifyControls(&$cat_new, &$profile) {
 					// ****** NEED TO TEST 
 				
 					// build xpath statements for each possible attribute
-					$remove_xpath = "";
+					$remove_xpath = "//control[@id='" . $control_id . "']//*";
 					if ($profile_alter_item->hasAttribute('id-ref')) {
-						$remove_xpath .= "//control[@id='" . $control_id . "']//*[@id='" . $profile_alter_item->getAttribute('id-ref') . "']";
+						$remove_xpath .= "[@id='" . $profile_alter_item->getAttribute('id-ref') . "']";
 					}
-					if ($profile_alter_item->hasAttribute('item-name')) {
-						// If there is already an xpath statement, insert the union operator before appending the additonal xpath statement
-						if (strlen($remove_xpath)>0) {
-							$remove_xpath .= " | ";
-						}
-						$remove_xpath .= "//control[@id='" . $control_id . "']//" . $profile_alter_item->getAttribute('item-name');
+					if ($profile_alter_item->hasAttribute('name-ref')) {
+						$remove_xpath .= "[@name='" . $profile_alter_item->getAttribute('name-ref') . "']";
 					}
 					if ($profile_alter_item->hasAttribute('class-ref')) {
-						// If there is already an xpath statement, insert the union operator before appending the additonal xpath statement
-						if (strlen($remove_xpath)>0) {
-							$remove_xpath .= " | ";
-						}
-						$remove_xpath .= "//control[@id='" . $control_id . "']//*[@id='" . $profile_alter_item->getAttribute('class-ref') . "']";
+						$remove_xpath .= "[@class='" . $profile_alter_item->getAttribute('class-ref') . "']";
 					}
 
 					RemoveChildren($cat_new, $remove_xpath);
-
-/*
-					// remove all elements that match the xpath query.
-					$remove_list = QueryListResult($cat_new, $remove_xpath);
-					if ($remove_list !== false) {
-						$count = $remove_list->childNodes->length; 
-						for ($i = 0; $i < $count; $i++) { 
-						   $oldNode = $remove_list->item(0)->parentNode->removeChild($remove_list->item(0)); // !!! not item($i) !!! 
-						} 
-					}
-					// xpath example: //control[@id='ac-2']//*[@name='assessment'] | //control[@id='ac-2']//*[@id='ac-2.f_obj.2']
-*/					
 				}
 			} else {
 				// Do nothing. No remove items found.
@@ -324,8 +306,21 @@ function ModifyControls(&$cat_new, &$profile) {
 						
 			$control_add_commands = QueryListResult($profile, $control_alter_query . "/add");
 			if ($control_add_commands !== false) {
-				foreach($control_add_commands as $control_add_command) { // cycles through each tag under <alter>
-					$control = QueryListResult($cat_new, $control_query);
+				foreach($control_add_commands as $control_add_command) { // cycles through each tag under <add>
+					
+					// If an @id-ref is specified, it must reference an @id 
+					//    that is a decendant to the control specified in the 
+					//    alter statement.
+					// To ensure this, we append this constraint to the query 
+					//    that identifies the control itself, which will only
+					//    find the @id among the descendants of the control.
+					if ($control_add_command->hasAttribute('id-ref')) {
+						$control_add_query = $control_query . "/*[@id='" . $control_add_command->getAttribute('id-ref') . "']";
+					} else {
+						$control_add_query = $control_query;
+					}
+					
+					$control = QueryListResult($cat_new, $control_add_query);
 					if ($control !== false) {
 						if ($control_add_command->hasAttribute('position')) {
 							$position_of_add = $control_add_command->getAttribute('position');
@@ -336,16 +331,16 @@ function ModifyControls(&$cat_new, &$profile) {
 						foreach($control_add_command->childNodes as $item_to_add) { // cycles through each tag under <add>
 							if ($item_to_add->nodeName != '#text') { // Need to ignore 
 //								$messages .= "<br />-- " .  ("ADDING TO CONTROL " . $control_id . ": " . $item_to_add->nodeName );
-								$insert_ok = InsertOSCALdata($cat_new, $control_query, $item_to_add);
+								$insert_ok = InsertOSCALdata($cat_new, $control_add_query, $item_to_add);
 								if ( ! $insert_ok === true) {
-									$messages .= "<br />-- " .  ("ERROR INSERTING CONTROL ADDITIONS AT: " . $control_query);
+									$messages .= "<br />-- " .  ("ERROR INSERTING CONTROL ADDITIONS AT: " . $control_add_query);
 									$messages .= $insert_ok;
 								}
 							}
 						}
 					} else {
-						ZoneOutputAppend("<br />CONTROL NOT FOUND IN RESOLVED CATALOG (2): " . $control_query , 'zone-two');
-						$messages .= "<br />-- " .  ("CONTROL NOT FOUND IN RESOLVED CATALOG (2): " . $control_query);
+						ZoneOutputAppend("<br />CONTROL NOT FOUND IN RESOLVED CATALOG (2): " . $control_add_query , 'zone-two');
+						$messages .= "<br />-- " .  ("CONTROL NOT FOUND IN RESOLVED CATALOG (2): " . $control_add_query);
 					}
 				}
 			} else {
