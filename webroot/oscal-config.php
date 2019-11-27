@@ -13,7 +13,8 @@ define("TIMEZONE", "America/New_York");
 //     web site's root directory to better protect the files;
 //     however, the application does not yet support this.
 // IMPORTANT: Must include trailing slash
-define("PROJECT_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/projects/"); 
+define("PROJECT_LOCATION_RELATIVE", "/projects/"); 
+define("PROJECT_LOCATION", $_SERVER['DOCUMENT_ROOT'] . PROJECT_LOCATION_RELATIVE); 
 
 // Should be set to false for normal use.
 // When set to true, some scripts will add a grey box at 

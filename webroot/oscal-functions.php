@@ -1621,7 +1621,7 @@ function MakeDownloadButtons(&$files, $project_dir, $file_pattern, $file_label, 
 		$ret_val .= "<tr>";
 		$ret_val .= "<td class='button' width='30%'>";
 
-		$ret_val .= "<a class='buttonlink' href='" . urlencode($project_dir . $base_file_name) . "' download='" . $base_file_name . "'>";
+		$ret_val .= "<a class='buttonlink' href='" . $project_dir . $base_file_name . "' download='" . $base_file_name . "'>";
 		$ret_val .= "<table width='100%' class='button'><tr><td class='button'>";
 		$ret_val .= "<img class='buttonicon' src='/img/download2.png' />&nbsp;DOWNLOAD";
 		$ret_val .= "</td></tr></table>";
