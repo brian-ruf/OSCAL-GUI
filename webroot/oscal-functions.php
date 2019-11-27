@@ -1757,6 +1757,10 @@ function check_file ($file){
     else {
 		if ( ! (!$file || !is_string($file) || ! preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $file))) {
 			$ch = curl_init($file);
+			
+			//Tell cURL where our certificate bundle is located.
+			
+			
 			if ($ch !== false) {
 				curl_setopt($ch, CURLOPT_HEADER, true);
 				curl_setopt($ch, CURLOPT_NOBODY, true);
@@ -1764,6 +1768,17 @@ function check_file ($file){
 				// !! PHP's cURL implementation cheks the certificate of an https
 				// !! connection; however, it does not "know" the proper root 
 				// !! certificates for GitHub, and fails to complete the connection.
+				// Based on information found here:
+				//     https://thisinterestsme.com/php-curl-ssl-certificate-error/
+				if (ROOT_CA_PEM_LOCATION!==null && file_exists(ROOT_CA_PEM_LOCATION)) {
+					curl_setopt($ch, CURLOPT_CAINFO, $certificate);
+					curl_setopt($ch, CURLOPT_CAPATH, $certificate);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true); // true = verify certificate
+				} else {
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // talse = do not verify certificate
+				}
 				// 
 				// !! The following two lines can override SSL validity checking.
 				// !! They are currently configured to allow the connection as long
@@ -1775,10 +1790,7 @@ function check_file ($file){
 				// !! certificatesin the php.ini file as described at the link
 				// !! below, and set CURLOPT_SSL_VERIFYPEER to true below.
 				//
-				// Based on information found here:
-				//     https://thisinterestsme.com/php-curl-ssl-certificate-error/
-				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // true = verify certificate
+				
 
 				curl_exec($ch);
 				$code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);

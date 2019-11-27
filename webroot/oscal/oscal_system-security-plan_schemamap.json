@@ -5396,7 +5396,7 @@
                             "formal-name": "Property",
                             "description": "A value with a name, attributed to the containing control, part, or group."
                         },
-                        "2": {
+                        "rlink": {
                             "name": "rlink",
                             "path": "\/\/system-security-plan\/back-matter\/resource\/rlink",
                             "position": 2,
@@ -5439,10 +5439,10 @@
                                 }
                             }
                         },
-                        "3": {
+                        "base64": {
                             "name": "base64",
                             "path": "\/\/system-security-plan\/back-matter\/resource\/base64",
-                            "position": 2,
+                            "position": 3,
                             "required": false,
                             "multiple": false,
                             "holds_data": false,

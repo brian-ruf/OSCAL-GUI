@@ -5069,9 +5069,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/title": {
@@ -5270,10 +5271,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/group\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -5307,7 +5350,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -5837,7 +5880,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -5864,9 +5907,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/title": {
@@ -6065,10 +6109,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -6102,7 +6188,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -6632,7 +6718,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -6659,9 +6745,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/title": {
@@ -6860,10 +6947,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -6897,7 +7026,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -7427,7 +7556,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -7454,9 +7583,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/title": {
@@ -7655,10 +7785,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -7692,7 +7864,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -8222,7 +8394,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -8249,9 +8421,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/title": {
@@ -8450,10 +8623,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -8487,7 +8702,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -9017,7 +9232,7 @@
     "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/group\/control\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -9044,9 +9259,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/control": {
@@ -9079,9 +9295,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/control\/title": {
@@ -9280,10 +9497,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -9317,7 +9576,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -9847,7 +10106,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -9874,9 +10133,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/title": {
@@ -10075,10 +10335,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -10112,7 +10414,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -10642,7 +10944,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -10669,9 +10971,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/title": {
@@ -10870,10 +11173,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -10907,7 +11252,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -11437,7 +11782,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -11464,9 +11809,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/title": {
@@ -11665,10 +12011,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -11702,7 +12090,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -12232,7 +12620,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -12259,9 +12647,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/title": {
@@ -12460,10 +12849,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -12497,7 +12928,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -13027,7 +13458,7 @@
     "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/group\/control\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -13054,9 +13485,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/control": {
@@ -13089,9 +13521,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/control\/title": {
@@ -13290,10 +13723,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -13327,7 +13802,7 @@
     "\/\/catalog\/group\/group\/group\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -13857,7 +14332,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -13884,9 +14359,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/control\/control\/title": {
@@ -14085,10 +14561,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -14122,7 +14640,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -14652,7 +15170,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -14679,9 +15197,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/title": {
@@ -14880,10 +15399,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -14917,7 +15478,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -15447,7 +16008,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -15474,9 +16035,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/title": {
@@ -15675,10 +16237,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -15712,7 +16316,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -16242,7 +16846,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -16269,9 +16873,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/title": {
@@ -16470,10 +17075,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -16507,7 +17154,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -17037,7 +17684,7 @@
     "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/group\/control\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -17064,9 +17711,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/control": {
@@ -17099,9 +17747,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/control\/title": {
@@ -17300,10 +17949,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -17337,7 +18028,7 @@
     "\/\/catalog\/group\/group\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -17867,7 +18558,7 @@
     "\/\/catalog\/group\/group\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -17894,9 +18585,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/control\/control\/title": {
@@ -18095,10 +18787,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -18132,7 +18866,7 @@
     "\/\/catalog\/group\/group\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -18662,7 +19396,7 @@
     "\/\/catalog\/group\/group\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -18689,9 +19423,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/control\/control\/control\/title": {
@@ -18890,10 +19625,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -18927,7 +19704,7 @@
     "\/\/catalog\/group\/group\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -19457,7 +20234,7 @@
     "\/\/catalog\/group\/group\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -19484,9 +20261,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/title": {
@@ -19685,10 +20463,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -19722,7 +20542,7 @@
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -20252,7 +21072,7 @@
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -20279,9 +21099,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/title": {
@@ -20480,10 +21301,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -20517,7 +21380,7 @@
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -21047,7 +21910,7 @@
     "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/group\/control\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -21074,9 +21937,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/control": {
@@ -21109,9 +21973,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/control\/title": {
@@ -21310,10 +22175,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -21347,7 +22254,7 @@
     "\/\/catalog\/group\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -21877,7 +22784,7 @@
     "\/\/catalog\/group\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -21904,9 +22811,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/control\/control\/title": {
@@ -22105,10 +23013,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -22142,7 +23092,7 @@
     "\/\/catalog\/group\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -22672,7 +23622,7 @@
     "\/\/catalog\/group\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -22699,9 +23649,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/control\/control\/control\/title": {
@@ -22900,10 +23851,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -22937,7 +23930,7 @@
     "\/\/catalog\/group\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -23467,7 +24460,7 @@
     "\/\/catalog\/group\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -23494,9 +24487,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/control\/control\/control\/control\/title": {
@@ -23695,10 +24689,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -23732,7 +24768,7 @@
     "\/\/catalog\/group\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -24262,7 +25298,7 @@
     "\/\/catalog\/group\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -24289,9 +25325,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/group\/control\/control\/control\/control\/control\/title": {
@@ -24490,10 +25527,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/group\/control\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/group\/control\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/group\/control\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/group\/control\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -24527,7 +25606,7 @@
     "\/\/catalog\/group\/control\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/group\/control\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -25057,7 +26136,7 @@
     "\/\/catalog\/group\/control\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/group\/control\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -25084,9 +26163,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/control": {
@@ -25119,9 +26199,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/control\/title": {
@@ -25320,10 +26401,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -25357,7 +26480,7 @@
     "\/\/catalog\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -25887,7 +27010,7 @@
     "\/\/catalog\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -25914,9 +27037,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/control\/control\/title": {
@@ -26115,10 +27239,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -26152,7 +27318,7 @@
     "\/\/catalog\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -26682,7 +27848,7 @@
     "\/\/catalog\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -26709,9 +27875,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/control\/control\/control\/title": {
@@ -26910,10 +28077,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -26947,7 +28156,7 @@
     "\/\/catalog\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -27477,7 +28686,7 @@
     "\/\/catalog\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -27504,9 +28713,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/control\/control\/control\/control\/title": {
@@ -27705,10 +28915,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -27742,7 +28994,7 @@
     "\/\/catalog\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -28272,7 +29524,7 @@
     "\/\/catalog\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -28299,9 +29551,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/control\/control\/control\/control\/control\/title": {
@@ -28500,10 +29753,52 @@
         "formal-name": "Property",
         "description": "A value with a name, attributed to the containing control, part, or group."
     },
+    "\/\/catalog\/control\/control\/control\/control\/control\/annotation": {
+        "name": "annotation",
+        "path": "\/\/catalog\/control\/control\/control\/control\/control\/annotation",
+        "position": 3,
+        "required": false,
+        "multiple": true,
+        "holds_data": false,
+        "datatype": "none",
+        "flags": {
+            "0": {
+                "name": "name",
+                "required": true,
+                "datatype": "NCName",
+                "formal-name": "Name",
+                "description": "Identifying the purpose and intended use of the property, part or other object."
+            },
+            "1": {
+                "name": "id",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Identifier",
+                "description": "Unique identifier of the containing object"
+            },
+            "2": {
+                "name": "ns",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Namespace",
+                "description": "A namespace qualifying the name."
+            },
+            "3": {
+                "name": "value",
+                "required": false,
+                "datatype": "string",
+                "formal-name": "Value",
+                "description": "Indicates the value of the characteristic."
+            }
+        },
+        "formal-name": "Annotation",
+        "description": "A name\/value pair with optional explanitory remarks.",
+        "model": {}
+    },
     "\/\/catalog\/control\/control\/control\/control\/control\/link": {
         "name": "link",
         "path": "\/\/catalog\/control\/control\/control\/control\/control\/link",
-        "position": 3,
+        "position": 4,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -28537,7 +29832,7 @@
     "\/\/catalog\/control\/control\/control\/control\/control\/part": {
         "name": "part",
         "path": "\/\/catalog\/control\/control\/control\/control\/control\/part",
-        "position": 4,
+        "position": 5,
         "required": false,
         "multiple": true,
         "holds_data": true,
@@ -29067,7 +30362,7 @@
     "\/\/catalog\/control\/control\/control\/control\/control\/control": {
         "name": "control",
         "path": "\/\/catalog\/control\/control\/control\/control\/control\/control",
-        "position": 5,
+        "position": 6,
         "required": false,
         "multiple": true,
         "holds_data": false,
@@ -29094,9 +30389,10 @@
             "0": "title",
             "1": "param",
             "2": "prop",
-            "3": "link",
-            "4": "part",
-            "5": "control"
+            "3": "annotation",
+            "4": "link",
+            "5": "part",
+            "6": "control"
         }
     },
     "\/\/catalog\/back-matter": {
@@ -29274,7 +30570,7 @@
     "\/\/catalog\/back-matter\/resource\/base64": {
         "name": "base64",
         "path": "\/\/catalog\/back-matter\/resource\/base64",
-        "position": 2,
+        "position": 3,
         "required": false,
         "multiple": false,
         "holds_data": false,

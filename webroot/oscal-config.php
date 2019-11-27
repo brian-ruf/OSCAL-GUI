@@ -16,6 +16,20 @@ define("TIMEZONE", "America/New_York");
 define("PROJECT_LOCATION_RELATIVE", "/projects/"); 
 define("PROJECT_LOCATION", $_SERVER['DOCUMENT_ROOT'] . PROJECT_LOCATION_RELATIVE); 
 
+// Root Certificate Authorities (CA)
+// If you wish to have the application verifiy certificates for external
+//    datastores, such as for the NIST-provided OSCAL resources on GitHub,
+//    you must provide a file with valid root CAs.
+// If ROOT_CA_PEM_LOCATION is defined, and the .pem file exists, this 
+//    application will attempt to use it when downloading files.
+// ADVANCED: If you require an organizational certificate to be recognized, 
+//    you can simply add the PEM-formatted certificate to an existing
+//    PEM file.
+// IMPORTANT: This application triggers Java .jar files for advanced 
+//    execution, such as for converting between XML and JSON. 
+//    Java may require its own root CA configuration.
+define("ROOT_CA_PEM_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/third-party/root-certificates/cacert.pem"); 
+
 // Should be set to false for normal use.
 // When set to true, some scripts will add a grey box at 
 //     the end of the page with debugging onformation.
@@ -45,7 +59,6 @@ define ("DATE_TIME_PRESENT_FORMAT", "l F j\, Y g:i:s A \(T\)");
 // IMPORTANT: This must align with the OSCAL specification.
 define ("DATE_TIME_STORE_FORMAT", "Y-m-d\TH:i:s.uP");
 
-
 // DATE FORMATS
 // For date/time formats see: https://www.php.net/manual/en/datetime.createfromformat.php
 // Format for presenting date and time to users 
@@ -53,6 +66,7 @@ define ("DATE_PRESENT_FORMAT", "l F j\, Y");
 // Format for storing date and time in an OSCAL file
 // IMPORTANT: This must align with the OSCAL specification.
 define ("DATE_STORE_FORMAT", "Y-m-dP");
+
 
 /*  =====================================================  */ 
 /*  ===  USE CAUTION WHEN MODIFIYING BELOW THIS LINE  ===  */ 
@@ -67,7 +81,6 @@ define("OSCAL_LOCAL_FILES", $_SERVER['DOCUMENT_ROOT'] . "/oscal/");
 // In a shared system, put this outside the web site root directory
 // IMPORTANT: Must include trailing slash
 define("OSCAL_FORM_FILES", $_SERVER['DOCUMENT_ROOT'] . "/forms/");  
-
 
 // This array contains the list of valid OSCAL root elements as well as:
 //     - an appropriate title for each root element type; and
