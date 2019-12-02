@@ -1619,7 +1619,7 @@ function MakeDownloadButtons(&$files, $project_dir, $file_pattern, $file_label, 
 	foreach ($files as $file) {
 		$base_file_name = basename($file);
 		$ret_val .= "<tr>";
-		$ret_val .= "<td class='button' width='30%'>";
+		$ret_val .= "<td class='buttonlink' width='30%'>";
 
 		$ret_val .= "<a class='buttonlink' href='" . $project_dir . $base_file_name . "' download='" . $base_file_name . "'>";
 		$ret_val .= "<table width='100%' class='button'><tr><td class='button'>";
