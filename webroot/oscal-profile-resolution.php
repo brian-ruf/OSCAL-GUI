@@ -38,7 +38,7 @@ if ($resolved !== false) {
 		$date_label = "Resolved on";
 		$files = glob(PROJECT_LOCATION . $base_dir . "/__output/*.*");
 		if (count($files) > 0) {
-			$output = MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+			$output = MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 		}
 
 		$output .= MakeBackButton("oscal.php?mode=open&project=" . $project_id );
@@ -394,6 +394,7 @@ $valid = false;
 $with_subcontrols = false;
 $with_control = false;
 $messages = "";
+$continue = false;
 
 	if ($include_item->hasAttribute('control-id')) {
 		$valid = true;
@@ -415,26 +416,30 @@ $messages = "";
 
 	if ($valid) {
 		$id = $include_item->getAttribute($type);
-//		$messages .= ("ID: " . $id);
-		$cat_query = "//control[@id='". $id . "']";
-		$cat_control_obj = QueryList($cat_get, $cat_query); // $cat_get('XPATH')->query($cat_query);
-		if ($cat_control_obj !== false) {
-//			$messages .= "<br />-- " .  "<br />   FOUND: " . $id;
-			
-			if ($merge_as_is) {   // <merge><as-is> means to honor groups and sequencing
-								// When sequence syntax is added, must update this section.
-				if ($type == "control-id") {
+		if ($id !== "") {
+	//		$messages .= ("ID: " . $id);
+			$cat_query = "//control[@id='". $id . "']";
+			$cat_control_obj = QueryList($cat_get, $cat_query); // $cat_get('XPATH')->query($cat_query);
+			if ($cat_control_obj !== false) {
+	//			$messages .= "<br />-- " .  "<br />   FOUND: " . $id;
+				
+				if ($merge_as_is) {   // <merge><as-is> means to honor groups and sequencing
+									// When sequence syntax is added, must update this section.
 					if ($cat_control_obj->parentNode->nodeName == "group") {
 						$messages .= ($id . " UNDER GROUP\n");
 						$group_id = $cat_control_obj->parentNode->getAttribute("id");
 						if (strlen($group_id) > 0 ) {
 							$cat_group_query = "//group[@id='". $group_id . "']";
 							$cat_group = QueryList($cat_new, $cat_group_query);
+						} else {
+							$cat_group = $cat_control_obj->parentNode;
+						}
 							if ($cat_group != false) {
 //								$messages .= "<br />-- " .  "<br />FOUND GROUP IN DESTINATION (" . $group_id . ")";
 								// group found in destination. Ready to add control.
 								$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
 								$cat_group->appendChild($cat_control);
+								$continue = true;
 							} else {
 								// group not found in destination. Create it first.
 								
@@ -453,8 +458,8 @@ $messages = "";
 
 								$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
 								$cat_group->appendChild($cat_control);
+								$continue = true;
 							}
-						}
 					} elseif ($cat_control_obj->parentNode->nodeName == "control") { // This is a nested control
 						// Get the ID of the parent control (control->parentNode->getAttribute('id'))
 						// Search $cat_new for existing control
@@ -473,6 +478,7 @@ $messages = "";
 								// control found in destination. Ready to add subcontrol.
 								$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
 								$cat_parent_control->appendChild($cat_control);
+								$continue = true;
 							} else {
 								// control not found in destination. 
 								$messages .= "!! " .  "<br />CONTROL (" . $control_id . ") NOT PRESENT IN NEW CATALOG FOR SUBCONTROL (" . $id . ").\n";
@@ -487,19 +493,21 @@ $messages = "";
 						$cat_new->documentElement->appendChild($cat_control);
 						$messages .= ("AT ROOT: " . $id);
 					}
+				} else {   // NO <merge><as-is>, so just insert at end
+					$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
+					$cat_new->documentElement->appendChild($cat_control);
 				}
-			} else {   // NO <merge><as-is>, so just insert at end
-				$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
-				$cat_new->documentElement->appendChild($cat_control);
+				
+				if ($continue && ! $with_subcontrols) {  // Control without @with-subcontrols attribute, so need to remove subcontrols.
+					$removexpath = "//control[@id='" . $cat_control->getAttribute('id') . "']/control";
+					RemoveChildren($cat_new, $removexpath);
+				}
+			// if ($merge_combine == "")    // 'use-first', 'merge', 'keep'
+			} else {
+				$messages .= "<br />-- " .  "<br />   XPATH RETURNED NO RESULT for " . $cat_query;
 			}
-			
-			if ($type == "control-id" && ! $with_subcontrols) {  // Control without @with-subcontrols attribute, so need to remove subcontrols.
-				$removexpath = "//control[@id='" . $cat_control->getAttribute('id') . "']/control";
-				RemoveChildren($cat_new, $removexpath);
-			}
-		// if ($merge_combine == "")    // 'use-first', 'merge', 'keep'
 		} else {
-			$messages .= "<br />-- " .  "<br />   XPATH RETURNED NO RESULT for " . $cat_query;
+			$messages .= "<br />-- " .  "<br />   WARNING: CALL STATEMENT IS MISSING " . $type;
 		}
 	}
 	return $messages;

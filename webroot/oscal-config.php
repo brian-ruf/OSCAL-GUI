@@ -32,13 +32,12 @@ define("ROOT_CA_PEM_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/third-party/root-ce
 
 // Should be set to false for normal use.
 // When set to true, some scripts will add a grey box at 
-//     the end of the page with debugging onformation.
+//     the end of the page with debugging information.
 define("SHOW_DEBUG", true);
 
 // Should be set to false for normal use.
-// When set to true, some scripts will add a grey box at 
-//     the end of the page with debugging onformation.
-define("SHOW_ADVANCED", true);
+// Used to expose menu options with experimental functions.
+define("SHOW_ADVANCED", false);
 
 // Location of Java runtime on the host system. 
 //     Use an explicit path for security and stability; however, 

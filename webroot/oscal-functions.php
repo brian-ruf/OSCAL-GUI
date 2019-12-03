@@ -1760,7 +1760,6 @@ function check_file ($file){
 			
 			//Tell cURL where our certificate bundle is located.
 			
-			
 			if ($ch !== false) {
 				curl_setopt($ch, CURLOPT_HEADER, true);
 				curl_setopt($ch, CURLOPT_NOBODY, true);
@@ -1771,8 +1770,8 @@ function check_file ($file){
 				// Based on information found here:
 				//     https://thisinterestsme.com/php-curl-ssl-certificate-error/
 				if (ROOT_CA_PEM_LOCATION!==null && file_exists(ROOT_CA_PEM_LOCATION)) {
-					curl_setopt($ch, CURLOPT_CAINFO, $certificate);
-					curl_setopt($ch, CURLOPT_CAPATH, $certificate);
+					curl_setopt($ch, CURLOPT_CAINFO, ROOT_CA_PEM_LOCATION);
+					curl_setopt($ch, CURLOPT_CAPATH, ROOT_CA_PEM_LOCATION);
 					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true); // true = verify certificate
 				} else {
