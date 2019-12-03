@@ -1114,16 +1114,17 @@ function FindOSCALFileInDir($dir) {
 	$cntr = 0;
 	while (($file = readdir($dh)) !== false) {
 		Messages("FILE: " . $dir . $file);
-		if (filetype($dir. $file) == 'file') {
-			Messages("IS FILE");
+//		Messages("TYPE: " . filetype($dir . $file));
+//		if (filetype($dir. $file) == 'file') {
+//			Messages("IS FILE");
 			if (strtolower(right_str($file, 4)) == '.xml') {
 				Messages("IS XML FILE");
 				$xml_file_found = true; 
 				break;
 			}
-		} else {
-			Messages("IS NOT FILE");
-		}
+//		} else {
+//			Messages("IS NOT FILE");
+//		}
 		$cntr += 1;
 		if ($cntr > 100) break;
 	}
@@ -1805,6 +1806,9 @@ function check_file ($file){
 				}else{
 					$status = false;
 					Messages("NOT FOUND REMOTELY: " . $file);
+					Messages("RESPONSE: " . $code);
+					Messages("ERROR NO: " . curl_errno($ch));
+					Messages("ERROR STR: " . curl_strerror(curl_error($ch)));
 					Messages("ERRORS: " . curl_error($ch));
 				}
 				curl_close($ch);
