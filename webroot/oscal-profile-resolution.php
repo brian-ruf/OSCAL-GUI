@@ -36,7 +36,7 @@ if ($resolved !== false) {
 		$file_pattern = $output_file_name;
 		$file_label = "DOWNLOAD RESOLVED PROFILE";
 		$date_label = "Resolved on";
-		$files = glob(PROJECT_LOCATION . $base_dir . "/__output/*.*");
+		$files = glob(PROJECT_LOCATION . $base_dir . "/__output/*.xml");
 		if (count($files) > 0) {
 			$output = MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 		}

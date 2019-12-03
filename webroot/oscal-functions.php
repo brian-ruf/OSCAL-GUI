@@ -1786,6 +1786,7 @@ function check_file ($file){
 					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
 				}
 				curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 				curl_exec($ch);
 				$code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
