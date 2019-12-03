@@ -943,7 +943,7 @@ function SetLastModified($oscal){
 				$last_modified_object->item(0)->nodeValue = $last_modified;
 			}
 		} else {
-			Logging("No metadata!");
+			Messages("No metadata!");
 		}
 	}
 }
@@ -988,7 +988,7 @@ function SetTitle($oscal, $title, $append=false){
 				}
 			}
 		} else {
-			Logging("No metadata!");
+			Messages("No metadata!");
 		}
 	}
 }
@@ -1103,20 +1103,26 @@ function UpdateOSCALValidationFiles() {
 		$ret_val .= "Attempted on ". date("Y-m-d   h:i:sa") . " " . date_default_timezone_get() . "<br/ >";
 	}
 	
-	return $ret_val;
+	return $ret_val . OutputMessages();
 }
 
 // ----------------------------------------------------------------------------
 function FindOSCALFileInDir($dir) {
+	Messages("FIND FILE IN: " . $dir);
 	$xml_file_found = false;
 	$dh = opendir($dir);
 	$cntr = 0;
 	while (($file = readdir($dh)) !== false) {
-		if (filetype($dir . "/" . $file) == 'file') {
+		Messages("FILE: " . $dir . $file);
+		if (filetype($dir. $file) == 'file') {
+			Messages("IS FILE");
 			if (strtolower(right_str($file, 4)) == '.xml') {
+				Messages("IS XML FILE");
 				$xml_file_found = true; 
 				break;
 			}
+		} else {
+			Messages("IS NOT FILE");
 		}
 		$cntr += 1;
 		if ($cntr > 100) break;
@@ -1750,7 +1756,7 @@ function check_file ($file){
         if ( file_exists($file) ){
             $status = true;
         } else {
-			Logging("NOT FOUND LOCALLY: " . $file);
+			Messages("NOT FOUND LOCALLY: " . $file);
 		}
     }
 
@@ -1798,15 +1804,15 @@ function check_file ($file){
 					$status = true;
 				}else{
 					$status = false;
-					Logging("NOT FOUND REMOTELY: " . $file);
-					Logging("ERRORS: " . curl_error($ch));
+					Messages("NOT FOUND REMOTELY: " . $file);
+					Messages("ERRORS: " . curl_error($ch));
 				}
 				curl_close($ch);
 			} else {
-				Logging("CURL ERROR OPENING: " . $file);
+				Messages("CURL ERROR OPENING: " . $file);
 			}
 		} else {
-			Logging("INVALID URL: " . $file);
+			Messages("INVALID URL: " . $file);
 		}
     }
     return $status;
@@ -1853,17 +1859,22 @@ function recurse_array($values){
     }
     return $content;
 }
-
+// ----------------------------------------------------------------------------
 function Messages($content){
 	global $messages;
 
 	if (function_exists('Logging')) {
-		Logging($messages);
-		$messages = "";
-	} else {
-		$messages .= "\n-- " . $content . "<br />";	
+		Logging($content);
+//		$messages = "";
 	}
-	
+	$messages .= "\n-- " . $content . "<br />";	
+}
+
+// ----------------------------------------------------------------------------
+function OutputMessages(){
+	global $messages;
+
+	return "<pre>" . $messages . "</pre>";
 }
 
 // ----------------------------------------------------------------------------
