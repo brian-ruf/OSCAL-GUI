@@ -1779,31 +1779,21 @@ function check_file ($file){
 				if (ROOT_CA_PEM_LOCATION!==null && file_exists(ROOT_CA_PEM_LOCATION)) {
 					curl_setopt($ch, CURLOPT_CAINFO, ROOT_CA_PEM_LOCATION);
 					curl_setopt($ch, CURLOPT_CAPATH, ROOT_CA_PEM_LOCATION);
-					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true); // true = verify certificate
-				} else {
 					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
-					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // talse = do not verify certificate
+				} else {
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // false = do not verify certificate
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
 				}
-				// 
-				// !! The following two lines can override SSL validity checking.
-				// !! They are currently configured to allow the connection as long
-				// !! the actual host name matches the host name in the certificate;
-				// !! however, the root CA signature is not verified because cURL 
-				// !! does not recognize it "out of the box". 
-				//
-				// !! For better connection integrity, install the proper 
-				// !! certificatesin the php.ini file as described at the link
-				// !! below, and set CURLOPT_SSL_VERIFYPEER to true below.
-				//
-				
-
+				curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
 				curl_exec($ch);
 				$code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
 				if($code == 200){
 					$status = true;
-				}else{
+//				} elseif ($code=302) { // try proxy
+					
+				} else {
 					$status = false;
 					Messages("NOT FOUND REMOTELY: " . $file);
 					Messages("RESPONSE: " . $code);
