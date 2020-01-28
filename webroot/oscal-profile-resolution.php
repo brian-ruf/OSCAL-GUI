@@ -356,7 +356,7 @@ function ModifyParameters(&$cat_new, &$profile) {
 	global $messages;
 	$status = false;
 	
-	$query_parameter_set = "//modify/set";
+	$query_parameter_set = "//modify/set-parameter";
 	$profile_set_list = QueryListResult($profile, $query_parameter_set);
 	foreach ($profile_set_list as $param_set) { // cycles through each <set> tag
 		$param_id = $param_set->getAttribute('param-id');
