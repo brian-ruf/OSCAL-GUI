@@ -14,6 +14,7 @@
 // ==  Other XML Functions
 // ==  UI Generation Functions
 // ==  Form Helper Functions
+// ==  Project Management Functions
 // ==  Miscellaneous Helper Functions
 
 require_once('oscal-config.php');
@@ -1654,6 +1655,24 @@ function MakeDownloadButtons(&$files, $project_dir, $file_pattern, $file_label, 
 }
 
 // ============================================================================
+// ==  Project Management Functions
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Accepts a project ID and returns the locaiton of the XML file.
+// For now, this is a simple path creation; however, it is intended to allow
+//    for other forms of mapping project IDs to project file locations. This 
+//    may be desirable for security purposes.
+// ----------------------------------------------------------------------------
+function ProjectID2File($project_id) {
+	
+	$project_dir = PROJECT_LOCATION . $project_id;
+	
+	
+}
+
+
+// ============================================================================
 // ==  Miscellaneous Helper Functions
 // ============================================================================
 
@@ -1689,14 +1708,8 @@ return $ret_val;
 // This converts a path to a URI. 
 function MakeURI($path) {
 
-// ************ 
-//	if (RunningOnWindows()) {
-		$bad  = array( " ",  "\\");
-		$good = array("%20", "/");
-//	} else { // Assume Linux or linux-friendly (like Mac OS)
-//		$bad  = array(" ");
-//		$good = array("%20" );
-//	}
+	$bad  = array( " ",  "\\");
+	$good = array("%20", "/");
 	
 	$ret_val = str_replace($bad, $good, $path);
 	if (substr($ret_val, 0, 2) == "//") {
@@ -1720,8 +1733,8 @@ function RunningOnWindows() {
 	//By default, we assume that PHP is NOT running on windows.
 	$isWindows = false;
 	 
-	// If the first three characters PHP_OS are equal to "WIN",
-	// then PHP is running on a Windows operating system.
+	// If the first three characters of PHP_OS are equal to "WIN",
+	//    then PHP is running on a Windows operating system.
 	if(strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0){
 		$isWindows = true;
 	}
@@ -1750,6 +1763,30 @@ return $ret_val;
 }
 
 // ----------------------------------------------------------------------------
+// Receives a file name or URI, and verifies its existence.
+//    If it does not appear to be a URI (no "//"), it assumes $file is local to
+//       the web server, and checks using PHP's file_exists function.
+//    Otherwise, it assumes $file is a URI, and uses cURL to verify its
+//       existence.
+// 
+// NOTE: If the URI uses a secure protocol (https), cURL will attempt to 
+//     validate the certificate by default; however, there is no list of trusted 
+//     root CAs "out of the box". Trusted root CAs may be provided via a PEM file.
+//     The code below will attempt to validate certificates if:
+//          1.) ROOT_CA_PEM_LOCATION is defined in oscal-config; and
+//          2.) The file specified by ROOT_CA_PEM_LOCATION is found
+// 
+// NOTE: If cerificate validation is enabled (by providing/specifiying the PEM 
+//     file above), the host's certificate must be valid. Invalid (expired,
+//     unsigned, etc.)certificates will be treated the same as if the file does
+//     not exist.
+// NOTE: If root CA checking is NOT enabled, cURL will only ensure the host name
+//     on the certificae matches the actual host name.
+//
+// RETURNS: 
+//   true - if the file is found (with a valid host certificate when appropriate)
+//   false - if the file is not found (or a host certificate is invalid)
+// 
 function check_file ($file){
 	$status = false;
 	
@@ -1759,9 +1796,7 @@ function check_file ($file){
         } else {
 			Messages("NOT FOUND LOCALLY: " . $file);
 		}
-    }
-
-    else {
+    } else {
 		if ( ! (!$file || !is_string($file) || ! preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $file))) {
 			$ch = curl_init($file);
 			

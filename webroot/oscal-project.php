@@ -7,9 +7,9 @@ require_once('oscal-begin.php');
 require_once("oscal-zones.php");
 require_once('oscal-functions.php');
 
-// NOTE: **** ADD OPTION IN oscal-begin.php TO OPEN BLANK 
-//            FILES: CATALOG AND PROFILE FOR NOW. 
-//                   SSP AND OTHERS LATER.
+// NOTE: **** ADD OPTION TO OPEN BLANK FILES.
+//            CATALOG, PROFILE, and SSP FOR NOW. 
+//                   OTHERS LATER.
 
 // Initialize Variables
 $status = false;
@@ -30,7 +30,6 @@ if (file_exists(PROJECT_LOCATION)) {
 		Logging("Problem creating project repository:<br />&nbsp;&nbsp;&nbsp;" . PROJECT_LOCATION);
 	}
 }
-
 
 $mode = $_GET["mode"];
 Logging("PROJECT MODE: " . $mode);
@@ -134,7 +133,7 @@ $output = "";
 // $table_format = "border: 1px solid black; padding: 5px; spacing: 5px; border-bottom: 1px solid #ddd;";
 $table_format = "border: 0; padding: 5px; spacing: 5px; border-bottom: 1px solid #ddd;";
 
-	if (! isset($_SESSIONp["project_list"])) {
+	if (! isset($_SESSION["project_list"])) {
 		GatherProjectList();
 	}
 	$project_list = $_SESSION["project_list"];

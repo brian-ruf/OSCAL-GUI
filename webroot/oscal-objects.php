@@ -9,29 +9,46 @@
 
 require_once('oscal-config.php');
 
+/*
+if (isset($_SESSION["OSCAL-OBJECTS"]) && !empty($_SESSION["OSCAL-OBJECTS"]) ) {
+	$oscal_objs = $_SESSION["OSCAL-OBJECTS"];
+} else {
+	$oscal_objs = array();
+}
+*/
+
+
 // ============================================================================
 // ==  OSCAL Class Definition (EXPERIMENTAL)
 // ============================================================================
-// When instantiating this class, one argument must be passed.
-//    This class will first check to see if the argument is a recognized OSCAL
-//       root file. If not, it will check to see if it is a recognized project
-//       ID. If not, it will check to see if it is a valid XML file name.
+// When instantiating this class, one argument must be passed ($spec).
+//    $spec may be one of the following:
+//       -- If $spec is a recognized OSCAL root element, this class will create
+//          and a new OSCAL object with an "empty" OSCAL file.
+//       -- (FUTURE) If $spec is a recognized project ID, this class will
+//          open the XML file associated with the project ID. (NOT IMPLEMENTED)
+//       -- If $spec is the name of of a valid XML file, this class will 
+//          attempt to open the XML file.
+//
+// RETURNS: 
+//    if $spec is valid, returns an OSCAL object with status = true.
+//    if $spec is not valid, returns an OSCAL object with status = false.
+//
+// ORDER OF PROCESSING:
+//    This class will first check to see if the argument is a recognized 
+//       OSCAL root element name. 
+//       If not, it will check to see if it is a recognized project ID (FUTURE).
+//       If not, it will check to see if it is a valid XML file name.
 // 
-// -- If the argument is the name of a recognized OSCAL root element, this class
-//       will create and return a new OSCAL object with an "empty" OSCAL file.
-// -- (FUTURE) If the arugment is a recognized project ID, this class will open the XML 
-//       file associated with that ID.
-// -- If the argument is the name of of a valid XML file, this class will 
-//       attempt to open the XML file.
-// -- If none of the above are valid, the class will return null.
 //
 // NOTE: An "empty" OSCAL file minimally contains the root element, metadata, 
 //       backmatter, and place-holders for certain required elements, such as 
-//       //metadata/title and //metadata/oscal-version, and assigns the 
+//       //metadata/title and //metadata/oscal-version. It also assigns the 
 //       OSCAL name spece anda unique UUID to the @id attrbute at the root.
 class OSCAL {
 	// Member variables 
 	var $project_id;
+	var $processing_id;
 	var $file_name; // includes full path to file
 	var $file_base_name;
 	var $title;
@@ -56,6 +73,7 @@ class OSCAL {
 	//     If $spec is missing or invalid, $this->status is false.
 	function __construct($spec, $create=false) {
 		$this->project_id = "";
+		$this->processing_id = com_create_guid();
 		$this->file_name = ""; // includes full path to file
 		$this->file_base_name = "";
 		$this->title = "";
@@ -72,19 +90,16 @@ class OSCAL {
 
 		// check $spec for valid OSCAL root type
 		if ( isset($oscal_roots[$spec]) ) {
+			$this->messages->Messages("RECOGNIZED OSCAL TYPE: " . $spec);
 			$this->recognized = true;
-			$this->type = $oscal_roots[$this->root_element]["title"];
-			$this->schema_file = OSCAL_LOCAL_FILES . $oscal_roots[$this->root_element]["files"]["schema"]["local_file"];
-			$this->messages->Messages("RECOGNIZED OSCAL TYPE: " . $this->type);
-			$this->root_element = $spec;
-			// ******** NOT COMPLETE
-			// if valid, create new OSCAL file
+			$this->Create($spec);
 		} else {
 			$this->recognized = false;
 			$this->status = false;
+			$this->messages->Messages("NOT A RECOGNIZED OSCAL TYPE: " . $spec);
 		}
 		
-		// Check for valid project ID
+		// Check for valid project ID [FUTURE]
 		if (! $this->recognized && false){
 			// ******** Need to create
 			// Get file name from ID
@@ -176,11 +191,10 @@ class OSCAL {
 			$this->status = false;
 		}
 
-		// If everything went well, populate an array with return values.
-		// Otherwise, populate an array with error information.
+		// If problems, raise error messages.
 		if (! $this->status) {
-
-			$this->messages->PrependMessages("<span style='font-weight:bold; color:red;'>UNABLE TO OPEN:</span> " . $this->oscalfile);
+			$messages = "<span style='font-weight:bold; color:red;'>UNABLE TO OPEN:</span> " . $oscalfile;
+			$this->messages->PrependMessages($messages);
 			if ( function_exists('ZoneOutputAppend') ) {
 				ZoneOutputAppend($messages, 'zone-three');
 			}
@@ -190,19 +204,21 @@ class OSCAL {
 
 	// ----------------------------------------------------------------------------
 	public function Transform($xslt_file_name){
-	var $ret_val;
-	var $status = false;
+//		var $ret_val;
+//		var $status = false;
+		$ret_val = false;;
+		$status = false;
 		
 		if ($file_name !== "") {
 			$status = true;
 		} else { 
-			$ret_val = "*** NO XSLT FILE SPECIFIED ***"
+			$ret_val = "*** NO XSLT FILE SPECIFIED ***";
 			$this->messages->Debug($ret_val);
 		}
 
 		if ( $status && file_exists($file_name)) {
 		} else { 
-			$ret_val = "*** XSLT FILE NOT FOUND (" . $file_name . ") ***"
+			$ret_val = "*** XSLT FILE NOT FOUND (" . $file_name . ") ***";
 			$this->messages->Debug(" ---- FILE SAVED! ---- ");
 			$this->messages->Debug($ret_val);
 		}
@@ -213,7 +229,7 @@ class OSCAL {
 			$proc->importStyleSheet($xslt_file_name);
 
 			$tmpcntr = 0;
-			$ret_val = $proc->transformToXML(this->$dom);
+			$ret_val = $proc->transformToXML($this->dom);
 			if ( $ret_val === false) {
 				$ret_val = "Could not transform. Problem applying XSLT to XML.<br/>";
 				$this->messages->Debug($ret_val);
@@ -231,7 +247,7 @@ class OSCAL {
 		if ($file_name == "") {
 			$file_name = $this->file_name;
 		}
-		$this->SetLastModified()
+		$this->SetLastModified();
 		$this->status = $this->dom->Save($file_name);
 		if ($this->status) {
 			$this->messages->Debug(" ---- FILE SAVED! ---- ");
@@ -357,6 +373,20 @@ class OSCAL {
 		global $oscal_roots; // from oscal-config.php
 		$this->status = false;
 
+
+		$this->recognized = true;
+		$this->type = $oscal_roots[$spec]["title"];
+		$this->schema_file = OSCAL_LOCAL_FILES . $oscal_roots[$oscalroot]["files"]["schema"]["local_file"];
+		$this->messages->Messages("CREATING XML FILE IN MEMORY: " . $this->type);
+		$this->root_element = $oscalroot;
+		$this->title = $oscal_roots[$oscalroot]["title"];
+		$this->namespace_explicit = "";
+		$this->schema_map = array();
+		$this->schema_flat_map = array();
+		$this->recognized = false;
+
+
+
 		$this->namespace_alias = "oscal";
 		$date = new DateTime('NOW');
 		$oscal_id = com_create_guid();// "-" . $date->format('Y-m-d--H-i-s');
@@ -374,6 +404,8 @@ class OSCAL {
 
 		$this->status = true;
 		$this->filename = "";
+		$this->file_base_name = "";
+		$this->project_id = "";
 		$this->root_element = $oscalroot;
 		$this->dom->formatOutput = true;		
 
@@ -436,6 +468,54 @@ class OSCAL {
 		return $this->title;
 	}
 	
+	// ----------------------------------------------------------------------------
+	public function GetBasicMetadata($refresh=false){
+		$ret_val = array();
+		$ret_val['status'] = true;
+		$ret_val['file'] = "";
+
+		// Get title
+		$result = $this->Query(OSCAL_METADATA_TITLE);
+		if ($result === false || $result->item(0)->nodeValue == "") {
+			$ret_val['title'] = "[NO TITLE]";
+		} else {
+			$ret_val['title'] = $result->item(0)->nodeValue;
+		}
+
+		// Get document formal publication date
+		$result = $this->Query(OSCAL_METADATA_DATE);
+		if ($result === false || $result->item(0)->nodeValue == "") {
+			$ret_val['date'] = "";
+		} else {
+			$ret_val['date'] = $result->item(0)->nodeValue;
+		}
+
+		// Get document last modified date
+		$result = $this->Query(OSCAL_METADATA_LAST_MODIFIED);
+		if ($result === false || $result->item(0)->nodeValue == "") {
+			$ret_val['last-modified'] = "";
+		} else {
+			$ret_val['last-modified'] = $result->item(0)->nodeValue;
+		}
+
+		// Get document version
+		$result = $this->Query(OSCAL_METADATA_VERSION);
+		if ($result === false || $result->item(0)->nodeValue == "") {
+			$ret_val['version'] = "";
+		} else {
+			$ret_val['version'] = $result->item(0)->nodeValue;
+		}
+
+		// Get markings
+		$result = $this->Query(OSCAL_METADATA_SENSITIVITY_LABEL);
+		if ($result === false || $result->item(0)->nodeValue == "") {
+			$ret_val['label'] = "";
+		} else {
+			$ret_val['label'] = $result->item(0)->nodeValue;
+		}
+
+		return $ret_val;
+	}
 }
 
 // A class to collect messages during a processing event, where 

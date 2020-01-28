@@ -12,9 +12,8 @@
         <description><p>This generates the FedRAMP Control Information Summary.</p></description>
         <author>Brian J. Ruf, CISSP, CCSP, PMP</author>
         <last-modified>2019-11-12Z</last-modified>
-        <required-roots>
-            <root>system-security-plan</root>
-        </required-roots>
+        <oscal-required root='system-security-plan'/>
+        <function type='display'/>
     </meta:metadata>
 
     <xsl:output indent="yes"
@@ -34,10 +33,10 @@
         <html>
             <head>
                 <xsl:if test="boolean($csp-short-name)">
-                    <title><xsl:value-of select="$csp-short-name"/> FedRAMP CIS</title>
+                    <title><xsl:value-of select="$csp-short-name"/>FedRAMP CIS</title>
                 </xsl:if>
                 <xsl:if test="not(boolean($csp-short-name))">
-                    <title><xsl:value-of select="$csp-name"/> FedRAMP CIS</title>
+                    <title><xsl:value-of select="$csp-name"/>FedRAMP CIS</title>
                 </xsl:if>
                 <link rel="stylesheet" type="text/css" media="all" href="fedramp.css"/>
             </head>

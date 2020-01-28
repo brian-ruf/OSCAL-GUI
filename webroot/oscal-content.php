@@ -5,6 +5,7 @@ ignore_user_abort(true);
 
 require_once('oscal-begin.php');
 require_once("oscal-zones.php");
+require_once('oscal-objects.php');
 require_once('oscal-functions.php');
 
 // Initialize Variables
@@ -63,13 +64,18 @@ global $project_file, $project_id;
 		$project_id = $project_dir;
 		$project_folder = PROJECT_LOCATION . $project_dir . "/";
 		$project_file = $project_dir . "/" . FindOSCALFileInDir(PROJECT_LOCATION . $project_dir . "/");
+		$file_oscal_obj = new OSCAL(PROJECT_LOCATION . $project_file);
+		
 
-		$type = GetOSCALType(PROJECT_LOCATION . $project_file, $project_id);
-		$rootname = GetOSCALRoot(PROJECT_LOCATION . $project_file, $project_id);
+//		$type = GetOSCALType(PROJECT_LOCATION . $project_file, $project_id);
+		$type = $file_oscal_obj->type;
+//		$rootname = GetOSCALRoot(PROJECT_LOCATION . $project_file, $project_id);
+		$rootname = $file_oscal_obj->root_element;
 
-		$metadata = GetBasicMetadata(PROJECT_LOCATION . $project_file, $project_id);
+//		$metadata = GetBasicMetadata(PROJECT_LOCATION . $project_file, $project_id);
+		$metadata = $file_oscal_obj->GetBasicMetadata();
 
-		if ($metadata['status']) {
+//		if ($metadata['status']) {
 			$title_output = $metadata['title'];
 			$title_hover_output = "";
 
@@ -88,9 +94,9 @@ global $project_file, $project_id;
 			}
 			
 			ZoneOutput("<span style='color: red; font-weight: bold; font-size:1.2em' title='" . $title_hover_output . "'>" . $title_output . "</span>", 'header-additional');
-		} else {
-			ZoneOutput($metadata['title'], 'header-additional');
-		}
+//		} else {
+//			ZoneOutput($metadata['title'], 'header-additional');
+//		}
 		ZoneAdjust("text-align: center; height:1000px; max-height:1000px;", "zone-two-left");
 		ZoneAdjust("text-align: center; height:1000px; max-height:1000px;", "zone-two-right");
 
