@@ -5,6 +5,7 @@ ignore_user_abort(true);
 
 require_once('oscal-begin.php');
 require_once("oscal-zones.php");
+require_once('oscal-objects.php');
 require_once('oscal-functions.php');
 
 // Initialize Variables
@@ -24,13 +25,7 @@ switch($mode) {
 	case 'catalog':
 		HandleCatalog($_GET["project"]);
 		break;
-	case 'catalog-metadata':
-		HandleForm($_GET["file"], "catalog-metadata");
-		break;
-	case 'catalog-party':
-		HandleForm($_GET["file"], "catalog-party");
-		break;
-	case 'mods':
+	case 'profile':
 		HandleProfile($_GET["project"]);
 		break;
 //	case 'ssp':
@@ -69,13 +64,18 @@ global $project_file, $project_id;
 		$project_id = $project_dir;
 		$project_folder = PROJECT_LOCATION . $project_dir . "/";
 		$project_file = $project_dir . "/" . FindOSCALFileInDir(PROJECT_LOCATION . $project_dir . "/");
+		$file_oscal_obj = new OSCAL(PROJECT_LOCATION . $project_file);
+		
 
-		$type = GetOSCALType(PROJECT_LOCATION . $project_file, $project_id);
-		$rootname = GetOSCALRoot(PROJECT_LOCATION . $project_file, $project_id);
+//		$type = GetOSCALType(PROJECT_LOCATION . $project_file, $project_id);
+		$type = $file_oscal_obj->type;
+//		$rootname = GetOSCALRoot(PROJECT_LOCATION . $project_file, $project_id);
+		$rootname = $file_oscal_obj->root_element;
 
-		$metadata = GetBasicMetadata(PROJECT_LOCATION . $project_file, $project_id);
+//		$metadata = GetBasicMetadata(PROJECT_LOCATION . $project_file, $project_id);
+		$metadata = $file_oscal_obj->GetBasicMetadata();
 
-		if ($metadata['status']) {
+//		if ($metadata['status']) {
 			$title_output = $metadata['title'];
 			$title_hover_output = "";
 
@@ -94,9 +94,9 @@ global $project_file, $project_id;
 			}
 			
 			ZoneOutput("<span style='color: red; font-weight: bold; font-size:1.2em' title='" . $title_hover_output . "'>" . $title_output . "</span>", 'header-additional');
-		} else {
-			ZoneOutput($metadata['title'], 'header-additional');
-		}
+//		} else {
+//			ZoneOutput($metadata['title'], 'header-additional');
+//		}
 		ZoneAdjust("text-align: center; height:1000px; max-height:1000px;", "zone-two-left");
 		ZoneAdjust("text-align: center; height:1000px; max-height:1000px;", "zone-two-right");
 
@@ -146,8 +146,10 @@ global $project_file, $project_id;
 //						["text" => "System Characteristics", "img" => "./img/screen.png",     "action" => "zoneManagement(\"oscal-content.php?mode=sspchar&project=" . urlencode($project_id) . "\", \"_self\")"],
 //						["text" => "Control Implementation", "img" => "./img/lock.png",       "action" => "zoneManagement(\"oscal-content.php?mode=ssp&project=" . urlencode($project_id) . "\", \"_self\")"],
 //						["text" => "Manage Resources",       "img" => "./img/infinity.png",   "action" => "zoneManagement(\"oscal-content.php?mode=resources&project=" . urlencode($project_id) . "\", \"_self\")"]
-						["text" => "Create JSON",            "img" => "./img/wheel.png",      "action" => "zoneManagement(\"oscal-create-json.php?project=" . urlencode($project_id) . "\", \"_self\")"],
-						["text" => "Go Back",                "img" => "./img/arrow-left.png", "action" => "window.open(\"oscal.php?mode=continue\", \"_self\")"]
+						["text" => "Control Information Summary (CIS)",    "img" => "./img/eye.png",        "action" => "zoneManagement(\"oscal-content.php?mode=cis&project=" . urlencode($project_id) . "\", \"_self\")"],
+						["text" => "Customer Responsibility Matrix (CRM)", "img" => "./img/eye.png",        "action" => "zoneManagement(\"oscal-content.php?mode=crm&project=" . urlencode($project_id) . "\", \"_self\")"],
+						["text" => "Create JSON",                          "img" => "./img/wheel.png",      "action" => "zoneManagement(\"oscal-create-json.php?project=" . urlencode($project_id) . "\", \"_self\")"],
+						["text" => "Go Back",                              "img" => "./img/arrow-left.png", "action" => "window.open(\"oscal.php?mode=continue\", \"_self\")"]
 						);
 				ZoneOutputAppend(MakeMenu($buttons), 'zone-two-left');
 				ZoneOutputAppend(DisplayFiles($metadata), 'zone-two-right');
@@ -221,7 +223,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Last Edited";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	$current_file_timestamp = filemtime($files[0]);
-	$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+	$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 
 
 	// =================
@@ -232,7 +234,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Uploaded";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) === 1 && $current_file_timestamp !== filemtime($files[0])) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 	} 
 
 	$project_dir = $project_id . "/__other_formats/";
@@ -241,7 +243,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Reflects content as of";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	$project_dir = $project_id . "/__output/";
@@ -250,7 +252,7 @@ function DisplayFiles($metadata) {
 	$date_label = "Generated";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	$project_dir = $project_id . "/__resources/";
@@ -259,7 +261,7 @@ function DisplayFiles($metadata) {
 	$date_label = "";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	return $ret_val;

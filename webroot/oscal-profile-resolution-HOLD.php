@@ -36,7 +36,7 @@ if ($resolved !== false) {
 		$file_pattern = $output_file_name;
 		$file_label = "DOWNLOAD RESOLVED PROFILE";
 		$date_label = "Resolved on";
-		$files = glob(PROJECT_LOCATION . $base_dir . "/__output/*.xml");
+		$files = glob(PROJECT_LOCATION . $base_dir . "/__output/*.*");
 		if (count($files) > 0) {
 			$output = MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 		}
@@ -356,7 +356,7 @@ function ModifyParameters(&$cat_new, &$profile) {
 	global $messages;
 	$status = false;
 	
-	$query_parameter_set = "//modify/set-parameter";
+	$query_parameter_set = "//modify/set";
 	$profile_set_list = QueryListResult($profile, $query_parameter_set);
 	foreach ($profile_set_list as $param_set) { // cycles through each <set> tag
 		$param_id = $param_set->getAttribute('param-id');
@@ -425,41 +425,62 @@ $continue = false;
 				
 				if ($merge_as_is) {   // <merge><as-is> means to honor groups and sequencing
 									// When sequence syntax is added, must update this section.
+					
+					// For the identified control in the source catalog,
+					//    identify the ancestors all the way up to the top
+					//    of the tree (//catalog).
+/*					
+					$cat_parent = $cat_control_obj->parentNode;
+					$cat_ancestor_list = array();
+					while ($cat_parent->nodeName !== "catalog") {
+						$cat_parent_title_obj = $cat_parent->getElementsByTagName("title");
+						if ($cat_parent_title_obj->length > 0) {
+							
+						}
+						$cat_ancestor_list[] = array('nodeName' => $cat_parent->nodeName, 'id' => $cat_parent->getAttribute("id"), )
+						$cat_parent = $cat_parent->parentNode;
+					}
+*/					
+					// Starting at root, check for each existence of each 
+					//    ancestor and add to the new file if necessary.
 					if ($cat_control_obj->parentNode->nodeName == "group") {
 						$messages .= ($id . " UNDER GROUP\n");
 						$group_id = $cat_control_obj->parentNode->getAttribute("id");
+/*
 						if (strlen($group_id) > 0 ) {
 							$cat_group_query = "//group[@id='". $group_id . "']";
 							$cat_group = QueryList($cat_new, $cat_group_query);
 						} else {
 							$cat_group = $cat_control_obj->parentNode;
 						}
-							if ($cat_group != false) {
+*/
+						$cat_group = $cat_control_obj->parentNode;
+						if ($cat_group != false) {
 //								$messages .= "<br />-- " .  "<br />FOUND GROUP IN DESTINATION (" . $group_id . ")";
-								// group found in destination. Ready to add control.
-								$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
-								$cat_group->appendChild($cat_control);
-								$continue = true;
-							} else {
-								// group not found in destination. Create it first.
-								
-								// Importing group elements with attributes (typically @class and @id), but no child nodes
+							// group found in destination. Ready to add control.
+							$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
+							$cat_group->appendChild($cat_control);
+							$continue = true;
+						} else {
+							// group not found in destination. Create it first.
+							
+							// Importing group elements with attributes (typically @class and @id), but no child nodes
 //								$messages .= "<br />-- " .  "<br />ADDING GROUP (" . $group_id . ") IN NEW CATALOG";
-								$cat_group = $cat_new['DOM']->importNode($cat_control_obj->parentNode, false);
-								$cat_new['DOM']->documentElement->appendChild($cat_group);
-								
-								// Getting Group Title, by finding the nodeValue of the group's title child node.
-								$cat_group_new = QueryList($cat_new, $cat_group_query);
+							$cat_group = $cat_new['DOM']->importNode($cat_control_obj->parentNode, false);
+							$cat_new['DOM']->documentElement->appendChild($cat_group);
+							
+							// Getting Group Title, by finding the nodeValue of the group's title child node.
+							$cat_group_new = QueryList($cat_new, $cat_group_query);
 
-								$cat_group_title_query = "//group[@id='". $group_id . "']/title";
-								$group_title = QueryOneItem($cat_get, $cat_group_title_query);
-								$group_title_obj = $cat_new['DOM']->createElement('title', $group_title);
-								$cat_group_new->appendChild($group_title_obj);
+							$cat_group_title_query = "//group[@id='". $group_id . "']/title";
+							$group_title = QueryOneItem($cat_get, $cat_group_title_query);
+							$group_title_obj = $cat_new['DOM']->createElement('title', $group_title);
+							$cat_group_new->appendChild($group_title_obj);
 
-								$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
-								$cat_group->appendChild($cat_control);
-								$continue = true;
-							}
+							$cat_control = $cat_new['DOM']->importNode($cat_control_obj, true);
+							$cat_group->appendChild($cat_control);
+							$continue = true;
+						}
 					} elseif ($cat_control_obj->parentNode->nodeName == "control") { // This is a nested control
 						// Get the ID of the parent control (control->parentNode->getAttribute('id'))
 						// Search $cat_new for existing control

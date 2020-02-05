@@ -1206,7 +1206,7 @@
                             "flags": {
                                 "0": {
                                     "name": "control-id",
-                                    "required": false,
+                                    "required": true,
                                     "datatype": "NCName",
                                     "formal-name": "Control ID",
                                     "description": "Value of the 'id' flag on a target control"
@@ -1284,7 +1284,7 @@
                             "flags": {
                                 "0": {
                                     "name": "control-id",
-                                    "required": false,
+                                    "required": true,
                                     "datatype": "NCName",
                                     "formal-name": "Control ID",
                                     "description": "Value of the 'id' flag on a target control"
@@ -4260,7 +4260,7 @@
                                                             "flags": {
                                                                 "0": {
                                                                     "name": "control-id",
-                                                                    "required": false,
+                                                                    "required": true,
                                                                     "datatype": "NCName",
                                                                     "formal-name": "Control ID",
                                                                     "description": "Value of the 'id' flag on a target control"
@@ -4325,7 +4325,7 @@
                                                     "flags": {
                                                         "0": {
                                                             "name": "control-id",
-                                                            "required": false,
+                                                            "required": true,
                                                             "datatype": "NCName",
                                                             "formal-name": "Control ID",
                                                             "description": "Value of the 'id' flag on a target control"
@@ -4390,7 +4390,7 @@
                                             "flags": {
                                                 "0": {
                                                     "name": "control-id",
-                                                    "required": false,
+                                                    "required": true,
                                                     "datatype": "NCName",
                                                     "formal-name": "Control ID",
                                                     "description": "Value of the 'id' flag on a target control"
@@ -4455,7 +4455,7 @@
                                     "flags": {
                                         "0": {
                                             "name": "control-id",
-                                            "required": false,
+                                            "required": true,
                                             "datatype": "NCName",
                                             "formal-name": "Control ID",
                                             "description": "Value of the 'id' flag on a target control"
@@ -4520,7 +4520,7 @@
                             "flags": {
                                 "0": {
                                     "name": "control-id",
-                                    "required": false,
+                                    "required": true,
                                     "datatype": "NCName",
                                     "formal-name": "Control ID",
                                     "description": "Value of the 'id' flag on a target control"
@@ -4767,474 +4767,6 @@
                             "content": null,
                             "formal-name": "Link",
                             "description": "A reference to a local or remote resource"
-                        },
-                        "part": {
-                            "name": "part",
-                            "path": "\/\/profile\/modify\/set\/part",
-                            "position": 6,
-                            "required": false,
-                            "multiple": true,
-                            "holds_data": true,
-                            "datatype": "prose",
-                            "flags": {
-                                "0": {
-                                    "name": "id",
-                                    "required": false,
-                                    "datatype": "string",
-                                    "formal-name": "Identifier",
-                                    "description": "Unique identifier of the containing object"
-                                },
-                                "1": {
-                                    "name": "name",
-                                    "required": true,
-                                    "datatype": "NCName",
-                                    "formal-name": "Name",
-                                    "description": "Identifying the purpose and intended use of the property, part or other object."
-                                },
-                                "2": {
-                                    "name": "ns",
-                                    "required": false,
-                                    "datatype": "string",
-                                    "formal-name": "Namespace",
-                                    "description": "A namespace qualifying the name."
-                                },
-                                "3": {
-                                    "name": "class",
-                                    "required": false,
-                                    "datatype": "NCName",
-                                    "formal-name": "Class",
-                                    "description": "Indicating the type or classification of the containing object"
-                                }
-                            },
-                            "content": null,
-                            "formal-name": "Part",
-                            "description": "A partition or component of a control or part",
-                            "model": {
-                                "title": {
-                                    "name": "title",
-                                    "path": "\/\/profile\/modify\/set\/part\/title",
-                                    "position": 0,
-                                    "required": false,
-                                    "multiple": false,
-                                    "holds_data": true,
-                                    "datatype": "mixed",
-                                    "flags": {},
-                                    "content": null,
-                                    "formal-name": "Title",
-                                    "description": "A title for display and navigation"
-                                },
-                                "prop": {
-                                    "name": "prop",
-                                    "path": "\/\/profile\/modify\/set\/part\/prop",
-                                    "position": 1,
-                                    "required": false,
-                                    "multiple": true,
-                                    "holds_data": false,
-                                    "datatype": "none",
-                                    "flags": {},
-                                    "content": null,
-                                    "formal-name": "Property",
-                                    "description": "A value with a name, attributed to the containing control, part, or group."
-                                },
-                                "part": {
-                                    "name": "part",
-                                    "path": "\/\/profile\/modify\/set\/part\/part",
-                                    "position": 2,
-                                    "required": false,
-                                    "multiple": true,
-                                    "holds_data": true,
-                                    "datatype": "prose",
-                                    "flags": {
-                                        "0": {
-                                            "name": "id",
-                                            "required": false,
-                                            "datatype": "string",
-                                            "formal-name": "Identifier",
-                                            "description": "Unique identifier of the containing object"
-                                        },
-                                        "1": {
-                                            "name": "name",
-                                            "required": true,
-                                            "datatype": "NCName",
-                                            "formal-name": "Name",
-                                            "description": "Identifying the purpose and intended use of the property, part or other object."
-                                        },
-                                        "2": {
-                                            "name": "ns",
-                                            "required": false,
-                                            "datatype": "string",
-                                            "formal-name": "Namespace",
-                                            "description": "A namespace qualifying the name."
-                                        },
-                                        "3": {
-                                            "name": "class",
-                                            "required": false,
-                                            "datatype": "NCName",
-                                            "formal-name": "Class",
-                                            "description": "Indicating the type or classification of the containing object"
-                                        }
-                                    },
-                                    "content": null,
-                                    "formal-name": "Part",
-                                    "description": "A partition or component of a control or part",
-                                    "model": {
-                                        "title": {
-                                            "name": "title",
-                                            "path": "\/\/profile\/modify\/set\/part\/part\/title",
-                                            "position": 0,
-                                            "required": false,
-                                            "multiple": false,
-                                            "holds_data": true,
-                                            "datatype": "mixed",
-                                            "flags": {},
-                                            "content": null,
-                                            "formal-name": "Title",
-                                            "description": "A title for display and navigation"
-                                        },
-                                        "prop": {
-                                            "name": "prop",
-                                            "path": "\/\/profile\/modify\/set\/part\/part\/prop",
-                                            "position": 1,
-                                            "required": false,
-                                            "multiple": true,
-                                            "holds_data": false,
-                                            "datatype": "none",
-                                            "flags": {},
-                                            "content": null,
-                                            "formal-name": "Property",
-                                            "description": "A value with a name, attributed to the containing control, part, or group."
-                                        },
-                                        "part": {
-                                            "name": "part",
-                                            "path": "\/\/profile\/modify\/set\/part\/part\/part",
-                                            "position": 2,
-                                            "required": false,
-                                            "multiple": true,
-                                            "holds_data": true,
-                                            "datatype": "prose",
-                                            "flags": {
-                                                "0": {
-                                                    "name": "id",
-                                                    "required": false,
-                                                    "datatype": "string",
-                                                    "formal-name": "Identifier",
-                                                    "description": "Unique identifier of the containing object"
-                                                },
-                                                "1": {
-                                                    "name": "name",
-                                                    "required": true,
-                                                    "datatype": "NCName",
-                                                    "formal-name": "Name",
-                                                    "description": "Identifying the purpose and intended use of the property, part or other object."
-                                                },
-                                                "2": {
-                                                    "name": "ns",
-                                                    "required": false,
-                                                    "datatype": "string",
-                                                    "formal-name": "Namespace",
-                                                    "description": "A namespace qualifying the name."
-                                                },
-                                                "3": {
-                                                    "name": "class",
-                                                    "required": false,
-                                                    "datatype": "NCName",
-                                                    "formal-name": "Class",
-                                                    "description": "Indicating the type or classification of the containing object"
-                                                }
-                                            },
-                                            "content": null,
-                                            "formal-name": "Part",
-                                            "description": "A partition or component of a control or part",
-                                            "model": {
-                                                "title": {
-                                                    "name": "title",
-                                                    "path": "\/\/profile\/modify\/set\/part\/part\/part\/title",
-                                                    "position": 0,
-                                                    "required": false,
-                                                    "multiple": false,
-                                                    "holds_data": true,
-                                                    "datatype": "mixed",
-                                                    "flags": {},
-                                                    "content": null,
-                                                    "formal-name": "Title",
-                                                    "description": "A title for display and navigation"
-                                                },
-                                                "prop": {
-                                                    "name": "prop",
-                                                    "path": "\/\/profile\/modify\/set\/part\/part\/part\/prop",
-                                                    "position": 1,
-                                                    "required": false,
-                                                    "multiple": true,
-                                                    "holds_data": false,
-                                                    "datatype": "none",
-                                                    "flags": {},
-                                                    "content": null,
-                                                    "formal-name": "Property",
-                                                    "description": "A value with a name, attributed to the containing control, part, or group."
-                                                },
-                                                "part": {
-                                                    "name": "part",
-                                                    "path": "\/\/profile\/modify\/set\/part\/part\/part\/part",
-                                                    "position": 2,
-                                                    "required": false,
-                                                    "multiple": true,
-                                                    "holds_data": true,
-                                                    "datatype": "prose",
-                                                    "flags": {
-                                                        "0": {
-                                                            "name": "id",
-                                                            "required": false,
-                                                            "datatype": "string",
-                                                            "formal-name": "Identifier",
-                                                            "description": "Unique identifier of the containing object"
-                                                        },
-                                                        "1": {
-                                                            "name": "name",
-                                                            "required": true,
-                                                            "datatype": "NCName",
-                                                            "formal-name": "Name",
-                                                            "description": "Identifying the purpose and intended use of the property, part or other object."
-                                                        },
-                                                        "2": {
-                                                            "name": "ns",
-                                                            "required": false,
-                                                            "datatype": "string",
-                                                            "formal-name": "Namespace",
-                                                            "description": "A namespace qualifying the name."
-                                                        },
-                                                        "3": {
-                                                            "name": "class",
-                                                            "required": false,
-                                                            "datatype": "NCName",
-                                                            "formal-name": "Class",
-                                                            "description": "Indicating the type or classification of the containing object"
-                                                        }
-                                                    },
-                                                    "content": null,
-                                                    "formal-name": "Part",
-                                                    "description": "A partition or component of a control or part",
-                                                    "model": {
-                                                        "title": {
-                                                            "name": "title",
-                                                            "path": "\/\/profile\/modify\/set\/part\/part\/part\/part\/title",
-                                                            "position": 0,
-                                                            "required": false,
-                                                            "multiple": false,
-                                                            "holds_data": true,
-                                                            "datatype": "mixed",
-                                                            "flags": {},
-                                                            "content": null,
-                                                            "formal-name": "Title",
-                                                            "description": "A title for display and navigation"
-                                                        },
-                                                        "prop": {
-                                                            "name": "prop",
-                                                            "path": "\/\/profile\/modify\/set\/part\/part\/part\/part\/prop",
-                                                            "position": 1,
-                                                            "required": false,
-                                                            "multiple": true,
-                                                            "holds_data": false,
-                                                            "datatype": "none",
-                                                            "flags": {},
-                                                            "content": null,
-                                                            "formal-name": "Property",
-                                                            "description": "A value with a name, attributed to the containing control, part, or group."
-                                                        },
-                                                        "part": {
-                                                            "name": "part",
-                                                            "path": "\/\/profile\/modify\/set\/part\/part\/part\/part\/part",
-                                                            "position": 2,
-                                                            "required": false,
-                                                            "multiple": true,
-                                                            "holds_data": true,
-                                                            "datatype": "prose",
-                                                            "flags": {
-                                                                "0": {
-                                                                    "name": "id",
-                                                                    "required": false,
-                                                                    "datatype": "string",
-                                                                    "formal-name": "Identifier",
-                                                                    "description": "Unique identifier of the containing object"
-                                                                },
-                                                                "1": {
-                                                                    "name": "name",
-                                                                    "required": true,
-                                                                    "datatype": "NCName",
-                                                                    "formal-name": "Name",
-                                                                    "description": "Identifying the purpose and intended use of the property, part or other object."
-                                                                },
-                                                                "2": {
-                                                                    "name": "ns",
-                                                                    "required": false,
-                                                                    "datatype": "string",
-                                                                    "formal-name": "Namespace",
-                                                                    "description": "A namespace qualifying the name."
-                                                                },
-                                                                "3": {
-                                                                    "name": "class",
-                                                                    "required": false,
-                                                                    "datatype": "NCName",
-                                                                    "formal-name": "Class",
-                                                                    "description": "Indicating the type or classification of the containing object"
-                                                                }
-                                                            },
-                                                            "content": null,
-                                                            "formal-name": "Part",
-                                                            "description": "A partition or component of a control or part",
-                                                            "model": {
-                                                                "title": null,
-                                                                "prop": null,
-                                                                "part": null,
-                                                                "link": null
-                                                            }
-                                                        },
-                                                        "link": {
-                                                            "name": "link",
-                                                            "path": "\/\/profile\/modify\/set\/part\/part\/part\/part\/link",
-                                                            "position": 3,
-                                                            "required": false,
-                                                            "multiple": true,
-                                                            "holds_data": true,
-                                                            "datatype": "mixed",
-                                                            "flags": {
-                                                                "0": {
-                                                                    "name": "href",
-                                                                    "required": true,
-                                                                    "datatype": "uri-reference",
-                                                                    "formal-name": "hypertext reference",
-                                                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
-                                                                },
-                                                                "1": {
-                                                                    "name": "rel",
-                                                                    "required": false,
-                                                                    "datatype": "NCName",
-                                                                    "formal-name": "Relation",
-                                                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
-                                                                },
-                                                                "2": {
-                                                                    "name": "media-type",
-                                                                    "required": false,
-                                                                    "datatype": "string",
-                                                                    "formal-name": "Media type",
-                                                                    "description": "Describes the media type of the linked resource"
-                                                                }
-                                                            },
-                                                            "content": null,
-                                                            "formal-name": "Link",
-                                                            "description": "A reference to a local or remote resource"
-                                                        }
-                                                    }
-                                                },
-                                                "link": {
-                                                    "name": "link",
-                                                    "path": "\/\/profile\/modify\/set\/part\/part\/part\/link",
-                                                    "position": 3,
-                                                    "required": false,
-                                                    "multiple": true,
-                                                    "holds_data": true,
-                                                    "datatype": "mixed",
-                                                    "flags": {
-                                                        "0": {
-                                                            "name": "href",
-                                                            "required": true,
-                                                            "datatype": "uri-reference",
-                                                            "formal-name": "hypertext reference",
-                                                            "description": "A link to a document or document fragment (actual, nominal or projected)"
-                                                        },
-                                                        "1": {
-                                                            "name": "rel",
-                                                            "required": false,
-                                                            "datatype": "NCName",
-                                                            "formal-name": "Relation",
-                                                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
-                                                        },
-                                                        "2": {
-                                                            "name": "media-type",
-                                                            "required": false,
-                                                            "datatype": "string",
-                                                            "formal-name": "Media type",
-                                                            "description": "Describes the media type of the linked resource"
-                                                        }
-                                                    },
-                                                    "content": null,
-                                                    "formal-name": "Link",
-                                                    "description": "A reference to a local or remote resource"
-                                                }
-                                            }
-                                        },
-                                        "link": {
-                                            "name": "link",
-                                            "path": "\/\/profile\/modify\/set\/part\/part\/link",
-                                            "position": 3,
-                                            "required": false,
-                                            "multiple": true,
-                                            "holds_data": true,
-                                            "datatype": "mixed",
-                                            "flags": {
-                                                "0": {
-                                                    "name": "href",
-                                                    "required": true,
-                                                    "datatype": "uri-reference",
-                                                    "formal-name": "hypertext reference",
-                                                    "description": "A link to a document or document fragment (actual, nominal or projected)"
-                                                },
-                                                "1": {
-                                                    "name": "rel",
-                                                    "required": false,
-                                                    "datatype": "NCName",
-                                                    "formal-name": "Relation",
-                                                    "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
-                                                },
-                                                "2": {
-                                                    "name": "media-type",
-                                                    "required": false,
-                                                    "datatype": "string",
-                                                    "formal-name": "Media type",
-                                                    "description": "Describes the media type of the linked resource"
-                                                }
-                                            },
-                                            "content": null,
-                                            "formal-name": "Link",
-                                            "description": "A reference to a local or remote resource"
-                                        }
-                                    }
-                                },
-                                "link": {
-                                    "name": "link",
-                                    "path": "\/\/profile\/modify\/set\/part\/link",
-                                    "position": 3,
-                                    "required": false,
-                                    "multiple": true,
-                                    "holds_data": true,
-                                    "datatype": "mixed",
-                                    "flags": {
-                                        "0": {
-                                            "name": "href",
-                                            "required": true,
-                                            "datatype": "uri-reference",
-                                            "formal-name": "hypertext reference",
-                                            "description": "A link to a document or document fragment (actual, nominal or projected)"
-                                        },
-                                        "1": {
-                                            "name": "rel",
-                                            "required": false,
-                                            "datatype": "NCName",
-                                            "formal-name": "Relation",
-                                            "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose."
-                                        },
-                                        "2": {
-                                            "name": "media-type",
-                                            "required": false,
-                                            "datatype": "string",
-                                            "formal-name": "Media type",
-                                            "description": "Describes the media type of the linked resource"
-                                        }
-                                    },
-                                    "content": null,
-                                    "formal-name": "Link",
-                                    "description": "A reference to a local or remote resource"
-                                }
-                            }
                         }
                     }
                 },
@@ -5272,21 +4804,21 @@
                                     "name": "name-ref",
                                     "required": false,
                                     "datatype": "NCName",
-                                    "formal-name": "References by (assigned) name",
+                                    "formal-name": "Reference by (assigned) name",
                                     "description": "Items to remove, by assigned name"
                                 },
                                 "1": {
                                     "name": "class-ref",
                                     "required": false,
                                     "datatype": "NCName",
-                                    "formal-name": "References by class",
+                                    "formal-name": "Reference by class",
                                     "description": "Items to remove, by class. A token match."
                                 },
                                 "2": {
                                     "name": "id-ref",
                                     "required": false,
                                     "datatype": "NCName",
-                                    "formal-name": "References by ID",
+                                    "formal-name": "Reference by ID",
                                     "description": "Items to remove, indicated by their IDs"
                                 },
                                 "3": {
@@ -5316,6 +4848,13 @@
                                     "datatype": "string",
                                     "formal-name": "Position",
                                     "description": "Where to add the new content with respect to the targeted element (beside it or inside it)"
+                                },
+                                "1": {
+                                    "name": "id-ref",
+                                    "required": false,
+                                    "datatype": "NCName",
+                                    "formal-name": "Reference by ID",
+                                    "description": "Target location of the addition."
                                 }
                             },
                             "content": null,
@@ -5529,10 +5068,55 @@
                                     "formal-name": "Property",
                                     "description": "A value with a name, attributed to the containing control, part, or group."
                                 },
+                                "annotation": {
+                                    "name": "annotation",
+                                    "path": "\/\/profile\/modify\/alter\/add\/annotation",
+                                    "position": 3,
+                                    "required": false,
+                                    "multiple": true,
+                                    "holds_data": false,
+                                    "datatype": "none",
+                                    "flags": {
+                                        "0": {
+                                            "name": "name",
+                                            "required": true,
+                                            "datatype": "NCName",
+                                            "formal-name": "Name",
+                                            "description": "Identifying the purpose and intended use of the property, part or other object."
+                                        },
+                                        "1": {
+                                            "name": "id",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Identifier",
+                                            "description": "Unique identifier of the containing object"
+                                        },
+                                        "2": {
+                                            "name": "ns",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Namespace",
+                                            "description": "A namespace qualifying the name."
+                                        },
+                                        "3": {
+                                            "name": "value",
+                                            "required": false,
+                                            "datatype": "string",
+                                            "formal-name": "Value",
+                                            "description": "Indicates the value of the characteristic."
+                                        }
+                                    },
+                                    "content": null,
+                                    "formal-name": "Annotation",
+                                    "description": "A name\/value pair with optional explanitory remarks.",
+                                    "model": {
+                                        "": null
+                                    }
+                                },
                                 "link": {
                                     "name": "link",
                                     "path": "\/\/profile\/modify\/alter\/add\/link",
-                                    "position": 3,
+                                    "position": 4,
                                     "required": false,
                                     "multiple": true,
                                     "holds_data": true,
@@ -5567,7 +5151,7 @@
                                 "part": {
                                     "name": "part",
                                     "path": "\/\/profile\/modify\/alter\/add\/part",
-                                    "position": 4,
+                                    "position": 5,
                                     "required": false,
                                     "multiple": true,
                                     "holds_data": true,
@@ -6186,7 +5770,7 @@
                             "formal-name": "Property",
                             "description": "A value with a name, attributed to the containing control, part, or group."
                         },
-                        "2": {
+                        "rlink": {
                             "name": "rlink",
                             "path": "\/\/profile\/back-matter\/resource\/rlink",
                             "position": 2,
@@ -6229,10 +5813,10 @@
                                 }
                             }
                         },
-                        "3": {
+                        "base64": {
                             "name": "base64",
                             "path": "\/\/profile\/back-matter\/resource\/base64",
-                            "position": 2,
+                            "position": 3,
                             "required": false,
                             "multiple": false,
                             "holds_data": false,

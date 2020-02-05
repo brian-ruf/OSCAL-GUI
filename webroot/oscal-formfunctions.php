@@ -7,8 +7,8 @@ function PopulateFormFields($oscal, $xapth, $exclude=false) {
 	$flat_schema_map = GetFlatSchemaMap($oscal['root']);
 	$data_set = QueryListResult($oscal, $xpath);
 		
-	if (isset($flat_schema_map[$base_xpath]) {
-		$data_type = $flat_schema_map[$base_xpath]['datatype']
+	if (isset($flat_schema_map[$base_xpath])) {
+		$data_type = $flat_schema_map[$base_xpath]['datatype'];
 		if ($flat_schema_map[$base_xpath]['multiple']) {
 
 		} else {

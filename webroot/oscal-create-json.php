@@ -68,7 +68,7 @@ ZoneAdjust("background: color url('./img/spinning_rings_fr_red.gif');", "zone-th
 		ZoneAdjust("max-height:600px; box-shadow: 10px 10px 5px grey; border: 1px solid #8a4419; border-style: inset;", 'zone-two');
 		
 		ZoneOutputAppend("<br />DONE!", "zone-one");
-//		ZoneOutputAppend("<br /><a href='./projects/" . $base_dir . "/__other_formats/" . basename($output_file_name) . "' download='" . basename($output_file_name) . "'>DOWNLOAD JSON FILE</a>", "zone-one");
+//		ZoneOutputAppend("<br /><a href='." . PROJECT_LOCATION_RELATIVE . $base_dir . "/__other_formats/" . basename($output_file_name) . "' download='" . basename($output_file_name) . "'>DOWNLOAD JSON FILE</a>", "zone-one");
 		
 	} else {
 		ZoneOutputAppend("<br />ERROR OPENING FILE", 'zone-one');
@@ -80,7 +80,7 @@ ZoneAdjust("background: color url('./img/spinning_rings_fr_red.gif');", "zone-th
 	$date_label = "Created";
 	$files = glob(PROJECT_LOCATION . $project_dir . $file_pattern);
 	if (count($files) > 0) {
-		$ret_val .= MakeDownloadButtons($files, $project_dir, $file_pattern, $file_label, $date_label);
+		$ret_val .= MakeDownloadButtons($files, PROJECT_LOCATION_RELATIVE . $project_dir, $file_pattern, $file_label, $date_label);
 	}
 
 	$ret_val .= MakeBackButton("oscal.php?mode=open&project=" . $project_id );

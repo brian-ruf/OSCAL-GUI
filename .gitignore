@@ -2,3 +2,8 @@ webroot/projects/proj*
 webroot/projects/*.txt
 webroot/HOLD
 webroot/_start.bat
+webroot/fedramp/internal
+webroot/fedramp/test.xml
+webroot/fedramp/temp.html
+webroot/xslt.bat
+webroot/third-party/root-certificates/cacert.pem

@@ -14,6 +14,7 @@
 // ==  Other XML Functions
 // ==  UI Generation Functions
 // ==  Form Helper Functions
+// ==  Project Management Functions
 // ==  Miscellaneous Helper Functions
 
 require_once('oscal-config.php');
@@ -195,8 +196,8 @@ function QueryListResult(&$oscal_objects, $query) {
 	$logging = "** QueryListResult (" . $query . "):<br />";
 	$ret_val = false;
 
-	if ($oscal_objects["namespace"]==="") {
-		// Do nothing
+	if ( $oscal_objects["namespace"]==="") {
+		$query = AddNamespace2xpath($query, "*");
 	} else {
 		$query = AddNamespace2xpath($query, $oscal_objects["namespace"]);
 	}
@@ -646,7 +647,7 @@ function CreateOSCALfile($oscalroot, $oscal_id="") {
 
 	$new_oscal = "<?xml version='1.0' encoding='UTF-8'?>
 	<" . $oscalroot . " xmlns='" . $ns . "'
-			 id='" . $oscal_id . "'>
+			 id='uuid-" . com_create_guid() . "'>
 			 <metadata />
 	</" . $oscalroot . ">
 	";
@@ -903,6 +904,7 @@ return $ret_val;
 // ----------------------------------------------------------------------------
 function SaveOSCALfile($oscal){
 	
+	SetLastModified($oscal['DOM']);
 	$status = $oscal['DOM']->save($oscal['file']);
 	if ($status) {
 		Messages(" ---- FILE SAVED! ---- ");
@@ -912,10 +914,85 @@ function SaveOSCALfile($oscal){
 	} else {
 		Messages(" !!!! ERROR SAVING FILE! !!!! ");
 	}
-
 	return $status;
 }
 
+
+// ----------------------------------------------------------------------------
+function SetLastModified($oscal){
+	
+	$last_modified = date(DATE_TIME_STORE_FORMAT);
+	$basename = basename(OSCAL_METADATA_LAST_MODIFIED);
+
+	if (is_array($oscal)) { 
+		$last_modified_object = QueryListResult($oscal, OSCAL_METADATA_LAST_MODIFIED);
+		
+		if ($last_modified_object === false) { // last-modified doesn't exist (non-typical)
+			$last_modified_object = $oscal['DOM']->createElement(basename(OSCAL_METADATA_LAST_MODIFIED), $last_modified);
+			$ret_val = InsertOSCALdata($oscal['DOM'], OSCAL_METADATA_LAST_MODIFIED . "/..", $last_modified_object);
+		} else {
+			$last_modified_object->item(0)->nodeValue = $last_modified;
+		}
+	} else {  // assume DOM
+		$metadata_object = $oscal->getElementsByTagName('metadata');
+		if ($metadata_object->length > 0) {
+			$last_modified_object = $metadata_object->item(0)->getElementsByTagName($basename);
+			if ($last_modified_object->length == 0) {  // last-modified doesn't exist (non-typical)
+				$last_modified_object = $oscal->createElement($basename, $last_modified);
+				$ret_val = InsertOSCALdata($oscal, OSCAL_METADATA_LAST_MODIFIED . "/..", $last_modified_object);
+			} else {
+				$last_modified_object->item(0)->nodeValue = $last_modified;
+			}
+		} else {
+			Messages("No metadata!");
+		}
+	}
+}
+
+// ----------------------------------------------------------------------------
+// $oscal is either a DOM object, or an array with a DOM object associated with 
+//    the ['DOM'] element in the array.
+// $title is the title to replace or append.
+// $append if true, the value of $title is added to any existng title
+//         if false, the value of $title replaces any existing title
+//         if no title exists, the value of $title will become the new title.
+// 
+function SetTitle($oscal, $title, $append=false){
+	
+	$basename = basename(OSCAL_METADATA_TITLE);
+
+	if (is_array($oscal)) { 
+		$title_object = QueryListResult($oscal, OSCAL_METADATA_TITLE);
+		
+		if ($title_object === false) { // title doesn't exist (non-typical)
+			$title_object = $oscal['DOM']->createElement(basename(OSCAL_METADATA_TITLE), $title);
+			$ret_val = InsertOSCALdata($oscal['DOM'], OSCAL_METADATA_TITLE . "/..", $title_object);
+		} else {
+			if ($append) {
+				$title_object->item(0)->nodeValue .= $title;
+			} else {
+				$title_object->item(0)->nodeValue = $title;
+			}
+		}
+	} else {  // assume DOM
+		$metadata_object = $oscal->getElementsByTagName('metadata');
+		if ($metadata_object->length > 0) {
+			$title_object = $metadata_object->item(0)->getElementsByTagName($basename);
+			if ($title_object->length == 0) {   // title doesn't exist (non-typical)
+				$title_object = $oscal->createElement($basename, $title);
+				$ret_val = InsertOSCALdata($oscal, OSCAL_METADATA_LAST_MODIFIED . "/..", $title_object);
+			} else {
+				if ($append) {
+					$title_object->item(0)->nodeValue .= $title;
+				} else {
+					$title_object->item(0)->nodeValue = $title;
+				}
+			}
+		} else {
+			Messages("No metadata!");
+		}
+	}
+}
 
 // ----------------------------------------------------------------------------
 // Checks the syntax of the file against the schema
@@ -1027,21 +1104,28 @@ function UpdateOSCALValidationFiles() {
 		$ret_val .= "Attempted on ". date("Y-m-d   h:i:sa") . " " . date_default_timezone_get() . "<br/ >";
 	}
 	
-	return $ret_val;
+	return $ret_val . OutputMessages();
 }
 
 // ----------------------------------------------------------------------------
 function FindOSCALFileInDir($dir) {
+	Messages("FIND FILE IN: " . $dir);
 	$xml_file_found = false;
 	$dh = opendir($dir);
 	$cntr = 0;
 	while (($file = readdir($dh)) !== false) {
-		if (filetype($dir . "/" . $file) == 'file') {
+		Messages("FILE: " . $dir . $file);
+//		Messages("TYPE: " . filetype($dir . $file));
+//		if (filetype($dir. $file) == 'file') {
+//			Messages("IS FILE");
 			if (strtolower(right_str($file, 4)) == '.xml') {
+				Messages("IS XML FILE");
 				$xml_file_found = true; 
 				break;
 			}
-		}
+//		} else {
+//			Messages("IS NOT FILE");
+//		}
 		$cntr += 1;
 		if ($cntr > 100) break;
 	}
@@ -1289,7 +1373,7 @@ function ExtractSchemaFile($schema_declaration) {
 
 // ----------------------------------------------------------------------------
 
-function MakeBackButton($url="", $img="./img/arrow-left.png") {
+function MakeBackButton($url="", $img="/img/arrow-left.png") {
 	$output = "";
 	
 	if ($url == "") {
@@ -1539,18 +1623,20 @@ function MakeDownloadButtons(&$files, $project_dir, $file_pattern, $file_label, 
 
 	$ret_val .= "<table width='100%' class='fileinfo'>";
 	$ret_val .= "<tr><th colspan='2'>" . $file_label . "</th></tr>";
+//	resolved-profile_catalog.xml
 	foreach ($files as $file) {
+		$base_file_name = basename($file);
 		$ret_val .= "<tr>";
-		$ret_val .= "<td class='button' width='30%'>";
+		$ret_val .= "<td class='buttonlink' width='30%'>";
 
-		$ret_val .= "<a class='buttonlink' href='./projects/" . $project_dir . "/" . basename($file) . "' download='" . basename($file) . "'>";
+		$ret_val .= "<a class='buttonlink' href='" . $project_dir . $base_file_name . "' download='" . $base_file_name . "'>";
 		$ret_val .= "<table width='100%' class='button'><tr><td class='button'>";
-		$ret_val .= "<img class='buttonicon' src='./img/download2.png' />&nbsp;DOWNLOAD";
+		$ret_val .= "<img class='buttonicon' src='/img/download2.png' />&nbsp;DOWNLOAD";
 		$ret_val .= "</td></tr></table>";
 		$ret_val .= "</a>"; 
 
 		$ret_val .= "</td>";
-		$ret_val .= "<td> <span style='font-weight:bold;'>" . basename($file) . "</span>";
+		$ret_val .= "<td> <span style='font-weight:bold;'>" . $base_file_name . "</span>";
 		$ret_val .= "<br /><span style='color:red;'>" . $date_label . ":</span><br />" . date(DATE_TIME_PRESENT_FORMAT, filemtime($file)) ;
 		$ret_val .= "</td></tr>";
 
@@ -1567,6 +1653,24 @@ function MakeDownloadButtons(&$files, $project_dir, $file_pattern, $file_label, 
 	
 	return $ret_val;
 }
+
+// ============================================================================
+// ==  Project Management Functions
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Accepts a project ID and returns the locaiton of the XML file.
+// For now, this is a simple path creation; however, it is intended to allow
+//    for other forms of mapping project IDs to project file locations. This 
+//    may be desirable for security purposes.
+// ----------------------------------------------------------------------------
+function ProjectID2File($project_id) {
+	
+	$project_dir = PROJECT_LOCATION . $project_id;
+	
+	
+}
+
 
 // ============================================================================
 // ==  Miscellaneous Helper Functions
@@ -1604,14 +1708,8 @@ return $ret_val;
 // This converts a path to a URI. 
 function MakeURI($path) {
 
-// ************ 
-//	if (RunningOnWindows()) {
-		$bad  = array( " ",  "\\");
-		$good = array("%20", "/");
-//	} else { // Assume Linux or linux-friendly (like Mac OS)
-//		$bad  = array(" ");
-//		$good = array("%20" );
-//	}
+	$bad  = array( " ",  "\\");
+	$good = array("%20", "/");
 	
 	$ret_val = str_replace($bad, $good, $path);
 	if (substr($ret_val, 0, 2) == "//") {
@@ -1635,8 +1733,8 @@ function RunningOnWindows() {
 	//By default, we assume that PHP is NOT running on windows.
 	$isWindows = false;
 	 
-	// If the first three characters PHP_OS are equal to "WIN",
-	// then PHP is running on a Windows operating system.
+	// If the first three characters of PHP_OS are equal to "WIN",
+	//    then PHP is running on a Windows operating system.
 	if(strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0){
 		$isWindows = true;
 	}
@@ -1665,31 +1763,88 @@ return $ret_val;
 }
 
 // ----------------------------------------------------------------------------
+// Receives a file name or URI, and verifies its existence.
+//    If it does not appear to be a URI (no "//"), it assumes $file is local to
+//       the web server, and checks using PHP's file_exists function.
+//    Otherwise, it assumes $file is a URI, and uses cURL to verify its
+//       existence.
+// 
+// NOTE: If the URI uses a secure protocol (https), cURL will attempt to 
+//     validate the certificate by default; however, there is no list of trusted 
+//     root CAs "out of the box". Trusted root CAs may be provided via a PEM file.
+//     The code below will attempt to validate certificates if:
+//          1.) ROOT_CA_PEM_LOCATION is defined in oscal-config; and
+//          2.) The file specified by ROOT_CA_PEM_LOCATION is found
+// 
+// NOTE: If cerificate validation is enabled (by providing/specifiying the PEM 
+//     file above), the host's certificate must be valid. Invalid (expired,
+//     unsigned, etc.)certificates will be treated the same as if the file does
+//     not exist.
+// NOTE: If root CA checking is NOT enabled, cURL will only ensure the host name
+//     on the certificae matches the actual host name.
+//
+// RETURNS: 
+//   true - if the file is found (with a valid host certificate when appropriate)
+//   false - if the file is not found (or a host certificate is invalid)
+// 
 function check_file ($file){
 	$status = false;
 	
     if ( !preg_match('/\/\//', $file) ) {
         if ( file_exists($file) ){
             $status = true;
-        }
+        } else {
+			Messages("NOT FOUND LOCALLY: " . $file);
+		}
+    } else {
+		if ( ! (!$file || !is_string($file) || ! preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $file))) {
+			$ch = curl_init($file);
+			
+			//Tell cURL where our certificate bundle is located.
+			
+			if ($ch !== false) {
+				curl_setopt($ch, CURLOPT_HEADER, true);
+				curl_setopt($ch, CURLOPT_NOBODY, true);
+				
+				// !! PHP's cURL implementation cheks the certificate of an https
+				// !! connection; however, it does not "know" the proper root 
+				// !! certificates for GitHub, and fails to complete the connection.
+				// Based on information found here:
+				//     https://thisinterestsme.com/php-curl-ssl-certificate-error/
+				if (ROOT_CA_PEM_LOCATION!==null && file_exists(ROOT_CA_PEM_LOCATION)) {
+					curl_setopt($ch, CURLOPT_CAINFO, ROOT_CA_PEM_LOCATION);
+					curl_setopt($ch, CURLOPT_CAPATH, ROOT_CA_PEM_LOCATION);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true); // true = verify certificate
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
+				} else {
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // false = do not verify certificate
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 = don't check, 1 = depreciated; 2 = check certificate common name and ensure it matches host
+				}
+				curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				curl_exec($ch);
+				$code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+
+				if($code == 200){
+					$status = true;
+//				} elseif ($code=302) { // try proxy
+					
+				} else {
+					$status = false;
+					Messages("NOT FOUND REMOTELY: " . $file);
+					Messages("RESPONSE: " . $code);
+					Messages("ERROR NO: " . curl_errno($ch));
+					Messages("ERROR STR: " . curl_strerror(curl_error($ch)));
+					Messages("ERRORS: " . curl_error($ch));
+				}
+				curl_close($ch);
+			} else {
+				Messages("CURL ERROR OPENING: " . $file);
+			}
+		} else {
+			Messages("INVALID URL: " . $file);
+		}
     }
-
-    else {
-
-        $ch = curl_init($file);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_exec($ch);
-        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        if($code == 200){
-            $status = true;
-        }else{
-            $status = false;
-        }
-        curl_close($ch);
-
-    }
-
     return $status;
 }
 
@@ -1734,17 +1889,22 @@ function recurse_array($values){
     }
     return $content;
 }
-
+// ----------------------------------------------------------------------------
 function Messages($content){
 	global $messages;
 
 	if (function_exists('Logging')) {
-		Logging($messages);
-		$messages = "";
-	} else {
-		$messages .= "\n-- " . $content . "<br />";	
+		Logging($content);
+//		$messages = "";
 	}
-	
+	$messages .= "\n-- " . $content . "<br />";	
+}
+
+// ----------------------------------------------------------------------------
+function OutputMessages(){
+	global $messages;
+
+	return "<pre>" . $messages . "</pre>";
 }
 
 // ----------------------------------------------------------------------------
