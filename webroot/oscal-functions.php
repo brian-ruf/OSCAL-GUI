@@ -647,7 +647,7 @@ function CreateOSCALfile($oscalroot, $oscal_id="") {
 
 	$new_oscal = "<?xml version='1.0' encoding='UTF-8'?>
 	<" . $oscalroot . " xmlns='" . $ns . "'
-			 id='" . com_create_guid() . "'>
+			 id='uuid-" . com_create_guid() . "'>
 			 <metadata />
 	</" . $oscalroot . ">
 	";

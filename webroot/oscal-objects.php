@@ -73,7 +73,7 @@ class OSCAL {
 	//     If $spec is missing or invalid, $this->status is false.
 	function __construct($spec, $create=false) {
 		$this->project_id = "";
-		$this->processing_id = com_create_guid();
+		$this->processing_id = 'uuid-' . com_create_guid();
 		$this->file_name = ""; // includes full path to file
 		$this->file_base_name = "";
 		$this->title = "";
